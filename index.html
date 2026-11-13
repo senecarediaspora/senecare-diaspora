@@ -111,32 +111,12 @@
         .comp-box ul li .icon { margin-right: 10px; flex-shrink: 0; font-size: 16px; }
         .comp-box ul li .text { flex: 1; line-height: 1.4; }
 
-        /* --- FAQ (CORRIGÉE) --- */
+        /* --- FAQ --- */
         .faq-item { margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 15px; }
         .faq-item:last-child { border-bottom: none; }
-        
-        /* La question est maintenant bien séparée */
-        .faq-question { 
-            display: block; 
-            margin-bottom: 8px; 
-            color: var(--primary); 
-            font-size: 16px; 
-            font-weight: bold;
-        }
-        
-        /* Le texte de la réponse est fluide */
-        .faq-item p { 
-            margin-bottom: 0; 
-            font-size: 15px; 
-            color: var(--text-light); 
-            text-align: left; 
-        }
-        
-        /* Permet de mettre en gras un mot DANS la phrase sans casser la ligne */
-        .faq-item p strong { 
-            color: var(--text-main); 
-            font-weight: 600;
-        }
+        .faq-question { display: block; margin-bottom: 8px; color: var(--primary); font-size: 16px; font-weight: bold; }
+        .faq-item p { margin-bottom: 0; font-size: 15px; color: var(--text-light); text-align: left; }
+        .faq-item p strong { color: var(--text-main); font-weight: 600; }
 
         /* --- OFFRE BETA --- */
         .offre-wrapper { display: flex; justify-content: center; }
@@ -147,12 +127,12 @@
         }
         .badge {
             position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
-            background-color: #ef4444; color: white; padding: 6px 16px; border-radius: 20px;
+            background-color: var(--primary); color: white; padding: 6px 16px; border-radius: 20px;
             font-size: 14px; font-weight: bold; white-space: nowrap;
         }
-        .offre-card h3 { font-size: 22px; margin-bottom: 10px; color: var(--primary); }
-        .offre-card .price { font-size: 36px; font-weight: bold; color: var(--text-main); margin-bottom: 20px; }
-        .offre-card .price span { font-size: 18px; font-weight: normal; color: #9ca3af; text-decoration: line-through; }
+        .offre-card h3 { font-size: 22px; margin-bottom: 5px; color: var(--primary); }
+        .offre-card .price { font-size: 38px; font-weight: bold; color: var(--text-main); margin-bottom: 5px; }
+        .offre-card .price-text { font-size: 13px; color: var(--text-light); margin-bottom: 25px; display: block; }
         .offre-card ul { list-style: none; margin-bottom: 25px; font-size: 15px; color: var(--text-main); text-align: left; display: inline-block; }
         .offre-card ul li { margin-bottom: 12px; display: flex; align-items: flex-start;}
         .offre-card ul li::before { content: "✅"; margin-right: 10px; flex-shrink: 0;}
@@ -192,9 +172,9 @@
         <div class="story-container">
             <img src="profil.png" alt="Portrait de la fondatrice" class="story-image">
             <div class="story-text">
-                <p><span class="highlight">Je suis la fondatrice de SENE'Care-Diaspora.</span></p>
+                <p><span class="highlight">Je suis Diariyata, fondatrice de SENE'Care-Diaspora.</span></p>
                 <p>En tant qu'<strong>Infirmière de formation</strong> et <strong>Coach en nutrition</strong>, j'ai vu l'importance d'une prise en charge rigoureuse. Issue de la diaspora sénégalaise, je connais l'inquiétude que l'on ressent lorsqu'un parent au pays a besoin de soins et que l'on est loin.</p>
-                <p>J'ai créé ce service pour faciliter l'accès aux traitements. Mon engagement : vous accompagner avec la rigueur d'une professionnelle de santé et la transparence la plus totale sur les coûts et le parcours.</p>
+                <p>J'ai créé ce service pour faciliter l'accès aux traitements. Mon engagement : vous accompagner avec la rigueur d'une professionnelle de santé et la transparence la plus totale. Pour cette bêta, je m'appuie sur un réseau de confiance à Dakar, dont mon référent local, M. Cissé de la Pharmacie Yacine.</p>
             </div>
         </div>
     </section>
@@ -202,14 +182,14 @@
     <!-- PARCOURS SCHÉMATIQUE -->
     <section>
         <h2 class="section-title">Comment ça marche ?</h2>
-        <p class="section-subtitle">Un parcours clair, sécurisé et sans surprise.</p>
+        <p class="section-subtitle">Un parcours clair et sans surprise.</p>
         
         <div class="process-flow">
             <div class="process-step">
                 <div class="process-icon">1</div>
                 <div class="process-content">
                     <h4>Vérification préalable (Gratuit)</h4>
-                    <p>Vous nous contactez sur WhatsApp en précisant la ville de votre proche et le type de traitement pour vérifier la faisabilité.</p>
+                    <p>Vous nous contactez sur WhatsApp en précisant la ville de votre proche et le type de traitement. Nous vérifions la faisabilité avec notre pharmacie référente à Dakar.</p>
                 </div>
             </div>
             <div class="process-arrow">↓</div>
@@ -225,7 +205,7 @@
                 <div class="process-icon">3</div>
                 <div class="process-content">
                     <h4>Dépôt sécurisé de l'ordonnance</h4>
-                    <p>Formulaire sécurisé. La coordinatrice n'a pas accès au contenu médical. Le fichier est réservé au pharmacien.</p>
+                    <p>Formulaire sécurisé. La coordinatrice n'a pas accès au contenu médical. Le fichier est transmis directement au pharmacien partenaire.</p>
                 </div>
             </div>
             <div class="process-arrow">↓</div>
@@ -233,7 +213,7 @@
                 <div class="process-icon">4</div>
                 <div class="process-content">
                     <h4>Devis & Livraison</h4>
-                    <p>La pharmacie analyse l'ordonnance. Vous recevez le devis sous 24h à 48h ouvrées. Vous payez la pharmacie, et nous organisons la livraison.</p>
+                    <p>La pharmacie analyse l'ordonnance. Vous recevez le devis sous 24h à 48h ouvrées. Vous payez la pharmacie, et nous mandatons un coursier de confiance pour la remise en main propre.</p>
                 </div>
             </div>
         </div>
@@ -269,49 +249,50 @@
         <h2 class="section-title">Vos questions fréquentes</h2>
         
         <div class="faq-item">
-            <div class="faq-question">Où livrez-vous au Sénégal ?</div>
-            <p>Pour cette phase bêta, nous couvrons la région de <strong>Dakar</strong>. Si votre proche vit en dehors de Dakar, contactez-nous sur WhatsApp : nous étudierons la faisabilité et les éventuels frais de transport supplémentaires au cas par cas.</p>
+            <div class="faq-question">Avec quelles pharmacies travaillez-vous ?</div>
+            <p>Pour notre lancement, nous travaillons en étroite collaboration avec une <strong>pharmacie référente de confiance située à Dakar (la Pharmacie Yacine)</strong>. Nous sollicitons également d'autres officines physiques agréées selon la localisation de votre proche. Dans tous les cas, nous vous communiquons le nom et l'adresse exacte de la pharmacie avant tout paiement.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Qui effectue la livraison des médicaments ?</div>
+            <p>La livraison est assurée par un service de coursier indépendant de confiance. Le colis est remis en main propre à votre proche, et le coursier prend une photo comme preuve de livraison. Pour les médicaments nécessitant une chaîne du froid stricte, nous vous informerons avant la commande si le transport peut être garanti.</p>
         </div>
         <div class="faq-item">
             <div class="faq-question">Que couvrent exactement les 20 € ?</div>
             <p>L'offre Bêta à 20 € comprend la coordination d'<strong>un dossier complet</strong> (recherche de pharmacie, obtention du devis, suivi WhatsApp) et <strong>une livraison standard à domicile</strong> dans la zone de Dakar. Le coût des médicaments est à régler directement à la pharmacie. Pour un renouvellement, un nouveau dossier devra être ouvert.</p>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Dans quel délai vais-je recevoir le devis ?</div>
-            <p>Une fois l'ordonnance déposée, nous contactons la pharmacie. Le devis vous est généralement transmis sur WhatsApp <strong>sous 24h à 48h ouvrées</strong>, en fonction de la disponibilité de la pharmacie.</p>
+            <div class="faq-question">Que se passe-t-il si les médicaments sont indisponibles ?</div>
+            <p>Si la pharmacie contactée ne peut pas fournir le traitement, nous cherchons une alternative. Si aucun devis ne peut être établi (rupture totale de stock), les frais de coordination de 20 € vous sont intégralement remboursés. Si un devis est établi mais que vous le refusez (prix trop élevé par exemple), les frais de coordination restent dus car le travail de recherche a été effectué.</p>
         </div>
         <div class="faq-item">
             <div class="faq-question">Comment vérifier l'identité de la pharmacie ?</div>
-            <p>Toutes les pharmacies avec lesquelles nous travaillons sont des officines physiques agréées au Sénégal. Nous vous fournissons le nom exact et l'adresse de la pharmacie. Le paiement se fait sur le compte officiel de l'officine (Wave ou Orange Money).</p>
+            <p>Nous vous fournissons le nom exact et l'adresse de l'officine. Le paiement se fait sur le compte officiel de la pharmacie (Wave ou Orange Money). Vous pouvez vérifier son existence sur les annuaires officiels de santé au Sénégal.</p>
         </div>
         <div class="faq-item">
             <div class="faq-question">Mon parent doit-il donner son accord ?</div>
             <p>Oui. Il est important que votre proche soit informé et d'accord pour que ses informations (nom, adresse) soient partagées avec la pharmacie et le livreur pour organiser la livraison. L'ordonnance elle-même reste strictement confidentielle.</p>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Que se passe-t-il si la livraison échoue ?</div>
-            <p>Si le livreur ne parvient pas à remettre le colis (adresse erronée, absence), nous vous contactons immédiatement pour organiser une nouvelle tentative. Des frais de livraison supplémentaires pourront s'appliquer pour la 2ème tentative.</p>
-        </div>
-        <div class="faq-item">
             <div class="faq-question">Qui a accès aux données médicales de mon parent ?</div>
-            <p><strong>Uniquement le pharmacien.</strong> En tant que coordinatrice, je n'ai accès qu'au nom de votre proche pour organiser la livraison. L'ordonnance est stockée de manière chiffrée sur un serveur sécurisé (Supabase) et est supprimée après livraison et clôture du dossier.</p>
+            <p><strong>Le pharmacien et lui seul.</strong> Techniquement, l'ordonnance est envoyée dans un espace de stockage sécurisé (Supabase) et le pharmacien reçoit un lien unique pour la consulter. Je n'ai pas les droits d'accès pour ouvrir ce lien. L'ordonnance est supprimée après la livraison.</p>
         </div>
     </section>
 
     <!-- OFFRE BETA -->
     <section id="offre-beta">
-        <h2 class="section-title">Rejoignez la Bêta de Novembre</h2>
-        <p class="section-subtitle">Un nombre limité de places pour tester le service.</p>
+        <h2 class="section-title">Rejoignez la phase de test</h2>
+        <p class="section-subtitle">Novembre 2026 - Test grandeur nature</p>
         
         <div class="offre-wrapper">
             <div class="offre-card">
-                <div class="badge">Places limitées</div>
-                <h3>Offre Bêta-Testeur</h3>
-                <div class="price">20,00 € <span>29,90 €</span></div>
+                <div class="badge">Lancement Bêta</div>
+                <h3>Offre Testeur</h3>
+                <div class="price">20,00 €</div>
+                <span class="price-text">Tarif de lancement (le tarif standard sera de 29,90 €)</span>
                 <ul>
                     <li>Coordination d'1 dossier complet</li>
                     <li>Recherche de la pharmacie et devis</li>
-                    <li>1 livraison sécurisée à domicile (Dakar)</li>
+                    <li>1 livraison à domicile (Dakar)</li>
                     <li>Suivi de dossier par WhatsApp</li>
                 </ul>
                 
@@ -321,7 +302,7 @@
                 >
                 </stripe-buy-button>
                 <div class="offer-note">
-                    <em>Ce prix rémunère le service de coordination. Le coût des médicaments se règle directement à la pharmacie. Tarif de lancement (le tarif standard sera de 29,90 €).</em>
+                    <em>Ce prix rémunère uniquement le service de coordination. Le coût des médicaments se règle directement à la pharmacie.</em>
                 </div>
             </div>
         </div>
@@ -331,7 +312,7 @@
     <footer>
         <p>&copy; 2026 EI NDIAYE Diariyata (SENE'Care-Diaspora). Tous droits réservés.</p>
         <p style="margin-top: 10px;">
-            <a href="mentions-legales.html">Mentions légales & Confidentialité</a> | 
+            <a href="mentions-legales.html">Mentions légales & CGV</a> | 
             <a href="https://wa.me/33617977787" target="_blank">Contact WhatsApp</a>
         </p>
     </footer>
