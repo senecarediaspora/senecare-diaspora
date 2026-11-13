@@ -38,7 +38,6 @@
         .hero h1 { font-size: 32px; color: var(--primary); line-height: 1.2; margin-bottom: 20px; }
         .hero p { font-size: 18px; color: var(--text-light); max-width: 650px; margin: 0 auto 20px auto; }
         
-        /* Nouveaux boutons Hero */
         .hero-buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; }
         .cta-button-main {
             display: inline-flex; align-items: center; justify-content: center; gap: 10px;
@@ -162,20 +161,18 @@
 
 <div class="container">
     
-    <!-- HERO SECTION (Corrigée : WhatsApp en premier) -->
+    <!-- HERO SECTION -->
     <div class="hero">
         <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
         <h1>Les médicaments de vos parents au Sénégal, sans avoir à gérer l'achat à distance.</h1>
         <p>Nous vous accompagnons pour rechercher une pharmacie, obtenir le devis et organiser la livraison à domicile dans la région de Dakar. <strong>Vous payez les médicaments directement à la pharmacie.</strong></p>
         
         <div class="hero-buttons">
-            <!-- BOUTON PRINCIPAL : WHATSAPP GRATUIT -->
             <a href="https://wa.me/33617977787" class="cta-button-main" target="_blank">
                 💬 Vérifier gratuitement la faisabilité
             </a>
             <span class="hero-note">Premier échange sur WhatsApp, sans paiement</span>
             
-            <!-- BOUTON SECONDAIRE : ALLER À L'OFFRE -->
             <a href="#offre-beta" class="cta-button-secondary">
                 Voir les détails de l'offre (20 €)
             </a>
@@ -195,14 +192,14 @@
         <div class="story-container">
             <img src="profil.png" alt="Portrait de la fondatrice" class="story-image">
             <div class="story-text">
-                <p><span class="highlight">Je suis Diariyata, fondatrice de SENE'Care-Diaspora.</span></p>
+                <p><span class="highlight">Je suis Diariyata NDIAYE, fondatrice de SENE'Care-Diaspora.</span></p>
                 <p>En tant qu'<strong>Infirmière de formation</strong> et <strong>Coach en nutrition</strong>, j'ai vu l'importance d'une prise en charge rigoureuse. Issue de la diaspora sénégalaise, je connais l'inquiétude que l'on ressent lorsqu'un parent au pays a besoin de soins et que l'on est loin.</p>
                 <p>J'ai créé ce service pour faciliter l'accès aux traitements. Mon engagement : vous accompagner avec la rigueur d'une professionnelle de santé et la transparence la plus totale. Pour cette bêta, je m'appuie sur un réseau de confiance à Dakar, dont mon référent local, M. Cissé de la Pharmacie Yacine.</p>
             </div>
         </div>
     </section>
 
-    <!-- PARCOURS SCHÉMATIQUE -->
+    <!-- PARCOURS SCHÉMATIQUE (Délai de 2h ajouté) -->
     <section>
         <h2 class="section-title">Comment ça marche ?</h2>
         <p class="section-subtitle">Un parcours clair et sans surprise.</p>
@@ -228,15 +225,15 @@
                 <div class="process-icon">3</div>
                 <div class="process-content">
                     <h4>Dépôt sécurisé de l'ordonnance</h4>
-                    <p>Formulaire sécurisé. La coordinatrice n'a pas accès au contenu médical. Le fichier est transmis directement au pharmacien partenaire.</p>
+                    <p>Formulaire sécurisé. La coordinatrice n'a pas accès au contenu médical. Le fichier est transmis directement au pharmacien.</p>
                 </div>
             </div>
             <div class="process-arrow">↓</div>
             <div class="process-step">
                 <div class="process-icon">4</div>
                 <div class="process-content">
-                    <h4>Devis & Livraison</h4>
-                    <p>Devis sous 24-48h. Vous payez la pharmacie. Nous mandatons un coursier de confiance pour la livraison (généralement sous 24h après paiement).</p>
+                    <h4>Devis, Paiement & Livraison</h4>
+                    <p>Devis sous 24-48h. Une fois la pharmacie payée par vos soins, le pharmacien prépare le colis. Nous mandatons un coursier : <strong>livraison à Dakar sous 2 heures</strong>.</p>
                 </div>
             </div>
         </div>
@@ -267,21 +264,21 @@
         </div>
     </section>
 
-    <!-- FAQ (Enrichie) -->
+    <!-- FAQ (Enrichie avec l'indisponibilité partielle) -->
     <section>
         <h2 class="section-title">Vos questions fréquentes</h2>
         
         <div class="faq-item">
             <div class="faq-question">Avec quelles pharmacies travaillez-vous ?</div>
-            <p>Pour notre lancement, nous travaillons avec une <strong>pharmacie référente de confiance située à Dakar (la Pharmacie Yacine)</strong>. Nous sollicitons également d'autres officines physiques agréées selon la localisation. Nous vous communiquons le nom et l'adresse exacte avant tout paiement.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Quels sont les délais de livraison ?</div>
-            <p>Une fois le devis validé et la pharmacie payée par vos soins, le coursier est mandaté. La livraison à Dakar intervient généralement <strong>sous 24h à 48h</strong>. Pour les zones hors Dakar, un délai supplémentaire s'applique.</p>
+            <p>Pour notre lancement, nous travaillons avec une <strong>pharmacie référente de confiance située à Dakar (la Pharmacie Yacine)</strong>. Nous sollicitons également d'autres officines physiques agréées. Nous vous communiquons le nom et l'adresse exacte avant tout paiement.</p>
         </div>
         <div class="faq-item">
             <div class="faq-question">Que se passe-t-il si un médicament est en rupture de stock ?</div>
-            <p>Si la pharmacie n'a pas tout en stock, nous cherchons une alternative. Si aucun devis complet ne peut être établi, les frais de coordination de 20 € vous sont intégralement remboursés. Si un devis partiel est établi et que vous le refusez, les frais restent dus (le travail de recherche ayant été effectué).</p>
+            <p>Si la pharmacie contactée ne dispose que d'une partie de votre ordonnance, nous vous informons immédiatement. Vous pouvez choisir d'accepter ce devis partiel, ou nous demander de chercher les médicaments manquants dans une autre pharmacie. Si aucune solution complète n'est trouvée, les frais de coordination de 20 € vous sont intégralement remboursés.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Quels sont les délais de livraison ?</div>
+            <p>Dès que vous nous confirmez avoir réglé la pharmacie, nous mandatons le coursier. La livraison à domicile dans la région de Dakar intervient <strong>généralement sous 2 heures</strong> (en journée). Pour les zones hors Dakar, un délai supplémentaire s'applique.</p>
         </div>
         <div class="faq-item">
             <div class="faq-question">Que couvrent exactement les 20 € ?</div>
@@ -303,7 +300,7 @@
                 <div class="badge">Lancement Bêta</div>
                 <h3>Offre Testeur</h3>
                 <div class="price">20,00 €</div>
-                <span class="price-text">Tarif de lancement. <em>(Tarif standard prévisionnel après la bêta : 29,90 €)</em></span>
+                <span class="price-text">Offre de lancement. <em>(Tarif standard prévisionnel : 29,90 €)</em></span>
                 <ul>
                     <li>Coordination d'1 dossier complet</li>
                     <li>Recherche de la pharmacie et devis</li>
