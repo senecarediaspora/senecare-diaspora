@@ -111,11 +111,32 @@
         .comp-box ul li .icon { margin-right: 10px; flex-shrink: 0; font-size: 16px; }
         .comp-box ul li .text { flex: 1; line-height: 1.4; }
 
-        /* --- FAQ --- */
+        /* --- FAQ (CORRIGÉE) --- */
         .faq-item { margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 15px; }
         .faq-item:last-child { border-bottom: none; }
-        .faq-item strong { display: block; margin-bottom: 8px; color: var(--primary); font-size: 16px; }
-        .faq-item p { margin-bottom: 0; font-size: 15px; color: var(--text-light); text-align: left; }
+        
+        /* La question est maintenant bien séparée */
+        .faq-question { 
+            display: block; 
+            margin-bottom: 8px; 
+            color: var(--primary); 
+            font-size: 16px; 
+            font-weight: bold;
+        }
+        
+        /* Le texte de la réponse est fluide */
+        .faq-item p { 
+            margin-bottom: 0; 
+            font-size: 15px; 
+            color: var(--text-light); 
+            text-align: left; 
+        }
+        
+        /* Permet de mettre en gras un mot DANS la phrase sans casser la ligne */
+        .faq-item p strong { 
+            color: var(--text-main); 
+            font-weight: 600;
+        }
 
         /* --- OFFRE BETA --- */
         .offre-wrapper { display: flex; justify-content: center; }
@@ -248,31 +269,31 @@
         <h2 class="section-title">Vos questions fréquentes</h2>
         
         <div class="faq-item">
-            <strong>Où livrez-vous au Sénégal ?</strong>
+            <div class="faq-question">Où livrez-vous au Sénégal ?</div>
             <p>Pour cette phase bêta, nous couvrons la région de <strong>Dakar</strong>. Si votre proche vit en dehors de Dakar, contactez-nous sur WhatsApp : nous étudierons la faisabilité et les éventuels frais de transport supplémentaires au cas par cas.</p>
         </div>
         <div class="faq-item">
-            <strong>Que couvrent exactement les 20 € ?</strong>
+            <div class="faq-question">Que couvrent exactement les 20 € ?</div>
             <p>L'offre Bêta à 20 € comprend la coordination d'<strong>un dossier complet</strong> (recherche de pharmacie, obtention du devis, suivi WhatsApp) et <strong>une livraison standard à domicile</strong> dans la zone de Dakar. Le coût des médicaments est à régler directement à la pharmacie. Pour un renouvellement, un nouveau dossier devra être ouvert.</p>
         </div>
         <div class="faq-item">
-            <strong>Dans quel délai vais-je recevoir le devis ?</strong>
+            <div class="faq-question">Dans quel délai vais-je recevoir le devis ?</div>
             <p>Une fois l'ordonnance déposée, nous contactons la pharmacie. Le devis vous est généralement transmis sur WhatsApp <strong>sous 24h à 48h ouvrées</strong>, en fonction de la disponibilité de la pharmacie.</p>
         </div>
         <div class="faq-item">
-            <strong>Comment vérifier l'identité de la pharmacie ?</strong>
+            <div class="faq-question">Comment vérifier l'identité de la pharmacie ?</div>
             <p>Toutes les pharmacies avec lesquelles nous travaillons sont des officines physiques agréées au Sénégal. Nous vous fournissons le nom exact et l'adresse de la pharmacie. Le paiement se fait sur le compte officiel de l'officine (Wave ou Orange Money).</p>
         </div>
         <div class="faq-item">
-            <strong>Mon parent doit-il donner son accord ?</strong>
+            <div class="faq-question">Mon parent doit-il donner son accord ?</div>
             <p>Oui. Il est important que votre proche soit informé et d'accord pour que ses informations (nom, adresse) soient partagées avec la pharmacie et le livreur pour organiser la livraison. L'ordonnance elle-même reste strictement confidentielle.</p>
         </div>
         <div class="faq-item">
-            <strong>Que se passe-t-il si la livraison échoue ?</strong>
+            <div class="faq-question">Que se passe-t-il si la livraison échoue ?</div>
             <p>Si le livreur ne parvient pas à remettre le colis (adresse erronée, absence), nous vous contactons immédiatement pour organiser une nouvelle tentative. Des frais de livraison supplémentaires pourront s'appliquer pour la 2ème tentative.</p>
         </div>
         <div class="faq-item">
-            <strong>Qui a accès aux données médicales de mon parent ?</strong>
+            <div class="faq-question">Qui a accès aux données médicales de mon parent ?</div>
             <p><strong>Uniquement le pharmacien.</strong> En tant que coordinatrice, je n'ai accès qu'au nom de votre proche pour organiser la livraison. L'ordonnance est stockée de manière chiffrée sur un serveur sécurisé (Supabase) et est supprimée après livraison et clôture du dossier.</p>
         </div>
     </section>
