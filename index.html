@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENE'Care-Diaspora | Dédiez un budget santé à vos proches</title>
+    <title>SENE'Care-Diaspora | La santé de nos parents n'attend pas</title>
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     <style>
         :root {
@@ -13,13 +13,14 @@
             --text-light: #4b5563;
             --bg: #f9fafb;
             --white: #ffffff;
+            --accent-bg: #fdfbf7;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
             background-color: var(--bg); 
             color: var(--text-main);
-            line-height: 1.7; /* Interligne augmenté pour la lisibilité */
+            line-height: 1.7;
         }
         .container {
             max-width: 800px;
@@ -27,16 +28,16 @@
             padding: 20px;
         }
         
-        /* --- HERO SECTION --- */
+        /* --- HERO SECTION (Émotion & Accroche) --- */
         .hero {
             text-align: center;
-            padding: 50px 20px;
+            padding: 60px 20px 50px;
             background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
             border-radius: 16px;
             margin-bottom: 30px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        .hero img { max-width: 220px; margin-bottom: 20px; }
+        .hero img { max-width: 200px; margin-bottom: 25px; }
         .hero h1 {
             font-size: 32px;
             color: var(--primary);
@@ -46,41 +47,65 @@
         .hero p {
             font-size: 18px;
             color: var(--text-light);
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto 30px auto;
         }
         .cta-button {
             display: inline-block;
             background-color: var(--secondary);
             color: white;
-            padding: 15px 30px;
+            padding: 16px 35px;
             font-size: 18px;
             font-weight: bold;
             text-decoration: none;
             border-radius: 8px;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 6px rgba(217, 155, 60, 0.3);
         }
-        .cta-button:hover { transform: translateY(-2px); }
+        .cta-button:hover { transform: translateY(-2px); background-color: #c28731; }
 
         /* --- SECTIONS GÉNÉRALES --- */
         section {
             background: var(--white);
             border-radius: 16px;
-            padding: 40px;
+            padding: 45px 35px;
             margin-bottom: 30px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
         .section-title {
-            font-size: 24px;
-            margin-bottom: 10px;
+            font-size: 26px;
+            margin-bottom: 15px;
             color: var(--primary);
             text-align: center;
+            line-height: 1.3;
         }
         .section-subtitle {
             color: var(--text-light);
             font-size: 16px;
             text-align: center;
-            margin-bottom: 35px;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* --- MON ENGAGEMENT (Storytelling) --- */
+        .story-box {
+            background-color: var(--accent-bg);
+            border-left: 4px solid var(--secondary);
+            padding: 30px;
+            border-radius: 0 12px 12px 0;
+            margin-bottom: 30px;
+        }
+        .story-box p {
+            font-size: 16px;
+            color: var(--text-main);
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        .story-box p:last-child { margin-bottom: 0; }
+        .story-highlight {
+            font-weight: bold;
+            color: var(--primary);
+            font-size: 18px;
         }
 
         /* --- COMPARATIF --- */
@@ -98,11 +123,8 @@
         .comp-box.bad { background-color: #fef2f2; border: 1px solid #fecaca; }
         .comp-box.good { background-color: #f0fdf4; border: 2px solid #bbf7d0; }
         .comp-box h3 { 
-            font-size: 20px; 
-            margin-bottom: 20px; 
-            text-align: center; 
-            border-bottom: 2px solid; 
-            padding-bottom: 10px;
+            font-size: 20px; margin-bottom: 20px; text-align: center; 
+            border-bottom: 2px solid; padding-bottom: 10px;
         }
         .comp-box.bad h3 { color: #dc2626; border-color: #fecaca; }
         .comp-box.good h3 { color: #16a34a; border-color: #bbf7d0; }
@@ -119,9 +141,9 @@
         @media(min-width: 600px) { .steps-grid { grid-template-columns: repeat(3, 1fr); } }
         .step-card {
             padding: 25px;
-            background: #fdfbf7;
+            background: #f9fafb;
             border-radius: 12px;
-            border: 1px solid #f3ebd9;
+            border: 1px solid #e5e7eb;
             display: flex;
             flex-direction: column;
         }
@@ -132,10 +154,11 @@
         /* --- RÉASSURANCE --- */
         .trust-card {
             padding: 25px;
-            background: #f9fafb;
+            background: #ffffff;
             border-radius: 12px;
             border: 1px solid #e5e7eb;
             text-align: left;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
         .trust-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--primary); display: flex; align-items: center; gap: 10px;}
         .trust-card p { font-size: 15px; margin-bottom: 0; color: var(--text-light); }
@@ -152,18 +175,9 @@
         }
         .faq-item:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
         .faq-item strong {
-            display: block;
-            margin-bottom: 10px;
-            color: var(--text-main);
-            font-size: 17px;
-            font-weight: 700;
+            display: block; margin-bottom: 10px; color: var(--text-main); font-size: 17px; font-weight: 700;
         }
-        .faq-item p {
-            margin-bottom: 0;
-            font-size: 15px;
-            color: var(--text-light);
-            text-align: left;
-        }
+        .faq-item p { margin-bottom: 0; font-size: 15px; color: var(--text-light); text-align: left; }
 
         /* --- OFFRE BETA --- */
         .offre-wrapper { display: flex; justify-content: center; }
@@ -176,54 +190,32 @@
             width: 100%;
             position: relative;
             background: #ffffff;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
         }
         .badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: #ef4444;
-            color: white;
-            padding: 6px 16px;
-            border-radius: 20px;
-            font-size: 14px;
-            font-weight: bold;
-            white-space: nowrap;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: absolute; top: -15px; left: 50%; transform: translateX(-50%);
+            background-color: #ef4444; color: white; padding: 6px 16px; border-radius: 20px;
+            font-size: 14px; font-weight: bold; white-space: nowrap; box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
         .offre-card h3 { font-size: 24px; margin-bottom: 5px; color: var(--primary); }
         .offre-card .price { font-size: 38px; font-weight: bold; color: var(--text-main); margin-bottom: 25px; }
         .offre-card .price span { font-size: 20px; font-weight: normal; color: #9ca3af; text-decoration: line-through; }
         .offre-card ul {
-            list-style: none;
-            margin-bottom: 30px;
-            font-size: 16px;
-            color: var(--text-main);
-            text-align: left;
-            display: inline-block;
+            list-style: none; margin-bottom: 30px; font-size: 16px; color: var(--text-main);
+            text-align: left; display: inline-block;
         }
         .offre-card ul li { margin-bottom: 15px; display: flex; align-items: flex-start;}
         .offre-card ul li::before { content: "✅"; margin-right: 10px; font-size: 18px;}
         
         .offer-note {
-            font-size: 13px; 
-            margin-top: 20px; 
-            color: var(--text-light); 
-            text-align: center; 
-            background: #f3f4f6; 
-            padding: 12px; 
-            border-radius: 8px;
-            line-height: 1.4;
+            font-size: 13px; margin-top: 20px; color: var(--text-light); text-align: center; 
+            background: #f3f4f6; padding: 12px; border-radius: 8px; line-height: 1.4;
         }
 
         /* --- FOOTER --- */
         footer {
-            text-align: center;
-            padding: 20px;
-            font-size: 14px;
-            color: var(--text-light);
-            border-top: 1px solid #e5e7eb;
-            margin-top: 20px;
+            text-align: center; padding: 30px 20px; font-size: 14px; color: var(--text-light);
+            border-top: 1px solid #e5e7eb; margin-top: 20px;
         }
         footer a { color: var(--primary); font-weight: bold; text-decoration: none; }
     </style>
@@ -235,10 +227,21 @@
     <!-- HERO SECTION -->
     <div class="hero">
         <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
-        <h1>Ne laissez plus la santé de vos proches au hasard.</h1>
-        <p>Vous envoyez de l'argent, mais vous ne savez pas comment il est utilisé pour leurs soins ? <strong>Dédiez un budget exclusif à leur santé</strong> et soyez sûr que les bons médicaments arrivent à domicile.</p>
+        <h1>La santé de nos parents n'attend pas.</h1>
+        <p>Vous êtes loin, mais votre cœur est au pays. Ne laissez plus la distance ou l'organisation des soins devenir une source d'angoisse. Dédiez un budget santé à vos proches, en toute sécurité.</p>
         <a href="#offre-beta" class="cta-button">Découvrir l'offre Bêta</a>
     </div>
+
+    <!-- MON ENGAGEMENT (Storytelling) -->
+    <section>
+        <h2 class="section-title">L'histoire derrière SENE'Care-Diaspora</h2>
+        <div class="story-box">
+            <p><span class="story-highlight">Je ne suis pas une entreprise anonyme. Je suis l'un(e) des vôtres.</span></p>
+            <p>En tant qu'<strong>Infirmière de formation</strong> et <strong>Coach en nutrition</strong>, j'ai vu de mes propres yeux l'importance d'une prise en charge rigoureuse et rapide. Issue de la diaspora, je connais cette angoisse silencieuse : l'appel qui nous réveille la nuit, l'inquiétude quand un parent nous dit que "ça va" alors qu'il a besoin de soins.</p>
+            <p>J'ai créé SENE'Care-Diaspora avec une conviction profonde : <strong>la santé est le pilier de tout.</strong> Pour aider nos familles, mais aussi pour contribuer, à notre échelle, à une meilleure gestion de la santé dans notre pays. Chaque traitement bien suivi aujourd'hui, c'est une complication évitée demain.</p>
+            <p>Mon engagement ? Vous traiter avec la rigueur d'une professionnelle de santé, et la bienveillance d'une sœur ou d'un frère de la diaspora.</p>
+        </div>
+    </section>
 
     <!-- COMPARATIF -->
     <section>
@@ -246,7 +249,6 @@
         <p class="section-subtitle">Parce que la santé ne devrait pas être un imprévu.</p>
         
         <div class="comparison-container">
-            <!-- Le problème actuel -->
             <div class="comp-box bad">
                 <h3>L'envoi classique</h3>
                 <ul>
@@ -257,8 +259,6 @@
                     <li><span>❌</span> <div>Beaucoup de stress et d'inquiétude.</div></li>
                 </ul>
             </div>
-
-            <!-- La solution SENE'Care -->
             <div class="comp-box good">
                 <h3>L'approche SENE'Care</h3>
                 <ul>
@@ -298,8 +298,8 @@
 
     <!-- RÉASSURANCE -->
     <section>
-        <h2 class="section-title">Pourquoi nous faire confiance ?</h2>
-        <p class="section-subtitle">Confier la santé de vos proches demande une confiance absolue.</p>
+        <h2 class="section-title">La transparence avant tout</h2>
+        <p class="section-subtitle">La confiance se gagne par des actes concrets.</p>
         
         <div class="steps-grid">
             <div class="trust-card">
@@ -311,8 +311,8 @@
                 <p>Si vous n'êtes pas satisfait de notre coordination ce mois-ci, nous vous remboursons les 20 €. Sans condition.</p>
             </div>
             <div class="trust-card">
-                <h3>👁️ Transparence</h3>
-                <p>Vous payez la pharmacie en direct. Nous ne touchons jamais l'argent des médicaments. Vous recevez la preuve de livraison.</p>
+                <h3>👁️ Zéro frais cachés</h3>
+                <p>Vous payez la pharmacie en direct. Nous ne touchons jamais l'argent des médicaments.</p>
             </div>
         </div>
     </section>
@@ -363,7 +363,6 @@
                     <li>Preuve de livraison envoyée</li>
                 </ul>
                 
-                <!-- BOUTON STRIPE -->
                 <stripe-buy-button
                   buy-button-id="buy_btn_1UbHNuPCbQLbRbLNp6unRuJD"
                   publishable-key="pk_live_51UM1UOPCbQLbRbLNQNhTJTZhD0k0Cbru6XtexYTflV0APW1mceuPJppnXYsiYJ25qZtBqIJM2rY7xIJWWQpPN4iB00SCqkNJrv"
