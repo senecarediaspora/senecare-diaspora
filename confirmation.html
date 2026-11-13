@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paiement Confirmé - SENE'Care-Diaspora</title>
+    <title>SENE'Care-Diaspora | Dédiez un budget santé à vos proches</title>
+    <!-- Script pour le bouton Stripe -->
+    <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     <style>
         :root {
-            --primary: #5B2A58;
-            --primary-hover: #482144;
+            --primary: #5B2A58; /* Violet du logo */
+            --secondary: #D99B3C; /* Ocre du logo */
             --text-main: #1f2937;
-            --text-light: #6b7280;
-            --bg: #f8fafc;
+            --text-light: #4b5563;
+            --bg: #f9fafb;
             --white: #ffffff;
-            --success: #16a34a;
-            --success-bg: #dcfce7;
         }
         * { box-sizing: border-box; margin: 0; padding: 0; }
         body { 
@@ -21,169 +21,337 @@
             background-color: var(--bg); 
             color: var(--text-main);
             line-height: 1.6;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
         }
         .container {
-            max-width: 500px;
-            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        /* --- HERO SECTION --- */
+        .hero {
+            text-align: center;
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #ffffff 0%, #f3f4f6 100%);
+            border-radius: 16px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        .hero img { max-width: 220px; margin-bottom: 20px; }
+        .hero h1 {
+            font-size: 30px;
+            color: var(--primary);
+            line-height: 1.2;
+            margin-bottom: 15px;
+        }
+        .hero p {
+            font-size: 18px;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 30px auto;
+        }
+        .cta-button {
+            display: inline-block;
+            background-color: var(--secondary);
+            color: white;
+            padding: 15px 30px;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: none;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .cta-button:hover { transform: translateY(-2px); }
+
+        /* --- SECTIONS --- */
+        section {
             background: var(--white);
-            border-radius: 12px;
-            padding: 30px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+            border-radius: 16px;
+            padding: 40px 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        .header { text-align: center; margin-bottom: 25px; }
-        .header img { max-width: 180px; margin-bottom: 15px; }
-        .success-icon {
-            background-color: var(--success-bg);
-            color: var(--success);
-            width: 60px; height: 60px; border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 30px; margin: 0 auto 15px;
+        section h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            text-align: center;
         }
-        h1 { font-size: 22px; color: var(--text-main); text-align: center; margin-bottom: 10px; }
-        p { text-align: center; color: var(--text-light); margin-bottom: 25px; font-size: 15px; }
-        
-        /* Formulaire */
-        .form-group { margin-bottom: 15px; text-align: left; }
-        .form-group label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; color: var(--text-main); }
-        .form-group input { 
-            width: 100%; padding: 12px; border: 1px solid #d1d5db; 
-            border-radius: 6px; font-size: 16px; background-color: #f9fafb;
-        }
-        .btn {
-            display: inline-block; width: 100%; padding: 14px;
-            background-color: var(--primary); color: white; text-decoration: none;
-            border-radius: 6px; font-weight: bold; border: none; cursor: pointer;
-            font-size: 16px; margin-top: 10px;
-        }
-        .btn:hover { background-color: var(--primary-hover); }
-        #status { text-align: center; margin-top: 15px; font-weight: bold; font-size: 16px; line-height: 1.5; }
-        
-        .whatsapp-link {
-            display: block; text-align: center; margin-top: 20px;
-            color: var(--primary); text-decoration: none; font-size: 14px; font-weight: bold;
+        section p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+            font-size: 16px;
+            text-align: center;
         }
 
-        /* Bloc d'erreur si accès direct */
-        .error-block {
-            display: none;
+        /* --- COMPARATIF --- */
+        .comparison-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        @media(min-width: 768px) { .comparison-container { flex-direction: row; } }
+        .comp-box {
+            flex: 1;
+            padding: 25px;
+            border-radius: 12px;
+        }
+        .comp-box.bad { background-color: #fef2f2; border: 1px solid #fecaca; }
+        .comp-box.good { background-color: #f0fdf4; border: 2px solid #bbf7d0; }
+        .comp-box h3 { font-size: 18px; margin-bottom: 15px; text-align: center; }
+        .comp-box.bad h3 { color: #dc2626; }
+        .comp-box.good h3 { color: #16a34a; }
+        .comp-box ul { list-style: none; font-size: 15px; color: var(--text-main); }
+        .comp-box ul li { margin-bottom: 12px; display: flex; align-items: flex-start; }
+        .comp-box ul li span { margin-right: 10px; font-size: 18px; }
+
+        /* --- COMMENT ÇA MARCHE --- */
+        .steps-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        @media(min-width: 600px) { .steps-grid { grid-template-columns: repeat(3, 1fr); } }
+        .step-card {
             text-align: center;
             padding: 20px;
-            background-color: #fef2f2;
-            border: 1px solid #fecaca;
-            border-radius: 8px;
+            background: #fdfbf7;
+            border-radius: 12px;
+            border: 1px solid #f3ebd9;
         }
-        .error-block h2 { color: #dc2626; margin-bottom: 10px; font-size: 20px; }
-        .error-block a { color: var(--primary); font-weight: bold; text-decoration: underline; }
+        .step-icon { font-size: 40px; margin-bottom: 15px; }
+        .step-card h3 { font-size: 18px; margin-bottom: 10px; color: var(--primary); }
+        .step-card p { font-size: 14px; margin-bottom: 0; }
+
+        /* --- RÉASSURANCE & FAQ --- */
+        .faq-container {
+            text-align: left;
+            max-width: 650px;
+            margin: 0 auto;
+        }
+        .faq-item {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 15px;
+        }
+        .faq-item strong {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--primary);
+            font-size: 16px;
+        }
+        .faq-item p {
+            text-align: left;
+            margin-bottom: 0;
+            font-size: 15px;
+        }
+
+        /* --- OFFRE BETA --- */
+        .offre-wrapper { display: flex; justify-content: center; }
+        .offre-card {
+            border: 2px solid var(--secondary);
+            border-radius: 16px;
+            padding: 30px;
+            text-align: center;
+            max-width: 400px;
+            width: 100%;
+            position: relative;
+            background: #ffffff;
+        }
+        .badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #ef4444;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 14px;
+            font-weight: bold;
+            white-space: nowrap;
+        }
+        .offre-card h3 { font-size: 22px; margin-bottom: 10px; color: var(--primary); }
+        .offre-card .price { font-size: 36px; font-weight: bold; color: var(--text-main); margin-bottom: 20px; }
+        .offre-card .price span { font-size: 18px; font-weight: normal; color: #9ca3af; text-decoration: line-through; }
+        .offre-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+            font-size: 16px;
+            color: var(--text-light);
+            text-align: left;
+            display: inline-block;
+        }
+        .offre-card ul li { margin-bottom: 12px; }
+        .offre-card ul li::before { content: "✅"; margin-right: 8px; }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+            border-top: 1px solid #e5e7eb;
+            margin-top: 20px;
+        }
+        footer a { color: var(--primary); font-weight: bold; text-decoration: none; }
     </style>
 </head>
 <body>
 
 <div class="container">
     
-    <!-- BLOC ERREUR (Caché par défaut) -->
-    <div id="error-block" class="error-block">
-        <h2>Paiement non détecté</h2>
-        <p>Il semble que vous n'ayez pas encore réglé les frais de coordination.</p>
-        <p>Veuillez d'abord <a href="index.html">choisir l'offre Bêta sur la page d'accueil</a> pour débloquer l'envoi de l'ordonnance.</p>
+    <!-- HERO SECTION -->
+    <div class="hero">
+        <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
+        <h1>Ne laissez plus la santé de vos proches au hasard.</h1>
+        <p>Vous envoyez de l'argent, mais vous ne savez pas comment il est utilisé pour leurs soins ? Dédiez un budget exclusif à leur santé et soyez sûr que les bons médicaments arrivent à domicile.</p>
+        <a href="#offre-beta" class="cta-button">Découvrir l'offre Bêta</a>
     </div>
 
-    <!-- CONTENU PRINCIPAL (Caché par défaut, affiché si paiement détecté) -->
-    <div id="main-content" style="display: none;">
-        <div class="header">
-            <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
-            <div class="success-icon">✓</div>
-            <h1>Paiement confirmé, merci !</h1>
+    <!-- COMPARATIF -->
+    <section>
+        <h2>Pourquoi changer vos habitudes ?</h2>
+        <p>Parce que la santé ne devrait pas être un imprévu.</p>
+        
+        <div class="comparison-container">
+            <!-- Le problème actuel -->
+            <div class="comp-box bad">
+                <h3>L'envoi d'argent classique</h3>
+                <ul>
+                    <li><span>❌</span> L'argent se mélange aux dépenses du quotidien.</li>
+                    <li><span>❌</span> Votre proche doit faire la queue à la pharmacie.</li>
+                    <li><span>❌</span> Vous devez tout gérer à distance par téléphone.</li>
+                    <li><span>❌</span> Vous n'avez aucune preuve que le traitement a été acheté.</li>
+                    <li><span>❌</span> Beaucoup de stress et d'inquiétude.</li>
+                </ul>
+            </div>
+
+            <!-- La solution SENE'Care -->
+            <div class="comp-box good">
+                <h3>L'approche SENE'Care</h3>
+                <ul>
+                    <li><span>✅</span> Une part de votre budget est <strong>dédiée uniquement à la santé</strong>.</li>
+                    <li><span>✅</span> Nous contactons la pharmacie et gérons le devis.</li>
+                    <li><span>✅</span> Vous payez la pharmacie en direct (sécurité totale).</li>
+                    <li><span>✅</span> Le médicament est livré à domicile par un professionnel.</li>
+                    <li><span>✅</span> Vous recevez une <strong>photo de la livraison</strong>. L'esprit tranquille.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- COMMENT ÇA MARCHE -->
+    <section>
+        <h2>Comment ça se passe concrètement ?</h2>
+        <p>Un service de conciergerie simple et sécurisé.</p>
+        
+        <div class="steps-grid">
+            <div class="step-card">
+                <div class="step-icon">💳</div>
+                <h3>1. Vous validez l'offre</h3>
+                <p>Vous réservez votre place dans la Bêta en réglant les frais de coordination.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">📄</div>
+                <h3>2. Vous déposez l'ordonnance</h3>
+                <p>Immédiatement après le paiement, notre formulaire sécurisé s'ouvre pour l'envoyer.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">🚚</div>
+                <h3>3. Nous gérons le reste</h3>
+                <p>Devis pharmacie, paiement direct Wave et livraison à domicile.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- RÉASSURANCE & FAQ -->
+    <section>
+        <h2>Pourquoi nous faire confiance ?</h2>
+        <p>Nous savons que confier la santé de vos proches et votre argent demande une confiance absolue.</p>
+        
+        <div class="steps-grid" style="margin-bottom: 40px;">
+            <div class="step-card">
+                <div class="step-icon">🔒</div>
+                <h3>Paiement Sécurisé</h3>
+                <p>Vos transactions sont 100% sécurisées et cryptées par Stripe. Aucune donnée bancaire ne transite par notre site.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">🤝</div>
+                <h3>Garantie Bêta</h3>
+                <p>Si vous n'êtes pas satisfait de notre coordination ce mois-ci, nous vous remboursons les 20 €. Sans condition.</p>
+            </div>
+            <div class="step-card">
+                <div class="step-icon">👁️</div>
+                <h3>Transparence Totale</h3>
+                <p>Vous payez la pharmacie en direct. Nous ne touchons jamais l'argent des médicaments. Vous recevez la preuve de livraison.</p>
+            </div>
         </div>
 
-        <p>Votre place dans la Bêta est réservée. <strong>Il ne reste plus qu'une étape :</strong> transmettez-nous l'ordonnance de votre proche pour que nous puissions contacter la pharmacie.</p>
+        <h2 style="margin-top: 40px;">Vos questions fréquentes</h2>
         
-        <div id="form-container">
-            <div class="form-group">
-                <label for="reference">Nom de votre proche (ou Référence)</label>
-                <input type="text" id="reference" placeholder="Ex: Mamadou Diallo" required>
+        <div class="faq-container">
+            <div class="faq-item">
+                <strong>Que se passe-t-il si la pharmacie n'a pas le médicament ?</strong>
+                <p>Nous cherchons immédiatement une pharmacie partenaire alternative. Si le médicament reste introuvable, nous vous remboursons intégralement les frais de coordination.</p>
             </div>
-            <div class="form-group">
-                <label for="fileInput">Photo ou PDF de l'ordonnance</label>
-                <input type="file" id="fileInput" accept="image/*,application/pdf" required>
+            
+            <div class="faq-item">
+                <strong>Comment se passe le paiement des médicaments ?</strong>
+                <p>Vous payez la pharmacie directement via Wave ou Orange Money. Nous ne touchons jamais cet argent. Cela vous garantit que votre budget sert uniquement à soigner votre proche.</p>
             </div>
-            <button onclick="uploadFile()" id="submitBtn" class="btn">Envoyer l'ordonnance maintenant</button>
+            
+            <div class="faq-item">
+                <strong>Que se passe-t-il si le colis est perdu ?</strong>
+                <p>Nous travaillons avec des livreurs de confiance et chaque livraison est photographiée. En cas de problème, nous ouvrons une enquête et vous accompagnons jusqu'à la résolution.</p>
+            </div>
+            
+            <div class="faq-item">
+                <strong>Pourquoi ce prix de 20 € ?</strong>
+                <p>Cette offre de lancement nous permet de tester notre service. Elle couvre la coordination, la recherche de pharmacie et la livraison sécurisée. Le coût des médicaments reste à votre charge et se règle directement au pharmacien.</p>
+            </div>
         </div>
+    </section>
+
+    <!-- OFFRE BETA -->
+    <section id="offre-beta">
+        <h2>Rejoignez la Bêta de Novembre</h2>
+        <p>Nous ouvrons un nombre limité de places pour tester notre service. Profitez de notre offre de lancement exclusive.</p>
         
-        <div id="status"></div>
+        <div class="offre-wrapper" style="margin-top: 30px;">
+            <div class="offre-card">
+                <div class="badge">Places limitées</div>
+                <h3>Offre Bêta-Testeur</h3>
+                <div class="price">20,00 € <span>29,90 €</span></div>
+                <ul>
+                    <li>1 mois de coordination complète</li>
+                    <li>Recherche de la pharmacie et devis</li>
+                    <li>1 livraison sécurisée à domicile</li>
+                    <li>Suivi de dossier par WhatsApp</li>
+                    <li>Preuve de livraison envoyée</li>
+                </ul>
+                
+                <!-- BOUTON STRIPE -->
+                <stripe-buy-button
+                  buy-button-id="buy_btn_1UbHNuPCbQLbRbLNp6unRuJD"
+                  publishable-key="pk_live_51UM1UOPCbQLbRbLNQNhTJTZhD0k0Cbru6XtexYTflV0APW1mceuPJppnXYsiYJ25qZtBqIJM2rY7xIJWWQpPN4iB00SCqkNJrv"
+                >
+                </stripe-buy-button>
+                <p style="font-size: 12px; margin-top: 15px; color: #6b7280; text-align: center; background: #f3f4f6; padding: 10px; border-radius: 6px;">
+                    <em>Ce prix rémunère notre service de coordination. Le coût des médicaments se règle directement à la pharmacie.</em>
+                </p>
+            </div>
+        </div>
+    </section>
 
-        <a href="https://wa.me/33617977787" class="whatsapp-link" target="_blank">
-            Un problème avec l'envoi ? Contactez-moi sur WhatsApp
-        </a>
-    </div>
-
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2026 SENE'Care-Diaspora. Tous droits réservés.</p>
+        <p style="margin-top: 10px;">Une question avant de vous lancer ? <a href="https://wa.me/33617977787" target="_blank">Contactez-moi sur WhatsApp</a>.</p>
+    </footer>
 </div>
 
-<!-- Bibliothèque Supabase -->
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-<script>
-    const SUPABASE_URL = 'https://lofmighhbwhvujwpajie.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxvZm1pZ2hoYndodnVqd3BhamllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NDcxMTIsImV4cCI6MjEwOTAyMzExMn0.pviIY6pqR_TOAi7iodrXSCgQo8JXSsxIydh3H0KnG8w';
-
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
-    // --- SÉCURITÉ : VÉRIFICATION DU PAIEMENT ---
-    // Stripe va ajouter "?session_id=..." à l'URL. Si ce n'est pas là, on bloque.
-    const urlParams = new URLSearchParams(window.location.search);
-    const sessionId = urlParams.get('session_id');
-
-    if (sessionId) {
-        // Le paiement semble valide, on affiche le formulaire
-        document.getElementById('main-content').style.display = 'block';
-    } else {
-        // Accès direct sans paiement, on affiche l'erreur
-        document.getElementById('error-block').style.display = 'block';
-    }
-
-    // --- FONCTION D'UPLOAD ---
-    async function uploadFile() {
-        const ref = document.getElementById('reference').value.trim();
-        const file = document.getElementById('fileInput').files[0];
-        const statusDiv = document.getElementById('status');
-        const submitBtn = document.getElementById('submitBtn');
-
-        if (!ref || !file) {
-            alert("Veuillez remplir le nom de votre proche et choisir un fichier.");
-            return;
-        }
-
-        statusDiv.innerText = "Envoi sécurisé en cours...";
-        statusDiv.style.color = "black";
-        submitBtn.disabled = true;
-        submitBtn.innerText = "Envoi en cours...";
-
-        const safeRef = ref.replace(/\s+/g, '-');
-        const filePath = `${safeRef}/ordonnance-${Date.now()}.jpg`;
-
-        const { data, error } = await supabaseClient.storage
-            .from('ordonnances')
-            .upload(filePath, file, {
-                contentType: file.type || 'image/jpeg'
-            });
-
-        if (error) {
-            console.error(error);
-            statusDiv.innerText = "Erreur : " + error.message;
-            statusDiv.style.color = "red";
-            submitBtn.disabled = false;
-            submitBtn.innerText = "Réessayer l'envoi";
-        } else {
-            document.getElementById('form-container').style.display = 'none';
-            document.querySelector('.whatsapp-link').style.display = 'none'; 
-            
-            statusDiv.innerHTML = "✅ Ordonnance transmise avec succès !<br><br>Je contacte la pharmacie immédiatement. Vous recevrez le devis et le lien de paiement Wave sur votre WhatsApp très bientôt. Vous pouvez fermer cette page.";
-            statusDiv.style.color = "var(--success)";
-        }
-    }
-</script>
 </body>
 </html>
