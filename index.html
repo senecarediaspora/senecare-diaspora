@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENE'Care-Diaspora | Prenez soin de vos proches</title>
+    <style>
+        :root {
+            --primary: #0EA5E9;
+            --primary-dark: #0284c7;
+            --text-main: #1f2937;
+            --text-light: #6b7280;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --success: #16a34a;
+        }
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body { 
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; 
+            background-color: var(--bg); 
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        /* En-tête */
+        header {
+            text-align: center;
+            padding: 40px 0 20px;
+        }
+        header img {
+            max-width: 150px;
+            height: auto;
+            margin-bottom: 15px;
+        }
+        header h1 {
+            font-size: 28px;
+            color: var(--primary-dark);
+        }
+        header p {
+            color: var(--text-light);
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        /* Sections */
+        section {
+            background: var(--white);
+            border-radius: 12px;
+            padding: 30px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        }
+        section h2 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: var(--text-main);
+        }
+        section p {
+            margin-bottom: 15px;
+            color: var(--text-light);
+        }
+        /* Offre Bêta */
+        .offre-card {
+            border: 2px solid var(--primary);
+            border-radius: 8px;
+            padding: 25px;
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+        .offre-card h3 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: var(--primary-dark);
+        }
+        .offre-card .price {
+            font-size: 28px;
+            font-weight: bold;
+            color: var(--text-main);
+            margin-bottom: 15px;
+        }
+        .offre-card .price span {
+            font-size: 16px;
+            font-weight: normal;
+            color: #ef4444; /* Rouge pour le prix barré */
+            text-decoration: line-through;
+        }
+        .offre-card ul {
+            list-style: none;
+            margin-bottom: 25px;
+            font-size: 15px;
+            color: var(--text-light);
+            text-align: left;
+            display: inline-block;
+        }
+        .offre-card ul li {
+            margin-bottom: 10px;
+        }
+        .offre-card ul li::before {
+            content: "✅";
+            margin-right: 8px;
+        }
+        .btn {
+            display: inline-block;
+            width: 100%;
+            padding: 14px;
+            background-color: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+            transition: background-color 0.2s;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover { background-color: var(--primary-dark); }
+        
+        /* Formulaire */
+        .form-group { margin-bottom: 15px; text-align: left; }
+        .form-group label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; color: var(--text-main); }
+        .form-group input { 
+            width: 100%; 
+            padding: 12px; 
+            border: 1px solid #d1d5db; 
+            border-radius: 6px; 
+            font-size: 16px;
+            background-color: #f9fafb;
+        }
+        #status { 
+            text-align: center; 
+            margin-top: 15px; 
+            font-weight: bold; 
+            font-size: 16px; 
+            line-height: 1.5;
+        }
+        /* Pied de page */
+        footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 14px;
+            color: var(--text-light);
+        }
+        footer a { color: var(--primary); font-weight: bold; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <!-- L'image doit être dans le même dossier que ce fichier -->
+        <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
+        <h1>SENE'Care-Diaspora</h1>
+        <p>Prenez soin de la santé de vos proches au Sénégal, en toute sérénité.</p>
+    </header>
+
+    <section>
+        <h2>Notre Mission</h2>
+        <p>Nous coordonnons la prise en charge des traitements chroniques et des analyses de vos proches. Vous n'avez plus à gérer les intermédiaires : nous nous occupons de la pharmacie, des devis et de la livraison sécurisée à domicile.</p>
+        <p><em>Note : Nous ne sommes pas un intermédiaire financier. Le paiement des médicaments se fait toujours directement entre vous et la pharmacie.</em></p>
+    </section>
+
+    <section>
+        <h2>1. Rejoignez la Bêta de Novembre</h2>
+        <p style="text-align: center; margin-bottom: 20px;">Pour valider notre lancement, nous ouvrons un nombre limité de places pour le mois de Novembre. Profitez de notre offre de lancement.</p>
+        
+        <div class="offre-card">
+            <h3>Offre Bêta-Testeur</h3>
+            <div class="price">20,00 € <span>(au lieu de 29,90 €)</span></div>
+            <ul>
+                <li>1 mois de coordination complète</li>
+                <li>Obtention du devis pharmacie</li>
+                <li>1 livraison à domicile incluse</li>
+                <li>Suivi direct par WhatsApp</li>
+            </ul>
+            <!-- ⚠️ REMPLACEZ LE LIEN CI-DESSOUS PAR VOTRE LIEN STRIPE BÊTA (20€) -->
+            <a href="VOTRE_LIEN_STRIPE_BETA_ICI" class="btn" target="_blank">Devenir Bêta-Testeur (20 €)</a>
+        </div>
+    </section>
+
+    <section id="upload-section">
+        <h2>2. Transmettez l'ordonnance</h2>
+        <p>Une fois votre paiement de 20 € effectué, déposez l'ordonnance de votre proche ci-dessous. Nous contacterons immédiatement la pharmacie pour obtenir le devis.</p>
+        
+        <div id="form-container">
+            <div class="form-group">
+                <label for="reference">Référence du dossier</label>
+                <input type="text" id="reference" placeholder="Ex: SCD-001 (ou le nom de votre proche)" required>
+            </div>
+            <div class="form-group">
+                <label for="fileInput">Photo ou PDF de l'ordonnance</label>
+                <input type="file" id="fileInput" accept="image/*,application/pdf" required>
+            </div>
+            <button onclick="uploadFile()" id="submitBtn" class="btn">Envoyer l'ordonnance de façon sécurisée</button>
+        </div>
+        <div id="status"></div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 SENE'Care-Diaspora. Tous droits réservés.</p>
+        <p>Une question ? <a href="https://wa.me/VOTRE_NUMERO_WHATSAPP_ICI" target="_blank">Contactez-moi sur WhatsApp</a>.</p>
+    </footer>
+</div>
+
+<!-- Bibliothèque Supabase -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // --- CONFIGURATION SUPABASE (Ne pas modifier) ---
+    const SUPABASE_URL = 'https://lofmighhbwhvujwpajie.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxvZm1pZ2hoYndodnVqd3BhamllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NDcxMTIsImV4cCI6MjEwOTAyMzExMn0.pviIY6pqR_TOAi7iodrXSCgQo8JXSsxIydh3H0KnG8w';
+
+    // Initialisation du client
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // --- FONCTION D'UPLOAD ---
+    async function uploadFile() {
+        const ref = document.getElementById('reference').value.trim();
+        const file = document.getElementById('fileInput').files[0];
+        const statusDiv = document.getElementById('status');
+        const submitBtn = document.getElementById('submitBtn');
+
+        if (!ref || !file) {
+            alert("Veuillez remplir la référence et choisir un fichier.");
+            return;
+        }
+
+        statusDiv.innerText = "Envoi sécurisé en cours...";
+        statusDiv.style.color = "black";
+        submitBtn.disabled = true;
+        submitBtn.innerText = "Envoi en cours...";
+
+        // Le fichier est rangé dans un dossier au nom de la référence
+        const filePath = `${ref}/ordonnance-${Date.now()}.jpg`;
+
+        const { data, error } = await supabaseClient.storage
+            .from('ordonnances')
+            .upload(filePath, file, {
+                contentType: file.type || 'image/jpeg'
+            });
+
+        if (error) {
+            console.error(error);
+            statusDiv.innerText = "Erreur : " + error.message;
+            statusDiv.style.color = "red";
+            submitBtn.disabled = false;
+            submitBtn.innerText = "Envoyer l'ordonnance";
+        } else {
+            // Cacher le formulaire et afficher le succès
+            document.getElementById('form-container').style.display = 'none';
+            statusDiv.innerHTML = "✅ Ordonnance transmise avec succès !<br><br>Je contacte la pharmacie immédiatement. Vous recevrez le devis sur WhatsApp très bientôt. Vous pouvez fermer cette page.";
+            statusDiv.style.color = "var(--success)";
+        }
+    }
+</script>
+</body>
+</html>
