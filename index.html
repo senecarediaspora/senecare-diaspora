@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SENE'Care-Diaspora | Prenez soin de vos proches en toute sérénité</title>
+    <title>SENE'Care-Diaspora | Achat de médicaments coordonné au Sénégal</title>
     <script async src="https://js.stripe.com/v3/buy-button.js"></script>
     <style>
         :root {
@@ -34,9 +34,9 @@
             margin-bottom: 30px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
         }
-        .hero img { max-width: 200px; margin-bottom: 20px; }
+        .hero img { max-width: 180px; margin-bottom: 20px; }
         .hero h1 { font-size: 32px; color: var(--primary); line-height: 1.2; margin-bottom: 20px; }
-        .hero p { font-size: 18px; color: var(--text-light); max-width: 650px; margin: 0 auto 30px auto; }
+        .hero p { font-size: 18px; color: var(--text-light); max-width: 650px; margin: 0 auto 20px auto; }
         .cta-button {
             display: inline-block; background-color: var(--secondary); color: white;
             padding: 16px 35px; font-size: 18px; font-weight: bold; text-decoration: none;
@@ -63,7 +63,7 @@
         .section-title { font-size: 24px; margin-bottom: 10px; color: var(--primary); text-align: center; }
         .section-subtitle { color: var(--text-light); font-size: 16px; text-align: center; margin-bottom: 30px; }
 
-        /* --- STORYTELLING (Expérience) --- */
+        /* --- STORYTELLING --- */
         .story-container {
             display: flex; flex-direction: column; gap: 20px; align-items: center;
             background-color: #fdfbf7; border: 1px solid #f3ebd9; border-radius: 12px; padding: 30px;
@@ -104,25 +104,12 @@
         .comp-box.bad h3 { color: #dc2626; }
         .comp-box.good h3 { color: var(--success); }
         
-        /* CORRECTION ICI : Structure des listes */
         .comp-box ul { list-style: none; padding: 0; margin: 0; }
         .comp-box ul li { 
-            margin-bottom: 15px; 
-            display: flex; 
-            align-items: flex-start; 
-            text-align: left;
-            font-size: 15px; 
-            color: var(--text-main);
+            margin-bottom: 15px; display: flex; align-items: flex-start; text-align: left; font-size: 15px; color: var(--text-main);
         }
-        .comp-box ul li .icon { 
-            margin-right: 10px; 
-            flex-shrink: 0; 
-            font-size: 16px;
-        }
-        .comp-box ul li .text { 
-            flex: 1; 
-            line-height: 1.4;
-        }
+        .comp-box ul li .icon { margin-right: 10px; flex-shrink: 0; font-size: 16px; }
+        .comp-box ul li .text { flex: 1; line-height: 1.4; }
 
         /* --- FAQ --- */
         .faq-item { margin-bottom: 20px; border-bottom: 1px solid #e5e7eb; padding-bottom: 15px; }
@@ -166,8 +153,8 @@
     <!-- HERO SECTION -->
     <div class="hero">
         <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
-        <h1>La santé de nos parents n'attend pas.</h1>
-        <p>Vous êtes loin, mais votre cœur est au pays. Ne laissez plus la distance ou l'organisation des soins devenir une source d'angoisse. Dédiez un budget santé à vos proches, en toute sécurité.</p>
+        <h1>Vos parents ont besoin de médicaments au Sénégal ? Organisez leur achat depuis la France.</h1>
+        <p>SENE'Care-Diaspora vous accompagne dans la recherche d'une pharmacie, l'obtention du devis et l'organisation de la livraison à domicile. <strong>Vous payez les médicaments directement à la pharmacie.</strong></p>
         <a href="#offre-beta" class="cta-button">Découvrir l'offre Bêta</a>
     </div>
 
@@ -178,16 +165,15 @@
         <div class="badge-item">🛡️ Données protégées (RGPD)</div>
     </div>
 
-    <!-- STORYTELLING (L'expérience) -->
+    <!-- STORYTELLING -->
     <section>
-        <h2 class="section-title">L'histoire derrière SENE'Care</h2>
+        <h2 class="section-title">Qui suis-je ?</h2>
         <div class="story-container">
-            <!-- REMPLACEZ "votre-photo.jpg" PAR VOTRE PHOTO DE DOS -->
-            <img src="profil.png" alt="Portrait de la coordinatrice SENE'Care-Diaspora" class="story-image">
+            <img src="profil.png" alt="Portrait de la fondatrice" class="story-image">
             <div class="story-text">
-                <p><span class="highlight">Je ne suis pas une entreprise anonyme. Je suis l'un(e) des vôtres.</span></p>
-                <p>En tant qu'<strong>Infirmière de formation</strong> et <strong>Coach en nutrition</strong>, j'ai vu l'importance d'une prise en charge rigoureuse. Issue de la diaspora, je connais cette angoisse silencieuse : l'inquiétude quand un parent nous dit que "ça va" alors qu'il a besoin de soins.</p>
-                <p>J'ai créé SENE'Care-Diaspora pour aider nos familles et contribuer à une meilleure gestion de la santé au pays. Mon engagement ? Vous traiter avec la rigueur d'une professionnelle de santé, et la bienveillance d'une sœur ou d'un frère.</p>
+                <p><span class="highlight">Je suis la fondatrice de SENE'Care-Diaspora.</span></p>
+                <p>En tant qu'<strong>Infirmière de formation</strong> et <strong>Coach en nutrition</strong>, j'ai vu l'importance d'une prise en charge rigoureuse. Issue de la diaspora sénégalaise, je connais l'inquiétude que l'on ressent lorsqu'un parent au pays a besoin de soins et que l'on est loin.</p>
+                <p>J'ai créé ce service pour faciliter l'accès aux traitements. Mon engagement : vous accompagner avec la rigueur d'une professionnelle de santé et la transparence la plus totale sur les coûts et le parcours.</p>
             </div>
         </div>
     </section>
@@ -201,32 +187,32 @@
             <div class="process-step">
                 <div class="process-icon">1</div>
                 <div class="process-content">
-                    <h4>Vous réservez votre place</h4>
-                    <p>Paiement des frais de coordination (20 €) via Stripe. Un reçu vous est envoyé.</p>
+                    <h4>Vérification préalable (Gratuit)</h4>
+                    <p>Vous nous contactez sur WhatsApp en précisant la ville de votre proche et le type de traitement pour vérifier la faisabilité.</p>
                 </div>
             </div>
             <div class="process-arrow">↓</div>
             <div class="process-step">
                 <div class="process-icon">2</div>
                 <div class="process-content">
-                    <h4>Vous déposez l'ordonnance</h4>
-                    <p>Formulaire sécurisé. <strong>Je n'ai pas accès au contenu médical.</strong> Le fichier est chiffré et réservé au pharmacien.</p>
+                    <h4>Paiement des frais de coordination</h4>
+                    <p>Si votre demande est éligible, vous réservez votre dossier (20 €) via Stripe. Un reçu vous est envoyé.</p>
                 </div>
             </div>
             <div class="process-arrow">↓</div>
             <div class="process-step">
                 <div class="process-icon">3</div>
                 <div class="process-content">
-                    <h4>Nous obtenons le devis</h4>
-                    <p>La pharmacie analyse l'ordonnance et vous recevez le montant exact sur WhatsApp.</p>
+                    <h4>Dépôt sécurisé de l'ordonnance</h4>
+                    <p>Formulaire sécurisé. La coordinatrice n'a pas accès au contenu médical. Le fichier est réservé au pharmacien.</p>
                 </div>
             </div>
             <div class="process-arrow">↓</div>
             <div class="process-step">
                 <div class="process-icon">4</div>
                 <div class="process-content">
-                    <h4>Paiement direct & Livraison</h4>
-                    <p>Vous payez la pharmacie via Wave. Nous organisons la livraison chez votre proche avec preuve photo.</p>
+                    <h4>Devis & Livraison</h4>
+                    <p>La pharmacie analyse l'ordonnance. Vous recevez le devis sous 24h à 48h ouvrées. Vous payez la pharmacie, et nous organisons la livraison.</p>
                 </div>
             </div>
         </div>
@@ -257,54 +243,37 @@
         </div>
     </section>
 
-    <!-- RÉASSURANCE -->
-    <section>
-        <h2 class="section-title">La transparence avant tout</h2>
-        <p class="section-subtitle">La confiance se gagne par des actes concrets.</p>
-        
-        <div class="process-flow">
-            <div class="process-step">
-                <div class="process-icon" style="background: var(--secondary);">🔒</div>
-                <div class="process-content">
-                    <h4>Paiement Sécurisé</h4>
-                    <p>Vos transactions sont 100% sécurisées et cryptées par Stripe. Aucune donnée bancaire ne transite par notre site.</p>
-                </div>
-            </div>
-            <div class="process-step">
-                <div class="process-icon" style="background: var(--secondary);">🤝</div>
-                <div class="process-content">
-                    <h4>Garantie Bêta</h4>
-                    <p>Si nous ne parvenons pas à obtenir un devis de la pharmacie pour votre ordonnance, les frais de coordination de 20 € vous sont intégralement remboursés.</p>
-                </div>
-            </div>
-            <div class="process-step">
-                <div class="process-icon" style="background: var(--secondary);">👁️</div>
-                <div class="process-content">
-                    <h4>Zéro frais cachés</h4>
-                    <p>Vous payez la pharmacie en direct. Nous ne touchons jamais l'argent des médicaments.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- FAQ -->
     <section>
         <h2 class="section-title">Vos questions fréquentes</h2>
+        
+        <div class="faq-item">
+            <strong>Où livrez-vous au Sénégal ?</strong>
+            <p>Pour cette phase bêta, nous couvrons la région de <strong>Dakar</strong>. Si votre proche vit en dehors de Dakar, contactez-nous sur WhatsApp : nous étudierons la faisabilité et les éventuels frais de transport supplémentaires au cas par cas.</p>
+        </div>
+        <div class="faq-item">
+            <strong>Que couvrent exactement les 20 € ?</strong>
+            <p>L'offre Bêta à 20 € comprend la coordination d'<strong>un dossier complet</strong> (recherche de pharmacie, obtention du devis, suivi WhatsApp) et <strong>une livraison standard à domicile</strong> dans la zone de Dakar. Le coût des médicaments est à régler directement à la pharmacie. Pour un renouvellement, un nouveau dossier devra être ouvert.</p>
+        </div>
+        <div class="faq-item">
+            <strong>Dans quel délai vais-je recevoir le devis ?</strong>
+            <p>Une fois l'ordonnance déposée, nous contactons la pharmacie. Le devis vous est généralement transmis sur WhatsApp <strong>sous 24h à 48h ouvrées</strong>, en fonction de la disponibilité de la pharmacie.</p>
+        </div>
+        <div class="faq-item">
+            <strong>Comment vérifier l'identité de la pharmacie ?</strong>
+            <p>Toutes les pharmacies avec lesquelles nous travaillons sont des officines physiques agréées au Sénégal. Nous vous fournissons le nom exact et l'adresse de la pharmacie. Le paiement se fait sur le compte officiel de l'officine (Wave ou Orange Money).</p>
+        </div>
+        <div class="faq-item">
+            <strong>Mon parent doit-il donner son accord ?</strong>
+            <p>Oui. Il est important que votre proche soit informé et d'accord pour que ses informations (nom, adresse) soient partagées avec la pharmacie et le livreur pour organiser la livraison. L'ordonnance elle-même reste strictement confidentielle.</p>
+        </div>
+        <div class="faq-item">
+            <strong>Que se passe-t-il si la livraison échoue ?</strong>
+            <p>Si le livreur ne parvient pas à remettre le colis (adresse erronée, absence), nous vous contactons immédiatement pour organiser une nouvelle tentative. Des frais de livraison supplémentaires pourront s'appliquer pour la 2ème tentative.</p>
+        </div>
         <div class="faq-item">
             <strong>Qui a accès aux données médicales de mon parent ?</strong>
-            <p><strong>Uniquement le pharmacien.</strong> En tant que coordinatrice, je n'ai accès qu'au nom de votre proche pour organiser la livraison. L'ordonnance est stockée de manière chiffrée sur un serveur sécurisé et est automatiquement supprimée après la délivrance des médicaments.</p>
-        </div>
-        <div class="faq-item">
-            <strong>Que se passe-t-il si la pharmacie n'a pas le médicament ?</strong>
-            <p>Nous cherchons immédiatement une pharmacie partenaire alternative. Si le médicament reste introuvable, nous vous remboursons intégralement les frais de coordination.</p>
-        </div>
-        <div class="faq-item">
-            <strong>Comment se passe le paiement des médicaments ?</strong>
-            <p>Vous payez la pharmacie directement via Wave ou Orange Money. Nous ne touchons jamais cet argent.</p>
-        </div>
-        <div class="faq-item">
-            <strong>Pourquoi ce prix de 20 € ?</strong>
-            <p>Cette offre de lancement couvre la coordination, la recherche de pharmacie et la livraison sécurisée. Le coût des médicaments reste à votre charge et se règle au pharmacien.</p>
+            <p><strong>Uniquement le pharmacien.</strong> En tant que coordinatrice, je n'ai accès qu'au nom de votre proche pour organiser la livraison. L'ordonnance est stockée de manière chiffrée sur un serveur sécurisé (Supabase) et est supprimée après livraison et clôture du dossier.</p>
         </div>
     </section>
 
@@ -319,11 +288,10 @@
                 <h3>Offre Bêta-Testeur</h3>
                 <div class="price">20,00 € <span>29,90 €</span></div>
                 <ul>
-                    <li>1 mois de coordination complète</li>
+                    <li>Coordination d'1 dossier complet</li>
                     <li>Recherche de la pharmacie et devis</li>
-                    <li>1 livraison sécurisée à domicile</li>
+                    <li>1 livraison sécurisée à domicile (Dakar)</li>
                     <li>Suivi de dossier par WhatsApp</li>
-                    <li>Preuve de livraison envoyée</li>
                 </ul>
                 
                 <stripe-buy-button
@@ -332,7 +300,7 @@
                 >
                 </stripe-buy-button>
                 <div class="offer-note">
-                    <em>Ce prix rémunère le service de coordination. Le coût des médicaments se règle directement à la pharmacie.</em>
+                    <em>Ce prix rémunère le service de coordination. Le coût des médicaments se règle directement à la pharmacie. Tarif de lancement (le tarif standard sera de 29,90 €).</em>
                 </div>
             </div>
         </div>
@@ -340,7 +308,7 @@
 
     <!-- FOOTER -->
     <footer>
-        <p>&copy; 2026 SENE'Care-Diaspora. Tous droits réservés.</p>
+        <p>&copy; 2026 EI NDIAYE Diariyata (SENE'Care-Diaspora). Tous droits réservés.</p>
         <p style="margin-top: 10px;">
             <a href="mentions-legales.html">Mentions légales & Confidentialité</a> | 
             <a href="https://wa.me/33617977787" target="_blank">Contact WhatsApp</a>
