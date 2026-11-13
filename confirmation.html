@@ -6,8 +6,8 @@
     <title>Paiement Confirmé - SENE'Care-Diaspora</title>
     <style>
         :root {
-            --primary: #0EA5E9;
-            --primary-dark: #0284c7;
+            --primary: #5B2A58;
+            --primary-hover: #482144;
             --text-main: #1f2937;
             --text-light: #6b7280;
             --bg: #f8fafc;
@@ -35,121 +35,114 @@
             padding: 30px;
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
-        .header {
-            text-align: center;
-            margin-bottom: 25px;
-        }
-        .header img {
-            max-width: 100px;
-            margin-bottom: 15px;
-        }
+        .header { text-align: center; margin-bottom: 25px; }
+        .header img { max-width: 180px; margin-bottom: 15px; }
         .success-icon {
             background-color: var(--success-bg);
             color: var(--success);
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 30px;
-            margin: 0 auto 15px;
+            width: 60px; height: 60px; border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 30px; margin: 0 auto 15px;
         }
-        h1 {
-            font-size: 22px;
-            color: var(--text-main);
-            text-align: center;
-            margin-bottom: 10px;
-        }
-        p {
-            text-align: center;
-            color: var(--text-light);
-            margin-bottom: 25px;
-            font-size: 15px;
-        }
+        h1 { font-size: 22px; color: var(--text-main); text-align: center; margin-bottom: 10px; }
+        p { text-align: center; color: var(--text-light); margin-bottom: 25px; font-size: 15px; }
+        
         /* Formulaire */
         .form-group { margin-bottom: 15px; text-align: left; }
         .form-group label { display: block; font-weight: bold; font-size: 14px; margin-bottom: 5px; color: var(--text-main); }
         .form-group input { 
-            width: 100%; 
-            padding: 12px; 
-            border: 1px solid #d1d5db; 
-            border-radius: 6px; 
-            font-size: 16px;
-            background-color: #f9fafb;
+            width: 100%; padding: 12px; border: 1px solid #d1d5db; 
+            border-radius: 6px; font-size: 16px; background-color: #f9fafb;
         }
         .btn {
-            display: inline-block;
-            width: 100%;
-            padding: 14px;
-            background-color: var(--primary);
-            color: white;
-            text-decoration: none;
-            border-radius: 6px;
-            font-weight: bold;
-            transition: background-color 0.2s;
-            border: none;
-            cursor: pointer;
-            font-size: 16px;
-            margin-top: 10px;
+            display: inline-block; width: 100%; padding: 14px;
+            background-color: var(--primary); color: white; text-decoration: none;
+            border-radius: 6px; font-weight: bold; border: none; cursor: pointer;
+            font-size: 16px; margin-top: 10px;
         }
-        .btn:hover { background-color: var(--primary-dark); }
-        #status { 
-            text-align: center; 
-            margin-top: 15px; 
-            font-weight: bold; 
-            font-size: 16px; 
-            line-height: 1.5;
-        }
+        .btn:hover { background-color: var(--primary-hover); }
+        #status { text-align: center; margin-top: 15px; font-weight: bold; font-size: 16px; line-height: 1.5; }
+        
         .whatsapp-link {
-            display: block;
-            text-align: center;
-            margin-top: 20px;
-            color: var(--primary);
-            text-decoration: none;
-            font-size: 14px;
-            font-weight: bold;
+            display: block; text-align: center; margin-top: 20px;
+            color: var(--primary); text-decoration: none; font-size: 14px; font-weight: bold;
         }
+
+        /* Bloc d'erreur si accès direct */
+        .error-block {
+            display: none;
+            text-align: center;
+            padding: 20px;
+            background-color: #fef2f2;
+            border: 1px solid #fecaca;
+            border-radius: 8px;
+        }
+        .error-block h2 { color: #dc2626; margin-bottom: 10px; font-size: 20px; }
+        .error-block a { color: var(--primary); font-weight: bold; text-decoration: underline; }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
-        <div class="success-icon">✓</div>
-        <h1>Paiement confirmé, merci !</h1>
+    
+    <!-- BLOC ERREUR (Caché par défaut) -->
+    <div id="error-block" class="error-block">
+        <h2>Paiement non détecté</h2>
+        <p>Il semble que vous n'ayez pas encore réglé les frais de coordination.</p>
+        <p>Veuillez d'abord <a href="index.html">choisir l'offre Bêta sur la page d'accueil</a> pour débloquer l'envoi de l'ordonnance.</p>
     </div>
 
-    <p>Votre place dans la Bêta est réservée. <strong>Il ne reste plus qu'une étape :</strong> transmettez-nous l'ordonnance de votre proche pour que nous puissions contacter la pharmacie.</p>
-    
-    <div id="form-container">
-        <div class="form-group">
-            <label for="reference">Nom de votre proche (ou Référence)</label>
-            <input type="text" id="reference" placeholder="Ex: Mamadou Diallo" required>
+    <!-- CONTENU PRINCIPAL (Caché par défaut, affiché si paiement détecté) -->
+    <div id="main-content" style="display: none;">
+        <div class="header">
+            <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
+            <div class="success-icon">✓</div>
+            <h1>Paiement confirmé, merci !</h1>
         </div>
-        <div class="form-group">
-            <label for="fileInput">Photo ou PDF de l'ordonnance</label>
-            <input type="file" id="fileInput" accept="image/*,application/pdf" required>
-        </div>
-        <button onclick="uploadFile()" id="submitBtn" class="btn">Envoyer l'ordonnance maintenant</button>
-    </div>
-    
-    <div id="status"></div>
 
-    <a href="https://wa.me/33617977787" class="whatsapp-link" target="_blank">
-        Un problème avec l'envoi ? Contactez-moi sur WhatsApp
-    </a>
+        <p>Votre place dans la Bêta est réservée. <strong>Il ne reste plus qu'une étape :</strong> transmettez-nous l'ordonnance de votre proche pour que nous puissions contacter la pharmacie.</p>
+        
+        <div id="form-container">
+            <div class="form-group">
+                <label for="reference">Nom de votre proche (ou Référence)</label>
+                <input type="text" id="reference" placeholder="Ex: Mamadou Diallo" required>
+            </div>
+            <div class="form-group">
+                <label for="fileInput">Photo ou PDF de l'ordonnance</label>
+                <input type="file" id="fileInput" accept="image/*,application/pdf" required>
+            </div>
+            <button onclick="uploadFile()" id="submitBtn" class="btn">Envoyer l'ordonnance maintenant</button>
+        </div>
+        
+        <div id="status"></div>
+
+        <a href="https://wa.me/33617977787" class="whatsapp-link" target="_blank">
+            Un problème avec l'envoi ? Contactez-moi sur WhatsApp
+        </a>
+    </div>
+
 </div>
 
 <!-- Bibliothèque Supabase -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    // --- CONFIGURATION SUPABASE ---
     const SUPABASE_URL = 'https://lofmighhbwhvujwpajie.supabase.co';
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImxvZm1pZ2hoYndodnVqd3BhamllIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTM0NDcxMTIsImV4cCI6MjEwOTAyMzExMn0.pviIY6pqR_TOAi7iodrXSCgQo8JXSsxIydh3H0KnG8w';
 
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    // --- SÉCURITÉ : VÉRIFICATION DU PAIEMENT ---
+    // Stripe va ajouter "?session_id=..." à l'URL. Si ce n'est pas là, on bloque.
+    const urlParams = new URLSearchParams(window.location.search);
+    const sessionId = urlParams.get('session_id');
+
+    if (sessionId) {
+        // Le paiement semble valide, on affiche le formulaire
+        document.getElementById('main-content').style.display = 'block';
+    } else {
+        // Accès direct sans paiement, on affiche l'erreur
+        document.getElementById('error-block').style.display = 'block';
+    }
 
     // --- FONCTION D'UPLOAD ---
     async function uploadFile() {
@@ -168,7 +161,8 @@
         submitBtn.disabled = true;
         submitBtn.innerText = "Envoi en cours...";
 
-        const filePath = `${ref}/ordonnance-${Date.now()}.jpg`;
+        const safeRef = ref.replace(/\s+/g, '-');
+        const filePath = `${safeRef}/ordonnance-${Date.now()}.jpg`;
 
         const { data, error } = await supabaseClient.storage
             .from('ordonnances')
@@ -183,9 +177,8 @@
             submitBtn.disabled = false;
             submitBtn.innerText = "Réessayer l'envoi";
         } else {
-            // Cacher le formulaire et afficher le succès final
             document.getElementById('form-container').style.display = 'none';
-            document.querySelector('.whatsapp-link').style.display = 'none'; // On cache le lien d'aide
+            document.querySelector('.whatsapp-link').style.display = 'none'; 
             
             statusDiv.innerHTML = "✅ Ordonnance transmise avec succès !<br><br>Je contacte la pharmacie immédiatement. Vous recevrez le devis et le lien de paiement Wave sur votre WhatsApp très bientôt. Vous pouvez fermer cette page.";
             statusDiv.style.color = "var(--success)";
