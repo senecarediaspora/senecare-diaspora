@@ -37,12 +37,23 @@
         .hero img { max-width: 180px; margin-bottom: 20px; }
         .hero h1 { font-size: 32px; color: var(--primary); line-height: 1.2; margin-bottom: 20px; }
         .hero p { font-size: 18px; color: var(--text-light); max-width: 650px; margin: 0 auto 20px auto; }
-        .cta-button {
-            display: inline-block; background-color: var(--secondary); color: white;
+        
+        /* Nouveaux boutons Hero */
+        .hero-buttons { display: flex; flex-direction: column; align-items: center; gap: 15px; }
+        .cta-button-main {
+            display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+            background-color: var(--primary); color: white;
             padding: 16px 35px; font-size: 18px; font-weight: bold; text-decoration: none;
-            border-radius: 8px; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(217, 155, 60, 0.3);
+            border-radius: 8px; transition: transform 0.2s; box-shadow: 0 4px 6px rgba(91, 42, 88, 0.3);
+            width: 100%; max-width: 400px;
         }
-        .cta-button:hover { transform: translateY(-2px); }
+        .cta-button-main:hover { transform: translateY(-2px); }
+        .cta-button-secondary {
+            display: inline-block; background-color: transparent; color: var(--primary);
+            padding: 12px 25px; font-size: 16px; font-weight: bold; text-decoration: underline;
+            border-radius: 8px;
+        }
+        .hero-note { font-size: 14px; color: var(--text-light); margin-top: 10px; font-style: italic; }
 
         /* --- BADGES DE CONFIANCE --- */
         .trust-badges {
@@ -151,12 +162,24 @@
 
 <div class="container">
     
-    <!-- HERO SECTION -->
+    <!-- HERO SECTION (Corrigée : WhatsApp en premier) -->
     <div class="hero">
         <img src="senecarediaspora.png" alt="Logo SENE'Care-Diaspora">
-        <h1>Vos parents ont besoin de médicaments au Sénégal ? Organisez leur achat depuis la France.</h1>
-        <p>SENE'Care-Diaspora vous accompagne dans la recherche d'une pharmacie, l'obtention du devis et l'organisation de la livraison à domicile. <strong>Vous payez les médicaments directement à la pharmacie.</strong></p>
-        <a href="#offre-beta" class="cta-button">Découvrir l'offre Bêta</a>
+        <h1>Les médicaments de vos parents au Sénégal, sans avoir à gérer l'achat à distance.</h1>
+        <p>Nous vous accompagnons pour rechercher une pharmacie, obtenir le devis et organiser la livraison à domicile dans la région de Dakar. <strong>Vous payez les médicaments directement à la pharmacie.</strong></p>
+        
+        <div class="hero-buttons">
+            <!-- BOUTON PRINCIPAL : WHATSAPP GRATUIT -->
+            <a href="https://wa.me/33617977787" class="cta-button-main" target="_blank">
+                💬 Vérifier gratuitement la faisabilité
+            </a>
+            <span class="hero-note">Premier échange sur WhatsApp, sans paiement</span>
+            
+            <!-- BOUTON SECONDAIRE : ALLER À L'OFFRE -->
+            <a href="#offre-beta" class="cta-button-secondary">
+                Voir les détails de l'offre (20 €)
+            </a>
+        </div>
     </div>
 
     <!-- BADGES DE CONFIANCE -->
@@ -189,7 +212,7 @@
                 <div class="process-icon">1</div>
                 <div class="process-content">
                     <h4>Vérification préalable (Gratuit)</h4>
-                    <p>Vous nous contactez sur WhatsApp en précisant la ville de votre proche et le type de traitement. Nous vérifions la faisabilité avec notre pharmacie référente à Dakar.</p>
+                    <p>Vous nous contactez sur WhatsApp. Nous vérifions la faisabilité avec notre pharmacie référente.</p>
                 </div>
             </div>
             <div class="process-arrow">↓</div>
@@ -213,7 +236,7 @@
                 <div class="process-icon">4</div>
                 <div class="process-content">
                     <h4>Devis & Livraison</h4>
-                    <p>La pharmacie analyse l'ordonnance. Vous recevez le devis sous 24h à 48h ouvrées. Vous payez la pharmacie, et nous mandatons un coursier de confiance pour la remise en main propre.</p>
+                    <p>Devis sous 24-48h. Vous payez la pharmacie. Nous mandatons un coursier de confiance pour la livraison (généralement sous 24h après paiement).</p>
                 </div>
             </div>
         </div>
@@ -244,41 +267,33 @@
         </div>
     </section>
 
-    <!-- FAQ -->
+    <!-- FAQ (Enrichie) -->
     <section>
         <h2 class="section-title">Vos questions fréquentes</h2>
         
         <div class="faq-item">
             <div class="faq-question">Avec quelles pharmacies travaillez-vous ?</div>
-            <p>Pour notre lancement, nous travaillons en étroite collaboration avec une <strong>pharmacie référente de confiance située à Dakar (la Pharmacie Yacine)</strong>. Nous sollicitons également d'autres officines physiques agréées selon la localisation de votre proche. Dans tous les cas, nous vous communiquons le nom et l'adresse exacte de la pharmacie avant tout paiement.</p>
+            <p>Pour notre lancement, nous travaillons avec une <strong>pharmacie référente de confiance située à Dakar (la Pharmacie Yacine)</strong>. Nous sollicitons également d'autres officines physiques agréées selon la localisation. Nous vous communiquons le nom et l'adresse exacte avant tout paiement.</p>
         </div>
         <div class="faq-item">
-            <div class="faq-question">Qui effectue la livraison des médicaments ?</div>
-            <p>La livraison est assurée par un service de coursier indépendant de confiance. Le colis est remis en main propre à votre proche, et le coursier prend une photo comme preuve de livraison. Pour les médicaments nécessitant une chaîne du froid stricte, nous vous informerons avant la commande si le transport peut être garanti.</p>
+            <div class="faq-question">Quels sont les délais de livraison ?</div>
+            <p>Une fois le devis validé et la pharmacie payée par vos soins, le coursier est mandaté. La livraison à Dakar intervient généralement <strong>sous 24h à 48h</strong>. Pour les zones hors Dakar, un délai supplémentaire s'applique.</p>
+        </div>
+        <div class="faq-item">
+            <div class="faq-question">Que se passe-t-il si un médicament est en rupture de stock ?</div>
+            <p>Si la pharmacie n'a pas tout en stock, nous cherchons une alternative. Si aucun devis complet ne peut être établi, les frais de coordination de 20 € vous sont intégralement remboursés. Si un devis partiel est établi et que vous le refusez, les frais restent dus (le travail de recherche ayant été effectué).</p>
         </div>
         <div class="faq-item">
             <div class="faq-question">Que couvrent exactement les 20 € ?</div>
-            <p>L'offre Bêta à 20 € comprend la coordination d'<strong>un dossier complet</strong> (recherche de pharmacie, obtention du devis, suivi WhatsApp) et <strong>une livraison standard à domicile</strong> dans la zone de Dakar. Le coût des médicaments est à régler directement à la pharmacie. Pour un renouvellement, un nouveau dossier devra être ouvert.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Que se passe-t-il si les médicaments sont indisponibles ?</div>
-            <p>Si la pharmacie contactée ne peut pas fournir le traitement, nous cherchons une alternative. Si aucun devis ne peut être établi (rupture totale de stock), les frais de coordination de 20 € vous sont intégralement remboursés. Si un devis est établi mais que vous le refusez (prix trop élevé par exemple), les frais de coordination restent dus car le travail de recherche a été effectué.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Comment vérifier l'identité de la pharmacie ?</div>
-            <p>Nous vous fournissons le nom exact et l'adresse de l'officine. Le paiement se fait sur le compte officiel de la pharmacie (Wave ou Orange Money). Vous pouvez vérifier son existence sur les annuaires officiels de santé au Sénégal.</p>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Mon parent doit-il donner son accord ?</div>
-            <p>Oui. Il est important que votre proche soit informé et d'accord pour que ses informations (nom, adresse) soient partagées avec la pharmacie et le livreur pour organiser la livraison. L'ordonnance elle-même reste strictement confidentielle.</p>
+            <p>L'offre Bêta à 20 € comprend la coordination d'<strong>un dossier complet</strong> (recherche de pharmacie, obtention du devis, suivi WhatsApp) et <strong>une livraison standard à domicile</strong> dans la zone de Dakar. Le coût des médicaments est à régler directement à la pharmacie.</p>
         </div>
         <div class="faq-item">
             <div class="faq-question">Qui a accès aux données médicales de mon parent ?</div>
-            <p><strong>Le pharmacien et lui seul.</strong> Techniquement, l'ordonnance est envoyée dans un espace de stockage sécurisé (Supabase) et le pharmacien reçoit un lien unique pour la consulter. Je n'ai pas les droits d'accès pour ouvrir ce lien. L'ordonnance est supprimée après la livraison.</p>
+            <p><strong>Le pharmacien et lui seul.</strong> Techniquement, l'ordonnance est envoyée dans un espace de stockage sécurisé (Supabase) et le pharmacien reçoit un lien unique. Je n'ai pas les droits d'accès pour ouvrir ce lien. L'ordonnance est supprimée après la livraison.</p>
         </div>
     </section>
 
-    <!-- OFFRE BETA -->
+    <!-- OFFRE BETA (Prix barré retiré) -->
     <section id="offre-beta">
         <h2 class="section-title">Rejoignez la phase de test</h2>
         <p class="section-subtitle">Novembre 2026 - Test grandeur nature</p>
@@ -288,7 +303,7 @@
                 <div class="badge">Lancement Bêta</div>
                 <h3>Offre Testeur</h3>
                 <div class="price">20,00 €</div>
-                <span class="price-text">Tarif de lancement (le tarif standard sera de 29,90 €)</span>
+                <span class="price-text">Tarif de lancement. <em>(Tarif standard prévisionnel après la bêta : 29,90 €)</em></span>
                 <ul>
                     <li>Coordination d'1 dossier complet</li>
                     <li>Recherche de la pharmacie et devis</li>
