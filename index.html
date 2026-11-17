@@ -544,11 +544,20 @@
         btn.textContent = 'Envoi en cours…';
         status.className = 'form-status';
 
-        try {
+                try {
+            // Extraction robuste des données du formulaire
             const formData = new FormData(form);
-            const data = Object.fromEntries(formData);
-            data.accepte_frais   = !!data.accepte_frais;
-            data.accepte_urgence = !!data.accepte_urgence;
+            const data = {};
+            
+            formData.forEach((value, key) => {
+                data[key] = value;
+            });
+            
+            // Gestion explicite des cases à cocher (sinon elles sont undefined si non cochées, mais ici elles sont required)
+            data.accepte_frais = formData.has('accepte_frais');
+            data.accepte_urgence = formData.has('accepte_urgence');
+
+            console.log('📤 Données prêtes à être envoyées :', data);
 
             // 1) Upload du fichier (si présent)
             let path = null;
@@ -572,7 +581,7 @@
             
             if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
 
-            // 3) NOUVEAU : Notification Telegram au coordinateur via la fonction Edge
+            // 3) Notification Telegram au coordinateur via la fonction Edge
             console.log('📡 Envoi de la notification Telegram...');
             const { error: tgError } = await db.functions.invoke('notify-demande', {
                 body: data 
