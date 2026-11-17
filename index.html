@@ -582,32 +582,34 @@
             
             if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
 
-            // 3) Notification Telegram
+                        // 3) Notification Telegram via fetch direct (contourne le CORS)
             console.log('📡 Envoi de la notification Telegram...');
-            const { data: fnData, error: fnError } = await db.functions.invoke('notify-demande', {
-                body: data
-            });
-
-            if (fnError) {
-                console.error('⚠️ Erreur notification Telegram :', fnError);
-            } else {
-                console.log('✅ Notification Telegram envoyée !', fnData);
-            }
-
-            status.className = 'form-status ok';
-            status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
-            form.reset();
             
-            blocOrdo.style.display = 'block';
-            blocMed.style.display  = 'none';
-            fileIn.required = true;
-            blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
-
-        } catch (err) {
-            console.error('💥 Erreur finale :', err);
-            status.className = 'form-status err';
-            status.textContent = "⚠️ " + err.message;
-        } finally {
+            try {
+                const TG_RES = await fetch(
+                    'https://lofmighhbwhvujwpajie.supabase.co/functions/v1/notify-demande',
+                    {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'apikey': SUPABASE_ANON,
+                            'Authorization': 'Bearer ' + SUPABASE_ANON
+                        },
+                        body: JSON.stringify(data)
+                    }
+                );
+                
+                if (TG_RES.ok) {
+                    console.log('✅ Notification Telegram envoyée !');
+                } else {
+                    const errText = await TG_RES.text();
+                    console.error('⚠️ Erreur Telegram :', errText);
+                }
+            } catch (tgErr) {
+                console.error('⚠️ Erreur appel Telegram :', tgErr);
+            }
+                    
+            finally {
             btn.disabled = false;
             btn.textContent = 'Recevoir mon devis gratuit sous 24h';
         }
