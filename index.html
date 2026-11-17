@@ -350,7 +350,6 @@
     </div>
 </section
     <!-- DÉBUT DE LA PARTIE 2 : Coller ceci directement à la suite de la Partie 1 -->
-
 <section id="formulaire">
     <div class="container">
         <h2 class="center">Demander un devis gratuit</h2>
@@ -398,14 +397,12 @@
                         <label><input type="radio" name="a_ordonnance" value="non"> Non, je n'en ai pas</label>
                     </div></div>
 
-                <!-- Bloc SI ordonnance : juste l'upload -->
                 <div class="form-group" id="blocOrdonnance">
                     <label>Photo de l'ordonnance *</label>
                     <input type="file" id="fileOrdonnance" accept="image/*,.pdf" required>
                     <span class="hint">JPG, PNG ou PDF. C'est tout ce dont nous avons besoin.</span>
                 </div>
 
-                <!-- Bloc SI PAS d'ordonnance : description simple en langage courant -->
                 <div id="blocMedicaments">
                     <p class="hint" style="margin-bottom:12px; color: var(--violet); font-weight: 600;">Pas de panique, décrivez le besoin avec vos propres mots. Notre coordinateur se chargera d'identifier les produits exacts avec vous si nécessaire.</p>
                     <div class="form-group">
@@ -497,13 +494,14 @@
     </div>
 </footer>
 
-<!-- SCRIPT SUPABASE ET NOTIFICATION TELEGRAM -->
+<!-- SCRIPT SUPABASE + NOTIFICATION TELEGRAM -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
     // ⬇️⬇️ REMPLACE PAR TES VALEURS EXACTES ⬇️⬇️
     const SUPABASE_URL  = 'https://lofmighhbwhvujwpajie.supabase.co';
-    const SUPABASE_ANON = 'sb_publishable_DeclNPgUMq8A03HEvuNyIQ_6yw-d8Ed';
-    const BUCKET_NAME   = 'ordonnances';
+    const SUPABASE_ANON = 'TA_CLE_ANON_PUBLIQUE';
+    const BUCKET_NAME   = 'partenaires-sante';
+    const EDGE_FUNCTION_URL = 'https://lofmighhbwhvujwpajie.supabase.co/functions/v1/notify-demande';
 
     const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -514,7 +512,19 @@
     const blocOrdo = document.getElementById('blocOrdonnance');
     const blocMed  = document.getElementById('blocMedicaments');
 
-    // Logique conditionnelle : afficher/masquer selon "ordonnance oui/non"
+    // Fonction utilitaire pour extraire les valeurs (gère radios, checkboxes, textes)
+    const getVal = (name) => {
+        const el = form.querySelector(`[name="${name}"]`);
+        if (!el) return '';
+        if (el.type === 'checkbox') return el.checked;
+        if (el.type === 'radio') {
+            const checked = form.querySelector(`[name="${name}"]:checked`);
+            return checked ? checked.value : '';
+        }
+        return el.value || '';
+    };
+
+    // Logique conditionnelle : ordonnance OUI / NON
     form.addEventListener('change', (e) => {
         if (e.target.name !== 'a_ordonnance') return;
         const oui = e.target.value === 'oui';
@@ -544,22 +554,28 @@
         btn.textContent = 'Envoi en cours…';
         status.className = 'form-status';
 
-                try {
-            const formData = new FormData(form);
-            const data = {};
-            
-            formData.forEach((value, key) => {
-                if (value instanceof File) {
-                    // On ne met pas le fichier dans data, il sera uploadé séparément
-                    return;
-                }
-                data[key] = value;
-            });
-            
-            data.accepte_frais = formData.has('accepte_frais');
-            data.accepte_urgence = formData.has('accepte_urgence');
+        try {
+            // Construction manuelle et robuste de l'objet data
+            const data = {
+                nom_proche: getVal('nom_proche'),
+                age_proche: getVal('age_proche'),
+                ville: getVal('ville'),
+                quartier: getVal('quartier'),
+                tel_proche: getVal('tel_proche'),
+                type_besoin: getVal('type_besoin'),
+                a_ordonnance: getVal('a_ordonnance'),
+                besoin_description: getVal('besoin_description'),
+                noms_medicaments: getVal('noms_medicaments'),
+                message: getVal('message'),
+                nom_demandeur: getVal('nom_demandeur'),
+                ville_residence: getVal('ville_residence'),
+                email: getVal('email'),
+                telephone: getVal('telephone'),
+                accepte_frais: getVal('accepte_frais'),
+                accepte_urgence: getVal('accepte_urgence')
+            };
 
-            console.log('📤 Données prêtes à être envoyées :', data);
+            console.log('📤 Données extraites du formulaire :', data);
 
             // 1) Upload du fichier (si présent)
             let path = null;
@@ -581,35 +597,45 @@
                 .insert(data);
             
             if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
+            console.log('✅ Insertion réussie dans la table demandes');
 
-                        // 3) Notification Telegram via fetch direct (contourne le CORS)
+            // 3) Notification Telegram via fetch direct (contourne CORS)
             console.log('📡 Envoi de la notification Telegram...');
+            console.log('📦 Payload envoyé à la fonction Edge :', JSON.stringify(data));
             
-            try {
-                const TG_RES = await fetch(
-                    'https://lofmighhbwhvujwpajie.supabase.co/functions/v1/notify-demande',
-                    {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'apikey': SUPABASE_ANON,
-                            'Authorization': 'Bearer ' + SUPABASE_ANON
-                        },
-                        body: JSON.stringify(data)
-                    }
-                );
-                
-                if (TG_RES.ok) {
-                    console.log('✅ Notification Telegram envoyée !');
-                } else {
-                    const errText = await TG_RES.text();
-                    console.error('⚠️ Erreur Telegram :', errText);
-                }
-            } catch (tgErr) {
-                console.error('⚠️ Erreur appel Telegram :', tgErr);
+            const TG_RES = await fetch(EDGE_FUNCTION_URL, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON,
+                    'Authorization': 'Bearer ' + SUPABASE_ANON
+                },
+                body: JSON.stringify(data)
+            });
+            
+            if (TG_RES.ok) {
+                console.log('✅ Notification Telegram envoyée !');
+            } else {
+                const errText = await TG_RES.text();
+                console.error('⚠️ Erreur Telegram :', errText);
             }
-                    
-            finally {
+
+            // Succès global
+            status.className = 'form-status ok';
+            status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
+            form.reset();
+            
+            // Reset affichage conditionnel
+            blocOrdo.style.display = 'block';
+            blocMed.style.display  = 'none';
+            fileIn.required = true;
+            blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
+
+        } catch (err) {
+            console.error('💥 Erreur finale :', err);
+            status.className = 'form-status err';
+            status.textContent = "⚠️ " + err.message;
+        } finally {
             btn.disabled = false;
             btn.textContent = 'Recevoir mon devis gratuit sous 24h';
         }
@@ -618,4 +644,3 @@
 
 </body>
 </html>
-   
