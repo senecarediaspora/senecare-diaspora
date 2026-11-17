@@ -599,43 +599,24 @@
             if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
             console.log('✅ Insertion réussie dans la table demandes');
 
-            // 3) Notification Telegram via fetch direct (contourne CORS)
+                        // 3) Notification Telegram via la méthode officielle Supabase
             console.log('📡 Envoi de la notification Telegram...');
-            console.log('📦 Payload envoyé à la fonction Edge :', JSON.stringify(data));
             
-            const TG_RES = await fetch(EDGE_FUNCTION_URL, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': SUPABASE_ANON,
-                    'Authorization': 'Bearer ' + SUPABASE_ANON
-                },
-                body: JSON.stringify(data)
-            });
-            
-            if (TG_RES.ok) {
-                console.log('✅ Notification Telegram envoyée !');
-            } else {
-                const errText = await TG_RES.text();
-                console.error('⚠️ Erreur Telegram :', errText);
+            try {
+                const { data: fnData, error: fnError } = await db.functions.invoke('notify-demande', {
+                    body: data
+                });
+                
+                if (fnError) {
+                    console.error('⚠️ Erreur Telegram :', fnError);
+                } else {
+                    console.log('✅ Notification Telegram envoyée !', fnData);
+                }
+            } catch (tgErr) {
+                console.error('⚠️ Erreur appel Telegram :', tgErr);
             }
-
-            // Succès global
-            status.className = 'form-status ok';
-            status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
-            form.reset();
             
-            // Reset affichage conditionnel
-            blocOrdo.style.display = 'block';
-            blocMed.style.display  = 'none';
-            fileIn.required = true;
-            blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
-
-        } catch (err) {
-            console.error('💥 Erreur finale :', err);
-            status.className = 'form-status err';
-            status.textContent = "⚠️ " + err.message;
-        } finally {
+            finally {
             btn.disabled = false;
             btn.textContent = 'Recevoir mon devis gratuit sous 24h';
         }
