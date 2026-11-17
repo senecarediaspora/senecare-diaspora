@@ -135,7 +135,7 @@
         }
         .pricing-price { font-size: 48px; font-weight: bold; color: var(--gold); margin: 10px 0; }
         .pricing-examples { background: var(--bg); border-radius: 8px; padding: 20px; margin-top: 20px; text-align: left; }
-        .pricing-example { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .pricing-example { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); flex-wrap: wrap; gap: 8px; }
         .pricing-example:last-child { border-bottom: none; }
         .pricing-example strong { color: var(--violet); }
 
@@ -157,6 +157,41 @@
             margin: 25px 0;
             font-size: 14px;
         }
+
+        /* Form styles */
+        .form-wrap { background: var(--white); border: 1px solid var(--border);
+            border-radius: 12px; padding: 30px; max-width: 720px; margin: 0 auto;
+            box-shadow: 0 4px 20px rgba(91,42,88,.08); }
+        .form-section-title { font-size: 18px; color: var(--violet);
+            border-bottom: 2px solid var(--gold); padding-bottom: 8px; margin: 25px 0 15px; }
+        .form-section-title:first-child { margin-top: 0; }
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display:block; font-weight:600; color:var(--violet);
+            font-size:14px; margin-bottom:6px; }
+        .form-group input, .form-group select, .form-group textarea {
+            width:100%; padding:11px 12px; border:1px solid var(--border);
+            border-radius:8px; background:var(--cream); color:var(--text);
+            font-family:inherit; font-size:15px; transition:border .2s, box-shadow .2s; }
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            outline:none; border-color:var(--gold);
+            box-shadow:0 0 0 3px rgba(217,155,60,.18); }
+        .hint { display:block; font-size:12px; color:var(--muted); margin-top:4px; }
+        .form-row { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+        .radio-row { display:flex; gap:18px; flex-wrap:wrap; }
+        .radio-row label { font-weight:normal; color:var(--text); display:flex;
+            align-items:center; gap:6px; cursor:pointer; }
+        .checkbox-group { display:flex; gap:10px; align-items:flex-start;
+            background:var(--cream); border:1px solid var(--border); border-radius:8px;
+            padding:12px; margin:12px 0; }
+        .checkbox-group input { width:auto; margin-top:3px; accent-color:var(--gold); }
+        .checkbox-group label { font-size:13px; font-weight:normal; color:var(--text); }
+        .form-status { display:none; margin-top:18px; padding:14px; border-radius:8px;
+            font-size:14px; }
+        .form-status.ok { display:block; background:#e8f5e9; color:#2e7d32;
+            border:1px solid #a5d6a7; }
+        .form-status.err { display:block; background:#fdecea; color:#c62828;
+            border:1px solid #ef9a9a; }
+        .btn[disabled] { opacity:.6; cursor:not-allowed; transform:none; }
 
         @media (max-width: 768px) {
             .form-row { grid-template-columns: 1fr; }
@@ -321,151 +356,110 @@
         </div>
     </div>
 </section>
-
-<!-- FIN DE LA PARTIE 1. COLLEZ LA PARTIE 2 DIRECTEMENT À LA SUITE DE CETTE LIGNE -->
-
   <section id="formulaire">
     <div class="container">
         <h2 class="center">Demander un devis gratuit</h2>
-        <p class="section-intro">Remplissez ce formulaire pour recevoir un devis précis sous 24h. Aucun engagement.</p>
+        <p class="section-intro">
+            Remplissez ce formulaire sécurisé. Nous vous répondons sous 24h avec un devis clair. Aucun engagement.
+        </p>
 
-        <div class="form-container" style="background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 30px; max-width: 700px; margin: 0 auto;">
-            <form action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" enctype="multipart/form-data">
-                
-                <h3 class="form-section-title">📋 Informations sur votre proche</h3>
-                
+        <div class="form-wrap">
+            <form id="devisForm" novalidate>
+
+                <h3 class="form-section-title">📋 Votre proche au Sénégal</h3>
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="nom-proche">Nom complet de votre proche *</label>
-                        <input type="text" id="nom-proche" name="nom-proche" required>
-                    </div>
-                    <div class="form-group">
-                        <label for="age-proche">Âge de votre proche</label>
-                        <input type="number" id="age-proche" name="age-proche" min="0" max="120">
-                    </div>
+                    <div class="form-group"><label>Nom complet *</label>
+                        <input name="nom_proche" required></div>
+                    <div class="form-group"><label>Âge</label>
+                        <input type="number" name="age_proche" min="0" max="120"></div>
                 </div>
-
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="ville">Ville au Sénégal *</label>
-                        <select id="ville" name="ville" required>
-                            <option value="">Sélectionnez une ville</option>
-                            <option value="dakar">Dakar</option>
-                            <option value="pikine">Pikine</option>
-                            <option value="guédiawaye">Guédiawaye</option>
-                            <option value="thies">Thiès</option>
-                            <option value="autre">Autre (précisez ci-dessous)</option>
-                        </select>
+                    <div class="form-group"><label>Ville *</label>
+                        <select name="ville" required>
+                            <option value="">Sélectionnez…</option>
+                            <option>Dakar</option><option>Pikine</option><option>Guédiawaye</option>
+                            <option>Thiès</option><option>Autre</option>
+                        </select></div>
+                    <div class="form-group"><label>Quartier / point de retrait *</label>
+                        <input name="quartier" required placeholder="Ex : Mermoz, Médina…">
+                        <span class="hint">Pour identifier la pharmacie la plus proche</span></div>
+                </div>
+                <div class="form-group"><label>Téléphone du proche *</label>
+                    <input type="tel" name="tel_proche" required placeholder="+221 77 123 45 67">
+                    <span class="hint">Pour coordonner le retrait ou la livraison</span></div>
+
+                <h3 class="form-section-title">💊 Le besoin</h3>
+                <div class="form-group"><label>Type de besoin *</label>
+                    <select name="type_besoin" required>
+                        <option value="">Sélectionnez…</option>
+                        <option value="chronique">Traitement chronique (renouvellement)</option>
+                        <option value="ponctuel">Médicaments ponctuels (ordonnance)</option>
+                        <option value="analyses">Analyses médicales (bilan)</option>
+                    </select></div>
+
+                <div class="form-group"><label>Avez-vous une ordonnance ? *</label>
+                    <div class="radio-row">
+                        <label><input type="radio" name="a_ordonnance" value="oui" required> Oui</label>
+                        <label><input type="radio" name="a_ordonnance" value="non"> Non</label>
+                    </div></div>
+
+                <div class="form-group" id="blocOrdonnance">
+                    <label>Photo de l'ordonnance</label>
+                    <input type="file" id="fileOrdonnance" accept="image/*,.pdf">
+                    <span class="hint">JPG, PNG ou PDF. Si vous n'en avez pas, détaillez ci-dessous.</span>
+                </div>
+
+                <div id="blocMedicaments">
+                    <p class="hint" style="margin-bottom:12px;">Détaillez les produits : plus c'est précis, plus le devis est rapide.</p>
+                    <div class="form-group"><label>Médicament 1 — nom ou molécule *</label>
+                        <input name="medicament1" placeholder="Ex : Glucophage 500mg, Amlor 10mg…"></div>
+                    <div class="form-row">
+                        <div class="form-group"><label>Dosage / présentation</label>
+                            <input name="dosage1" placeholder="Ex : 500mg, sirop 200ml"></div>
+                        <div class="form-group"><label>Quantité</label>
+                            <input name="quantite1" placeholder="Ex : 2 boîtes, 1 flacon"></div>
                     </div>
-                    <div class="form-group">
-                        <label for="quartier">Quartier ou point de retrait *</label>
-                        <input type="text" id="quartier" name="quartier" required placeholder="Ex: Mermoz, Médina...">
-                        <span class="hint">Pour identifier la pharmacie la plus proche</span>
-                    </div>
+                    <div class="form-group"><label>Fréquence de prise</label>
+                        <input name="frequence1" placeholder="Ex : 1 cp matin et soir"></div>
+                    <div class="form-group"><label>Médicament 2 (optionnel)</label>
+                        <input name="medicament2" placeholder="Nom, dosage, quantité…"></div>
+                    <div class="form-group"><label>Pathologie traitée</label>
+                        <input name="pathologie" placeholder="Ex : diabète type 2, hypertension…"></div>
+                    <div class="form-group"><label>Médecin prescripteur</label>
+                        <input name="prescripteur" placeholder="Dr. [Nom]"></div>
                 </div>
 
-                <div class="form-group">
-                    <label for="telephone-proche">Téléphone du proche au Sénégal *</label>
-                    <input type="tel" id="telephone-proche" name="telephone-proche" required placeholder="+221 77 123 45 67">
-                    <span class="hint">Pour coordonner la livraison ou le retrait</span>
-                </div>
-
-                <h3 class="form-section-title">💊 Type de besoin</h3>
-
-                <div class="form-group">
-                    <label for="type-besoin">Type de besoin *</label>
-                    <select id="type-besoin" name="type-besoin" required>
-                        <option value="">Sélectionnez un type</option>
-                        <option value="medicaments-chroniques">Médicaments pour traitement chronique (renouvellement)</option>
-                        <option value="medicaments-ponctuels">Médicaments ponctuels (ordonnance spécifique)</option>
-                        <option value="analyses">Analyses médicales (bilan prescrit)</option>
-                    </select>
-                </div>
-
-                <div class="form-group">
-                    <label for="ordonnance">Photo de l'ordonnance (si disponible)</label>
-                    <input type="file" id="ordonnance" name="ordonnance" accept="image/*,.pdf">
-                    <span class="hint">Formats : JPG, PNG, PDF. Si vous n'avez pas d'ordonnance, remplissez les détails ci-dessous.</span>
-                </div>
-
-                <h3 class="form-section-title">📝 Détails des médicaments (si pas d'ordonnance)</h3>
-                <p class="small" style="margin-bottom: 15px;">Ces informations nous permettent de vérifier la disponibilité et le prix exact. Plus les détails sont précis, plus le devis sera rapide.</p>
-
-                <div class="form-group">
-                    <label for="medicament-1">Médicament 1 - Nom commercial ou molécule *</label>
-                    <input type="text" id="medicament-1" name="medicament-1" placeholder="Ex: Glucophage 500mg, Amlor 10mg...">
-                    <span class="hint">Indiquez le nom exact tel qu'écrit sur la boîte ou l'ordonnance</span>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group">
-                        <label for="dosage-1">Dosage / Présentation</label>
-                        <input type="text" id="dosage-1" name="dosage-1" placeholder="Ex: 500mg, 10mg, sirop 200ml...">
-                    </div>
-                    <div class="form-group">
-                        <label for="quantite-1">Quantité souhaitée</label>
-                        <input type="text" id="quantite-1" name="quantite-1" placeholder="Ex: 2 boîtes, 1 flacon...">
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="frequence-1">Fréquence de prise (si connue)</label>
-                    <input type="text" id="frequence-1" name="frequence-1" placeholder="Ex: 1 comprimé matin et soir...">
-                </div>
-
-                <div class="form-group">
-                    <label for="medicament-2">Médicament 2 (optionnel)</label>
-                    <input type="text" id="medicament-2" name="medicament-2" placeholder="Nom, dosage, quantité...">
-                </div>
-
-                <div class="form-group">
-                    <label for="pathologie">Pathologie traitée (optionnel)</label>
-                    <input type="text" id="pathologie" name="pathologie" placeholder="Ex: Diabète type 2, Hypertension...">
-                    <span class="hint">Ces informations restent confidentielles et servent uniquement à identifier les bons produits</span>
-                </div>
-
-                <div class="form-group">
-                    <label for="prescripteur">Nom du médecin prescripteur (si connu)</label>
-                    <input type="text" id="prescripteur" name="prescripteur" placeholder="Dr. [Nom]">
-                </div>
-
-                <div class="form-group">
-                    <label for="message">Informations complémentaires</label>
-                    <textarea id="message" name="message" rows="3" placeholder="Allergie connue, marque préférée, contrainte particulière..."></textarea>
-                </div>
+                <div class="form-group"><label>Précisions complémentaires</label>
+                    <textarea name="message" rows="3" placeholder="Allergie, marque préférée, contrainte…"></textarea></div>
 
                 <h3 class="form-section-title">👤 Vos coordonnées</h3>
-
                 <div class="form-row">
-                    <div class="form-group">
-                        <label for="email">Votre email *</label>
-                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
-                    </div>
-                    <div class="form-group">
-                        <label for="telephone">Votre téléphone (WhatsApp) *</label>
-                        <input type="tel" id="telephone" name="telephone" required placeholder="+33 6 12 34 56 78">
-                    </div>
+                    <div class="form-group"><label>Votre nom *</label>
+                        <input name="nom_demandeur" required></div>
+                    <div class="form-group"><label>Votre ville de résidence</label>
+                        <input name="ville_residence" placeholder="Ex : Paris, Bruxelles…"></div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group"><label>Email *</label>
+                        <input type="email" name="email" required placeholder="votre@email.com"></div>
+                    <div class="form-group"><label>Téléphone (WhatsApp) *</label>
+                        <input type="tel" name="telephone" required placeholder="+33 6 12 34 56 78"></div>
                 </div>
 
                 <div class="checkbox-group">
-                    <input type="checkbox" id="acceptation" name="acceptation" required>
-                    <label for="acceptation">
-                        J'accepte les frais de coordination de 15% (minimum 5€, maximum 15€) pour un service garanti avec preuve d'achat. Je comprends que SENE'Care-Diaspora assure une coordination administrative et ne fournit aucun conseil médical.
-                    </label>
+                    <input type="checkbox" name="accepte_frais" id="c1" required>
+                    <label for="c1">J'accepte les frais de coordination de 15 % (min 5 €, max 15 €) pour un service garanti avec preuve d'achat. Je comprends que SENE'Care-Diaspora assure une coordination administrative et ne fournit aucun conseil médical.</label>
                 </div>
-
                 <div class="checkbox-group">
-                    <input type="checkbox" id="urgence" name="urgence" required>
-                    <label for="urgence">
-                        Je comprends que ce service ne concerne PAS les urgences médicales (délai de traitement : 24 à 48h). En cas d'urgence, je contacterai directement les services médicaux locaux.
-                    </label>
+                    <input type="checkbox" name="accepte_urgence" id="c2" required>
+                    <label for="c2">Je comprends que ce service ne concerne PAS les urgences médicales (délai 24–48 h). En cas d'urgence, je contacterai directement les services locaux.</label>
                 </div>
 
-                <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 10px;">Recevoir mon devis gratuit sous 24h</button>
-
-                <p class="small center" style="margin-top: 15px;">
-                    🔒 Vos données sont confidentielles et ne seront jamais partagées.
-                </p>
+                <button type="submit" class="btn btn-gold" id="submitBtn" style="width:100%;margin-top:8px;">
+                    Recevoir mon devis gratuit sous 24h
+                </button>
+                <div class="form-status" id="formStatus"></div>
+                <p class="small center" style="margin-top:14px;">🔒 Données de santé chiffrées et conservées dans une base sécurisée en Europe.</p>
             </form>
         </div>
     </div>
@@ -513,6 +507,76 @@
         </p>
     </div>
 </footer>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+    // ⬇️⬇️ REMPLACE PAR TES VALEURS EXISTANTES ⬇️⬇️
+    const SUPABASE_URL  = 'https://TON-PROJET.supabase.co';
+    const SUPABASE_ANON = 'TON_ANON_KEY';
+    const BUCKET_NAME   = 'partenaires-sante';
+
+    const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+
+    const form     = document.getElementById('devisForm');
+    const status   = document.getElementById('formStatus');
+    const btn      = document.getElementById('submitBtn');
+    const fileIn   = document.getElementById('fileOrdonnance');
+    const blocOrdo = document.getElementById('blocOrdonnance');
+    const blocMed  = document.getElementById('blocMedicaments');
+
+    // Logique conditionnelle : afficher/masquer selon "ordonnance oui/non"
+    form.addEventListener('change', (e) => {
+        if (e.target.name !== 'a_ordonnance') return;
+        const oui = e.target.value === 'oui';
+        blocOrdo.style.display = oui ? 'block' : 'none';
+        blocMed.style.display  = oui ? 'none'  : 'block';
+        blocMed.querySelectorAll('input').forEach(i => i.required = !oui);
+    });
+
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        if (!form.checkValidity()) { form.reportValidity(); return; }
+
+        btn.disabled = true;
+        btn.textContent = 'Envoi en cours…';
+        status.className = 'form-status';
+
+        try {
+            const data = Object.fromEntries(new FormData(form));
+            data.accepte_frais   = !!data.accepte_frais;
+            data.accepte_urgence = !!data.accepte_urgence;
+
+            // 1) Upload du fichier dans ton bucket existant
+            let path = null;
+            const file = fileIn.files[0];
+            if (file) {
+                const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
+                path = `ordonnances/${Date.now()}-${crypto.randomUUID()}.${ext}`;
+                const { error } = await db.storage
+                    .from(BUCKET_NAME).upload(path, file, { upsert: false });
+                if (error) throw error;
+            }
+            data.ordonnance_path = path;
+
+            // 2) Insertion dans ta table existante (déclenche ta notif Telegram)
+            const { error } = await db.from('demandes').insert(data);
+            if (error) throw error;
+
+            status.className = 'form-status ok';
+            status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
+            form.reset();
+            blocOrdo.style.display = 'block';
+            blocMed.style.display  = 'none';
+        } catch (err) {
+            status.className = 'form-status err';
+            status.textContent = "⚠️ Erreur lors de l'envoi. Réessayez ou écrivez-nous sur WhatsApp.";
+            console.error(err);
+        } finally {
+            btn.disabled = false;
+            btn.textContent = 'Recevoir mon devis gratuit sous 24h';
+        }
+    });
+</script>
 
 </body>
 </html>
