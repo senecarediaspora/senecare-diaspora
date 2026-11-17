@@ -1,24 +1,16 @@
 
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>SENE'Care-Diaspora | Conciergerie santé France-Sénégal</title>
 
-<meta name="description"
-content="SENE'Care-Diaspora facilite l'organisation des dépenses médicales de vos proches au Sénégal. Pharmacies, laboratoires, devis et coordination. Rejoignez notre bêta-test.">
-
+<meta name="description" content="SENE'Care-Diaspora facilite les démarches de santé de vos proches au Sénégal : pharmacies, laboratoires et coordination. Rejoignez notre bêta-test.">
 <meta name="theme-color" content="#5B2A58">
 
 <style>
-
-/* =========================
-   CHARTE GRAPHIQUE
-========================= */
-
 :root {
   --violet: #5B2A58;
   --violet-dark: #421C40;
@@ -31,13 +23,8 @@ content="SENE'Care-Diaspora facilite l'organisation des dépenses médicales de 
   --white: #FFFFFF;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  scroll-behavior: smooth;
-}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
@@ -52,9 +39,7 @@ body {
   margin: auto;
 }
 
-h1, h2, h3 {
-  line-height: 1.2;
-}
+h1, h2, h3 { line-height: 1.2; }
 
 h1 {
   font-size: clamp(32px, 5vw, 54px);
@@ -70,21 +55,10 @@ h3 {
   color: var(--violet);
 }
 
-p {
-  margin-top: 0;
-}
-
-a {
-  color: inherit;
-}
-
-section {
-  padding: 65px 0;
-}
-
-.center {
-  text-align: center;
-}
+p { margin-top: 0; }
+a { color: inherit; }
+section { padding: 65px 0; }
+.center { text-align: center; }
 
 .small {
   color: var(--muted);
@@ -109,9 +83,7 @@ section {
   font-weight: bold;
 }
 
-/* =========================
-   BOUTONS
-========================= */
+/* BOUTONS */
 
 .btn {
   display: inline-block;
@@ -137,20 +109,15 @@ section {
   border: 2px solid var(--violet);
 }
 
-.btn-light:hover {
-  background: var(--cream);
-}
+.btn-light:hover { background: var(--cream); }
 
-.btn:focus-visible,
 a:focus-visible,
 summary:focus-visible {
   outline: 3px solid var(--gold);
   outline-offset: 3px;
 }
 
-/* =========================
-   NAVIGATION
-========================= */
+/* NAVIGATION */
 
 header {
   background: white;
@@ -197,16 +164,10 @@ nav .btn {
   color: white;
 }
 
-/* =========================
-   HERO
-========================= */
+/* ACCUEIL */
 
 .hero {
-  background: linear-gradient(
-    135deg,
-    #FFFFFF,
-    #FBF0E5
-  );
+  background: linear-gradient(135deg, #fff, #FBF0E5);
   padding: 85px 0;
 }
 
@@ -241,22 +202,16 @@ nav .btn {
   box-shadow: 0 15px 40px rgba(45,18,48,.09);
 }
 
-.hero-card h3 {
-  margin-top: 0;
-}
+.hero-card h3 { margin-top: 0; }
 
 .check {
   padding: 13px 0;
   border-bottom: 1px solid var(--border);
 }
 
-.check:last-child {
-  border: 0;
-}
+.check:last-child { border: 0; }
 
-/* =========================
-   PROBLEMES ET BENEFICES
-========================= */
+/* CARTES */
 
 .grid {
   display: grid;
@@ -272,21 +227,12 @@ nav .btn {
   box-shadow: 0 8px 25px rgba(0,0,0,.035);
 }
 
-.card-icon {
-  font-size: 34px;
-}
+.card-icon { font-size: 34px; }
+.card p { color: var(--muted); }
 
-.card p {
-  color: var(--muted);
-}
+.soft { background: #F5F0F6; }
 
-/* =========================
-   SERVICES
-========================= */
-
-.soft {
-  background: #F5F0F6;
-}
+/* SERVICES */
 
 .services {
   display: grid;
@@ -301,17 +247,10 @@ nav .btn {
   padding: 30px;
 }
 
-.service-card ul {
-  padding-left: 20px;
-}
+.service-card ul { padding-left: 20px; }
+.service-card li { margin-bottom: 12px; }
 
-.service-card li {
-  margin-bottom: 12px;
-}
-
-/* =========================
-   ETAPES
-========================= */
+/* FONCTIONNEMENT */
 
 .steps {
   display: grid;
@@ -343,9 +282,7 @@ nav .btn {
   color: var(--muted);
 }
 
-/* =========================
-   OFFRE BETA
-========================= */
+/* OFFRE */
 
 .offer {
   background: white;
@@ -357,9 +294,7 @@ nav .btn {
   box-shadow: 0 12px 35px rgba(45,18,48,.07);
 }
 
-.offer h3 {
-  margin-bottom: 10px;
-}
+.offer h3 { margin-bottom: 10px; }
 
 .price {
   font-size: 50px;
@@ -379,9 +314,7 @@ nav .btn {
   margin: 25px 0;
 }
 
-.offer li {
-  margin-bottom: 12px;
-}
+.offer li { margin-bottom: 12px; }
 
 .offer .btn {
   display: block;
@@ -397,9 +330,7 @@ nav .btn {
   font-size: 14px;
 }
 
-/* =========================
-   MISSION
-========================= */
+/* MISSION */
 
 .mission-box {
   max-width: 850px;
@@ -410,17 +341,10 @@ nav .btn {
   border-radius: 18px;
 }
 
-.mission-box p {
-  margin-bottom: 18px;
-}
+.mission-box p { margin-bottom: 18px; }
+.mission-box p:last-child { margin-bottom: 0; }
 
-.mission-box p:last-child {
-  margin-bottom: 0;
-}
-
-/* =========================
-   FAQ
-========================= */
+/* FAQ */
 
 .faq {
   max-width: 850px;
@@ -447,9 +371,7 @@ details p {
   color: var(--muted);
 }
 
-/* =========================
-   CTA FINAL
-========================= */
+/* APPEL FINAL */
 
 .final-cta {
   text-align: center;
@@ -457,9 +379,7 @@ details p {
   color: white;
 }
 
-.final-cta h2 {
-  color: white;
-}
+.final-cta h2 { color: white; }
 
 .final-cta p {
   max-width: 650px;
@@ -471,13 +391,9 @@ details p {
   color: var(--violet);
 }
 
-.final-cta .btn:hover {
-  background: var(--cream);
-}
+.final-cta .btn:hover { background: var(--cream); }
 
-/* =========================
-   FOOTER
-========================= */
+/* PIED DE PAGE */
 
 footer {
   background: white;
@@ -488,66 +404,38 @@ footer {
   color: var(--muted);
 }
 
-footer a {
-  color: var(--violet);
-}
+footer a { color: var(--violet); }
 
-/* =========================
-   RESPONSIVE
-========================= */
+/* VERSION MOBILE */
 
 @media(max-width: 850px) {
-
   .hero-grid,
   .services {
     grid-template-columns: 1fr;
   }
 
-  .grid {
-    grid-template-columns: 1fr 1fr;
-  }
+  .grid { grid-template-columns: 1fr 1fr; }
+  .steps { grid-template-columns: 1fr 1fr; }
 
-  .steps {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  nav a:not(.btn) {
-    display: none;
-  }
-
+  nav a:not(.btn) { display: none; }
 }
 
 @media(max-width: 600px) {
-
-  section {
-    padding: 45px 0;
-  }
-
-  .hero {
-    padding: 50px 0;
-  }
+  section { padding: 45px 0; }
+  .hero { padding: 50px 0; }
 
   .grid,
   .steps {
     grid-template-columns: 1fr;
   }
 
-  .hero-actions .btn {
-    width: 100%;
-  }
+  .hero-actions .btn { width: 100%; }
 
   .hero-card,
-  .offer {
-    padding: 24px;
-  }
+  .offer,
+  .mission-box { padding: 24px; }
 
-  .mission-box {
-    padding: 24px;
-  }
-
-  .logo {
-    font-size: 13px;
-  }
+  .logo { font-size: 13px; }
 
   .logo img {
     width: 45px;
@@ -559,72 +447,44 @@ footer a {
     font-size: 12px;
   }
 
-  .price {
-    font-size: 43px;
-  }
-
+  .price { font-size: 43px; }
 }
-
 </style>
 </head>
 
 <body>
 
-<!-- =========================
-     NAVIGATION
-========================= -->
+<!-- NAVIGATION -->
 
 <header>
-
   <div class="container nav">
 
     <a href="#accueil" class="logo">
-
-      <img
-        src="senecarediaspora.png"
-        alt="Logo SENE'Care-Diaspora"
-      >
-
+      <img src="senecarediaspora.png"
+           alt="Logo SENE'Care-Diaspora">
       <span>SENE'Care-Diaspora</span>
-
     </a>
 
     <nav aria-label="Navigation principale">
-
-      <a href="#fonctionnement">
-        Fonctionnement
-      </a>
-
-      <a href="#services">
-        Nos services
-      </a>
-
-      <a href="#faq">
-        FAQ
-      </a>
-
+      <a href="#fonctionnement">Fonctionnement</a>
+      <a href="#services">Nos services</a>
+      <a href="#faq">FAQ</a>
       <a class="btn" href="#offre-beta">
         Devenir bêta-testeur
       </a>
-
     </nav>
 
   </div>
-
 </header>
 
 <main>
 
-<!-- =========================
-     HERO
-========================= -->
+<!-- ACCUEIL -->
 
 <section class="hero" id="accueil">
-
   <div class="container hero-grid">
 
     <div>
-
       <span class="tag">
         BÊTA-TESTEURS : INSCRIPTIONS OUVERTES
       </span>
@@ -638,8 +498,8 @@ footer a {
       <p>
         Médicaments, analyses médicales, devis :
         SENE'Care-Diaspora vous accompagne
-        dans l'organisation des dépenses de santé
-        de vos proches restés au Sénégal.
+        dans l'organisation des dépenses
+        de santé de vos proches restés au Sénégal.
       </p>
 
       <p>
@@ -656,12 +516,10 @@ footer a {
           Découvrir l'offre à 9,90 €
         </a>
 
-        <a
-          class="btn btn-light"
-          href="https://wa.me/33617977787?text=Bonjour%20SENE%27Care-Diaspora%2C%20je%20souhaite%20participer%20au%20beta-test."
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a class="btn btn-light"
+           href="https://wa.me/33617977787?text=Bonjour%20SENE%27Care-Diaspora%2C%20je%20souhaite%20participer%20au%20beta-test."
+           target="_blank"
+           rel="noopener noreferrer">
           💬 Participer au bêta-test
         </a>
 
@@ -676,7 +534,6 @@ footer a {
     </div>
 
     <aside class="hero-card">
-
       <h3>
         Un accompagnement pensé
         pour les familles à distance
@@ -707,26 +564,18 @@ footer a {
         sous réserve de disponibilité
         des établissements et de faisabilité.
       </p>
-
     </aside>
 
   </div>
-
 </section>
 
-<!-- =========================
-     PROBLEMES
-========================= -->
+<!-- PROBLÈMES -->
 
 <section id="problemes">
-
   <div class="container">
 
     <div class="center">
-
-      <span class="tag">
-        LE PROBLÈME
-      </span>
+      <span class="tag">LE PROBLÈME</span>
 
       <h2>
         Envoyer de l'argent ne suffit pas toujours.
@@ -738,76 +587,57 @@ footer a {
         les appels, les devis et les démarches
         depuis la France ou un autre pays européen.
       </p>
-
     </div>
 
     <div class="grid">
 
       <article class="card">
-
         <div class="card-icon">🧾</div>
 
-        <h3>
-          Des frais difficiles à vérifier
-        </h3>
+        <h3>Des frais difficiles à vérifier</h3>
 
         <p>
           Vous recevez un montant à régler,
           mais vous ne savez pas toujours
           à quoi il correspond précisément.
         </p>
-
       </article>
 
       <article class="card">
-
         <div class="card-icon">📱</div>
 
-        <h3>
-          Des démarches à distance
-        </h3>
+        <h3>Des démarches à distance</h3>
 
         <p>
           Entre votre travail, votre famille
           et les appels au Sénégal,
-          organiser les soins peut
-          prendre du temps.
+          organiser les soins peut prendre du temps.
         </p>
-
       </article>
 
       <article class="card">
-
         <div class="card-icon">🤝</div>
 
-        <h3>
-          Un besoin de transparence
-        </h3>
+        <h3>Un besoin de transparence</h3>
 
         <p>
           Vous voulez connaître l'établissement,
           comprendre le montant demandé
           et disposer de justificatifs.
         </p>
-
       </article>
 
     </div>
 
   </div>
-
 </section>
 
-<!-- =========================
-     SERVICES
-========================= -->
+<!-- SERVICES -->
 
 <section class="soft" id="services">
-
   <div class="container">
 
     <div class="center">
-
       <span class="tag">
         NOS PREMIÈRES PRESTATIONS
       </span>
@@ -821,7 +651,6 @@ footer a {
         les pharmacies et les laboratoires
         d'analyses médicales à Dakar.
       </p>
-
     </div>
 
     <div class="services">
@@ -829,44 +658,34 @@ footer a {
       <!-- PHARMACIES -->
 
       <article class="service-card">
-
         <div class="card-icon">💊</div>
 
-        <h3>
-          Pharmacies
-        </h3>
+        <h3>Pharmacies</h3>
 
         <p>
-          Une coordination administrative des démarches
-          liées aux médicaments prescrits
-          à vos proches.
+          Une coordination administrative
+          des démarches liées aux médicaments
+          prescrits à vos proches.
         </p>
 
         <ul>
-
           <li>
             Identification d'une officine physique.
           </li>
-
           <li>
-            Demande d'informations sur
-            les disponibilités.
+            Demande d'informations sur les disponibilités.
           </li>
-
           <li>
             Vérification administrative du devis.
           </li>
-
           <li>
             Contrôle des prix à partir de références
             fiables, lorsqu'elles sont disponibles.
           </li>
-
           <li>
             Orientation vers le pharmacien
             pour toute question pharmaceutique.
           </li>
-
         </ul>
 
         <p class="small">
@@ -876,48 +695,35 @@ footer a {
           Les modalités opérationnelles du service
           sont en cours de validation.
         </p>
-
       </article>
 
       <!-- LABORATOIRES -->
 
       <article class="service-card">
-
         <div class="card-icon">🧪</div>
 
-        <h3>
-          Laboratoires d'analyses
-        </h3>
+        <h3>Laboratoires d'analyses</h3>
 
         <p>
           Une aide à l'organisation des démarches
-          liées aux analyses médicales de vos proches.
+          liées aux analyses médicales
+          de vos proches.
         </p>
 
         <ul>
-
-          <li>
-            Identification d'un laboratoire.
-          </li>
-
-          <li>
-            Demande de devis et vérification des frais.
-          </li>
-
+          <li>Identification d'un laboratoire.</li>
+          <li>Demande de devis et vérification des frais.</li>
           <li>
             Organisation administrative du rendez-vous.
           </li>
-
           <li>
             Coordination des échanges
             avec l'établissement.
           </li>
-
           <li>
-            Confirmation administrative de la prestation,
-            lorsque disponible.
+            Confirmation administrative
+            de la prestation, lorsque disponible.
           </li>
-
         </ul>
 
         <p class="small">
@@ -925,25 +731,19 @@ footer a {
           sont soumis aux règles de confidentialité
           et aux procédures des professionnels habilités.
         </p>
-
       </article>
 
     </div>
 
   </div>
-
 </section>
 
-<!-- =========================
-     FONCTIONNEMENT
-========================= -->
+<!-- FONCTIONNEMENT -->
 
 <section id="fonctionnement">
-
   <div class="container">
 
     <div class="center">
-
       <span class="tag">
         COMMENT ÇA MARCHE ?
       </span>
@@ -957,51 +757,35 @@ footer a {
         de connaître les frais et les conditions
         avant de vous engager.
       </p>
-
     </div>
 
     <div class="steps">
 
       <div class="step">
-
         <div class="number">1</div>
-
-        <h3>
-          Vous nous contactez
-        </h3>
+        <h3>Vous nous contactez</h3>
 
         <p>
           Vous présentez le besoin de votre proche
-          via WhatsApp, sans transmettre
-          de documents médicaux sensibles
-          lors du premier échange.
+          via WhatsApp, sans transmettre de documents
+          médicaux sensibles lors du premier échange.
         </p>
-
       </div>
 
       <div class="step">
-
         <div class="number">2</div>
-
-        <h3>
-          Nous vérifions la faisabilité
-        </h3>
+        <h3>Nous vérifions la faisabilité</h3>
 
         <p>
           Nous recherchons les informations nécessaires
           auprès d'un établissement et vérifions
           les conditions pratiques.
         </p>
-
       </div>
 
       <div class="step">
-
         <div class="number">3</div>
-
-        <h3>
-          Vous validez les frais
-        </h3>
+        <h3>Vous validez les frais</h3>
 
         <p>
           Vous recevez un récapitulatif des frais
@@ -1009,16 +793,11 @@ footer a {
           Vous connaissez le montant total
           avant toute validation.
         </p>
-
       </div>
 
       <div class="step">
-
         <div class="number">4</div>
-
-        <h3>
-          Nous suivons la démarche
-        </h3>
+        <h3>Nous suivons la démarche</h3>
 
         <p>
           Selon la prestation validée,
@@ -1026,39 +805,35 @@ footer a {
           et transmettons les confirmations
           administratives disponibles.
         </p>
-
       </div>
 
     </div>
 
   </div>
-
 </section>
 
-<!-- =========================
-     OFFRE BETA
-========================= -->
+<!-- FIN DE LA PARTIE 1 -->
+<!-- COLLER LA PARTIE 2 JUSTE APRÈS -->
+
+   
+   
+<!-- OFFRE BÊTA -->
 
 <section class="soft" id="offre-beta">
-
   <div class="container">
 
     <div class="center">
-
       <span class="tag">
         BÊTA-TESTEURS : INSCRIPTIONS OUVERTES
       </span>
 
-      <h2>
-        Pass Santé Famille
-      </h2>
+      <h2>Pass Santé Famille</h2>
 
       <p class="section-intro">
         Une aide ponctuelle pour organiser
         les dépenses de santé de vos proches,
         sans abonnement obligatoire.
       </p>
-
     </div>
 
     <div class="offer">
@@ -1067,9 +842,7 @@ footer a {
         Tarif de lancement proposé
       </span>
 
-      <h3>
-        Votre conciergerie santé
-      </h3>
+      <h3>Votre conciergerie santé</h3>
 
       <div class="price">
         9,90 €
@@ -1081,12 +854,9 @@ footer a {
         Hors frais médicaux et éventuels frais annexes.
       </p>
 
-      <h3>
-        Ce qui est prévu dans l'offre
-      </h3>
+      <h3>Ce qui est prévu dans l'offre</h3>
 
       <ul>
-
         <li>
           Un premier échange gratuit
           pour étudier votre besoin.
@@ -1116,7 +886,6 @@ footer a {
           Le suivi administratif et la transmission
           des justificatifs disponibles.
         </li>
-
       </ul>
 
       <a
@@ -1134,10 +903,7 @@ footer a {
       </p>
 
       <div class="note">
-
-        <strong>
-          Conditions du bêta-test
-        </strong>
+        <strong>Conditions du bêta-test</strong>
 
         <p style="margin-top:10px">
           Une demande concerne une prestation
@@ -1153,31 +919,284 @@ footer a {
 
         <p style="margin-bottom:0">
           Les conditions et le tarif définitif
-          vous sont communiqués avant
-          tout engagement.
+          vous sont communiqués avant tout engagement.
         </p>
-
       </div>
 
     </div>
-
   </div>
-
 </section>
 
-<!-- =========================
-     NOTRE MISSION
-========================= -->
+<!-- NOTRE MISSION -->
 
 <section id="apropos">
-
   <div class="container">
 
     <div class="center">
-
-      <span class="tag">
-        NOTRE MISSION
-      </span>
+      <span class="tag">NOTRE MISSION</span>
 
       <h2>
-        Faciliter les 
+        Faciliter les dépenses de santé
+        entre l'Europe et le Sénégal
+      </h2>
+
+      <p class="section-intro">
+        Une ambition simple : rapprocher les familles
+        des solutions de santé disponibles au Sénégal.
+      </p>
+    </div>
+
+    <div class="mission-box">
+
+      <p>
+        <strong>SENE'Care-Diaspora</strong>
+        est un service de conciergerie santé
+        destiné aux Sénégalais vivant
+        en France et en Europe.
+      </p>
+
+      <p>
+        Notre mission est de faciliter
+        l'organisation des frais médicaux
+        de leurs proches restés au Sénégal.
+      </p>
+
+      <p>
+        Nous souhaitons simplifier les démarches
+        auprès des pharmacies et laboratoires
+        d'analyses, tout en favorisant
+        la transparence des tarifs.
+      </p>
+
+      <p>
+        Le projet prépare actuellement
+        son réseau de prestataires de santé
+        à Dakar, avec l'appui
+        d'une coordination locale.
+      </p>
+
+      <p>
+        <strong>Notre ambition :</strong>
+        permettre à chaque famille
+        de savoir ce qu'elle paie,
+        à qui et pour quelle prestation.
+      </p>
+
+      <p class="small">
+        Les partenariats seront annoncés
+        après confirmation.
+        Le service assure une coordination
+        administrative et ne remplace pas
+        une consultation médicale.
+      </p>
+
+    </div>
+  </div>
+</section>
+
+<!-- QUESTIONS FRÉQUENTES -->
+
+<section class="soft" id="faq">
+  <div class="container faq">
+
+    <div class="center">
+      <span class="tag">
+        QUESTIONS FRÉQUENTES
+      </span>
+
+      <h2>Vos questions, nos réponses</h2>
+    </div>
+
+    <details>
+      <summary>
+        À qui s'adresse SENE'Care-Diaspora ?
+      </summary>
+
+      <p>
+        Aux Sénégalais vivant en France
+        ou ailleurs en Europe qui souhaitent
+        faciliter l'organisation des dépenses
+        médicales de leurs proches
+        restés au Sénégal.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        Le bêta-test est-il ouvert ?
+      </summary>
+
+      <p>
+        Oui, les inscriptions des bêta-testeurs
+        sont ouvertes via WhatsApp.
+
+        La réalisation des prestations est soumise
+        à une étude de faisabilité individuelle.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        Combien coûte le service ?
+      </summary>
+
+      <p>
+        Le tarif de lancement proposé
+        est de 9,90 € par demande.
+
+        Les médicaments, analyses et éventuels
+        frais annexes ne sont pas inclus.
+
+        Les conditions définitives vous seront
+        communiquées avant tout engagement.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        Avec quelles pharmacies et laboratoires
+        travaillez-vous ?
+      </summary>
+
+      <p>
+        Notre coordination locale à Dakar
+        prépare l'identification et la prise
+        de contact avec des pharmacies
+        et laboratoires.
+
+        Nous communiquerons les établissements
+        confirmés au fur et à mesure.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        Les prix des médicaments sont-ils vérifiés ?
+      </summary>
+
+      <p>
+        Nous préparons un dispositif de vérification
+        administrative des tarifs en nous appuyant
+        sur les références réglementaires fiables
+        et disponibles.
+
+        Il ne constitue pas encore une garantie
+        de contrôle systématique.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        Dois-je envoyer une ordonnance sur WhatsApp ?
+      </summary>
+
+      <p>
+        Non. Lors du premier échange,
+        ne transmettez ni ordonnance,
+        ni résultats médicaux,
+        ni autre information de santé sensible.
+
+        Si ces documents sont nécessaires,
+        les modalités de transmission appropriées
+        devront être définies avec les
+        professionnels habilités.
+      </p>
+    </details>
+
+    <details>
+      <summary>
+        Prenez-vous en charge les urgences médicales ?
+      </summary>
+
+      <p>
+        Non. Notre service concerne
+        les démarches administratives non urgentes.
+
+        En cas d'urgence, contactez directement
+        les services médicaux d'urgence locaux.
+      </p>
+    </details>
+
+  </div>
+</section>
+
+<!-- APPEL À L'ACTION FINAL -->
+
+<section class="final-cta">
+  <div class="container">
+
+    <h2>
+      Vous êtes loin de vos proches.
+      Pas besoin de gérer seul
+      toutes leurs démarches.
+    </h2>
+
+    <p>
+      Rejoignez les bêta-testeurs
+      SENE'Care-Diaspora et découvrez
+      comment notre accompagnement pourrait
+      vous aider à organiser leurs dépenses
+      de santé au Sénégal.
+    </p>
+
+    <a
+      class="btn"
+      href="https://wa.me/33617977787?text=Bonjour%20SENE%27Care-Diaspora%2C%20je%20souhaite%20m%27inscrire%20au%20beta-test%20de%20votre%20nouvelle%20offre."
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      💬 Rejoindre le bêta-test sur WhatsApp
+    </a>
+
+    <p
+      class="small"
+      style="color:#F2EAF2;margin-top:20px"
+    >
+      Inscription gratuite ·
+      Démarrage à Dakar ·
+      Prestations sous réserve de faisabilité
+    </p>
+
+  </div>
+</section>
+
+</main>
+
+<!-- PIED DE PAGE -->
+
+<footer>
+  <div class="container">
+
+    <p>
+      © 2026 SENE'Care-Diaspora.
+      Tous droits réservés.
+    </p>
+
+    <p>
+      <a href="mentions-legales.html">
+        Mentions légales et CGV
+      </a>
+
+      |
+
+      <a
+        href="https://wa.me/33617977787"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Contact WhatsApp
+      </a>
+    </p>
+
+    <p>
+      SENE'Care-Diaspora est un service
+      de coordination administrative.
+      Il ne remplace pas
+      un professionnel de santé.
+    </p>
+
+  </div>
+</footer>
+
+</body>
+</html>
