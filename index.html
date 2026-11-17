@@ -545,15 +545,17 @@
         status.className = 'form-status';
 
                 try {
-            // Extraction robuste des données du formulaire
             const formData = new FormData(form);
             const data = {};
             
             formData.forEach((value, key) => {
+                if (value instanceof File) {
+                    // On ne met pas le fichier dans data, il sera uploadé séparément
+                    return;
+                }
                 data[key] = value;
             });
             
-            // Gestion explicite des cases à cocher (sinon elles sont undefined si non cochées, mais ici elles sont required)
             data.accepte_frais = formData.has('accepte_frais');
             data.accepte_urgence = formData.has('accepte_urgence');
 
@@ -573,31 +575,29 @@
             }
             data.ordonnance_path = path;
 
-            // 2) Insertion dans la table demandes
+            // 2) Insertion dans la table demandes (SANS .select())
             const { error: insertError } = await db
                 .from('demandes')
                 .insert(data);
             
             if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
 
-            // 3) Notification Telegram au coordinateur via la fonction Edge
+            // 3) Notification Telegram
             console.log('📡 Envoi de la notification Telegram...');
-            const { error: tgError } = await db.functions.invoke('notify-demande', {
-                body: data 
+            const { data: fnData, error: fnError } = await db.functions.invoke('notify-demande', {
+                body: data
             });
 
-            if (tgError) {
-                console.error('⚠️ Erreur notification Telegram (mais la demande est bien enregistrée) :', tgError);
+            if (fnError) {
+                console.error('⚠️ Erreur notification Telegram :', fnError);
             } else {
-                console.log('✅ Notification Telegram envoyée avec succès !');
+                console.log('✅ Notification Telegram envoyée !', fnData);
             }
 
-            // Succès global
             status.className = 'form-status ok';
             status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
             form.reset();
             
-            // Reset de l'affichage conditionnel après envoi
             blocOrdo.style.display = 'block';
             blocMed.style.display  = 'none';
             fileIn.required = true;
@@ -606,7 +606,7 @@
         } catch (err) {
             console.error('💥 Erreur finale :', err);
             status.className = 'form-status err';
-            status.textContent = "⚠️ " + err.message + " (voir console F12 pour détails)";
+            status.textContent = "⚠️ " + err.message;
         } finally {
             btn.disabled = false;
             btn.textContent = 'Recevoir mon devis gratuit sous 24h';
