@@ -348,8 +348,10 @@
             </div>
         </div>
     </div>
-</section>
-    <section id="formulaire">
+</section
+    <!-- DÉBUT DE LA PARTIE 2 : Coller ceci directement à la suite de la Partie 1 -->
+
+<section id="formulaire">
     <div class="container">
         <h2 class="center">Demander un devis gratuit</h2>
         <p class="section-intro">
@@ -491,14 +493,14 @@
         
         <p class="small" style="margin-top: 30px; opacity: 0.7;">
             © 2026 SENE'Care-Diaspora. Tous droits réservés.
- are reserved.
         </p>
     </div>
 </footer>
 
+<!-- SCRIPT SUPABASE ET NOTIFICATION TELEGRAM -->
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <script>
-    // ⬇️⬇️ REMPLACE PAR TES VALEURS EXISTANTES ⬇️⬇️
+    // ⬇️⬇️ REMPLACE PAR TES VALEURS EXACTES ⬇️⬇️
     const SUPABASE_URL  = 'https://lofmighhbwhvujwpajie.supabase.co';
     const SUPABASE_ANON = 'sb_publishable_DeclNPgUMq8A03HEvuNyIQ_6yw-d8Ed';
     const BUCKET_NAME   = 'ordonnances';
@@ -512,7 +514,7 @@
     const blocOrdo = document.getElementById('blocOrdonnance');
     const blocMed  = document.getElementById('blocMedicaments');
 
-    // Logique conditionnelle simple : ordonnance OUI ou NON
+    // Logique conditionnelle : afficher/masquer selon "ordonnance oui/non"
     form.addEventListener('change', (e) => {
         if (e.target.name !== 'a_ordonnance') return;
         const oui = e.target.value === 'oui';
@@ -521,61 +523,82 @@
             blocOrdo.style.display = 'block';
             blocMed.style.display  = 'none';
             fileIn.required = true;
-            // On retire le required des champs de description
             blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
         } else {
             blocOrdo.style.display = 'none';
             blocMed.style.display  = 'block';
             fileIn.required = false;
-            // On rend le champ description obligatoire
             const desc = blocMed.querySelector('textarea[name="besoin_description"]');
-            if(desc) desc.required = true;
+            if (desc) desc.required = true;
         }
     });
 
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
-        if (!form.checkValidity()) { form.reportValidity(); return; }
+        if (!form.checkValidity()) { 
+            form.reportValidity(); 
+            return; 
+        }
 
         btn.disabled = true;
         btn.textContent = 'Envoi en cours…';
         status.className = 'form-status';
 
         try {
-            const data = Object.fromEntries(new FormData(form));
+            const formData = new FormData(form);
+            const data = Object.fromEntries(formData);
             data.accepte_frais   = !!data.accepte_frais;
             data.accepte_urgence = !!data.accepte_urgence;
 
-            // 1) Upload du fichier dans ton bucket existant (si présent)
+            // 1) Upload du fichier (si présent)
             let path = null;
             const file = fileIn.files[0];
             if (file) {
                 const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
                 path = `ordonnances/${Date.now()}-${crypto.randomUUID()}.${ext}`;
-                const { error } = await db.storage
+                
+                const { error: uploadError } = await db.storage
                     .from(BUCKET_NAME).upload(path, file, { upsert: false });
-                if (error) throw error;
+                
+                if (uploadError) throw new Error('Upload échoué : ' + uploadError.message);
             }
             data.ordonnance_path = path;
 
-            // 2) Insertion dans ta table existante (déclenche ta notif Telegram)
-            const { error } = await db.from('demandes').insert(data);
-            if (error) throw error;
+            // 2) Insertion dans la table demandes
+            const { data: insertData, error: insertError } = await db
+                .from('demandes')
+                .insert(data)
+                .select();
+            
+            if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
 
+            // 3) NOUVEAU : Notification Telegram au coordinateur via la fonction Edge
+            console.log('📡 Envoi de la notification Telegram...');
+            const { error: tgError } = await db.functions.invoke('notify-demande', {
+                body: data 
+            });
+
+            if (tgError) {
+                console.error('⚠️ Erreur notification Telegram (mais la demande est bien enregistrée) :', tgError);
+            } else {
+                console.log('✅ Notification Telegram envoyée avec succès !');
+            }
+
+            // Succès global
             status.className = 'form-status ok';
             status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
             form.reset();
             
-            // Reset de l'affichage conditionnel après submit
+            // Reset de l'affichage conditionnel après envoi
             blocOrdo.style.display = 'block';
             blocMed.style.display  = 'none';
             fileIn.required = true;
             blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
 
         } catch (err) {
+            console.error('💥 Erreur finale :', err);
             status.className = 'form-status err';
-            status.textContent = "⚠️ Erreur lors de l'envoi. Réessayez ou écrivez-nous sur WhatsApp.";
-            console.error(err);
+            status.textContent = "⚠️ " + err.message + " (voir console F12 pour détails)";
         } finally {
             btn.disabled = false;
             btn.textContent = 'Recevoir mon devis gratuit sous 24h';
@@ -585,5 +608,4 @@
 
 </body>
 </html>
-
-<!-- FIN DE LA PARTIE 1. COLLEZ LA PARTIE 2 DIRECTEMENT À LA SUITE -->
+   
