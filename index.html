@@ -1,1201 +1,517 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>SENE'Care-Diaspora | Conciergerie santé France-Sénégal</title>
-
-<meta name="description" content="SENE'Care-Diaspora facilite les démarches de santé de vos proches au Sénégal : pharmacies, laboratoires et coordination. Rejoignez notre bêta-test.">
-<meta name="theme-color" content="#5B2A58">
-
-<style>
-:root {
-  --violet: #5B2A58;
-  --violet-dark: #421C40;
-  --gold: #D99B3C;
-  --cream: #FFF9F1;
-  --bg: #FAF8FB;
-  --text: #252333;
-  --muted: #636171;
-  --border: #E9E2EB;
-  --white: #FFFFFF;
-}
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
-
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-  line-height: 1.65;
-}
-
-.container {
-  width: min(1100px, 92%);
-  margin: auto;
-}
-
-h1, h2, h3 { line-height: 1.2; }
-
-h1 {
-  font-size: clamp(32px, 5vw, 54px);
-}
-
-h2 {
-  font-size: clamp(25px, 3vw, 36px);
-  color: var(--violet);
-}
-
-h3 {
-  font-size: 21px;
-  color: var(--violet);
-}
-
-p { margin-top: 0; }
-a { color: inherit; }
-section { padding: 65px 0; }
-.center { text-align: center; }
-
-.small {
-  color: var(--muted);
-  font-size: 13px;
-}
-
-.section-intro {
-  max-width: 720px;
-  margin: 0 auto 35px;
-  text-align: center;
-  color: var(--muted);
-}
-
-.tag {
-  display: inline-block;
-  background: var(--cream);
-  color: var(--violet);
-  border: 1px solid #F1D8AE;
-  border-radius: 30px;
-  padding: 7px 15px;
-  font-size: 13px;
-  font-weight: bold;
-}
-
-/* BOUTONS */
-
-.btn {
-  display: inline-block;
-  background: var(--violet);
-  color: white;
-  border-radius: 10px;
-  padding: 16px 24px;
-  font-size: 16px;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  transition: background .2s, transform .2s;
-}
-
-.btn:hover {
-  background: var(--violet-dark);
-  transform: translateY(-2px);
-}
-
-.btn-light {
-  background: white;
-  color: var(--violet);
-  border: 2px solid var(--violet);
-}
-
-.btn-light:hover { background: var(--cream); }
-
-a:focus-visible,
-summary:focus-visible {
-  outline: 3px solid var(--gold);
-  outline-offset: 3px;
-}
-
-/* NAVIGATION */
-
-header {
-  background: white;
-  border-bottom: 1px solid var(--border);
-}
-
-.nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 20px;
-  padding: 12px 0;
-}
-
-.logo {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  color: var(--violet);
-  font-weight: bold;
-  text-decoration: none;
-}
-
-.logo img {
-  width: 58px;
-  height: 58px;
-  object-fit: contain;
-}
-
-nav {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-
-nav a {
-  text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-}
-
-nav .btn {
-  padding: 10px 15px;
-  color: white;
-}
-
-/* ACCUEIL */
-
-.hero {
-  background: linear-gradient(135deg, #fff, #FBF0E5);
-  padding: 85px 0;
-}
-
-.hero-grid {
-  display: grid;
-  grid-template-columns: 1.2fr .8fr;
-  align-items: center;
-  gap: 45px;
-}
-
-.hero h1 {
-  color: var(--violet);
-  margin: 20px 0;
-}
-
-.hero p {
-  font-size: 18px;
-  color: #514958;
-}
-
-.hero-actions {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 12px;
-  margin-top: 25px;
-}
-
-.hero-card {
-  background: white;
-  border-radius: 20px;
-  padding: 30px;
-  box-shadow: 0 15px 40px rgba(45,18,48,.09);
-}
-
-.hero-card h3 { margin-top: 0; }
-
-.check {
-  padding: 13px 0;
-  border-bottom: 1px solid var(--border);
-}
-
-.check:last-child { border: 0; }
-
-/* CARTES */
-
-.grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-
-.card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 28px;
-  box-shadow: 0 8px 25px rgba(0,0,0,.035);
-}
-
-.card-icon { font-size: 34px; }
-.card p { color: var(--muted); }
-
-.soft { background: #F5F0F6; }
-
-/* SERVICES */
-
-.services {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 25px;
-}
-
-.service-card {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 30px;
-}
-
-.service-card ul { padding-left: 20px; }
-.service-card li { margin-bottom: 12px; }
-
-/* FONCTIONNEMENT */
-
-.steps {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 18px;
-}
-
-.step {
-  padding: 23px;
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  background: white;
-}
-
-.number {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background: var(--violet);
-  color: white;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  font-weight: bold;
-}
-
-.step p {
-  font-size: 14px;
-  color: var(--muted);
-}
-
-/* OFFRE */
-
-.offer {
-  background: white;
-  border: 2px solid var(--gold);
-  border-radius: 20px;
-  max-width: 660px;
-  margin: 30px auto 0;
-  padding: 35px;
-  box-shadow: 0 12px 35px rgba(45,18,48,.07);
-}
-
-.offer h3 { margin-bottom: 10px; }
-
-.price {
-  font-size: 50px;
-  font-weight: 800;
-  color: var(--violet);
-  line-height: 1.2;
-}
-
-.price span {
-  font-size: 16px;
-  font-weight: normal;
-  color: var(--muted);
-}
-
-.offer ul {
-  padding-left: 24px;
-  margin: 25px 0;
-}
-
-.offer li { margin-bottom: 12px; }
-
-.offer .btn {
-  display: block;
-  width: 100%;
-}
-
-.note {
-  margin-top: 20px;
-  padding: 16px;
-  background: var(--cream);
-  border-left: 4px solid var(--gold);
-  border-radius: 6px;
-  font-size: 14px;
-}
-
-/* MISSION */
-
-.mission-box {
-  max-width: 850px;
-  margin: auto;
-  background: white;
-  padding: 35px;
-  border: 1px solid var(--border);
-  border-radius: 18px;
-}
-
-.mission-box p { margin-bottom: 18px; }
-.mission-box p:last-child { margin-bottom: 0; }
-
-/* FAQ */
-
-.faq {
-  max-width: 850px;
-  margin: auto;
-}
-
-details {
-  background: white;
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  margin-bottom: 12px;
-  padding: 20px;
-}
-
-summary {
-  cursor: pointer;
-  color: var(--violet);
-  font-weight: bold;
-}
-
-details p {
-  margin-top: 15px;
-  margin-bottom: 0;
-  color: var(--muted);
-}
-
-/* APPEL FINAL */
-
-.final-cta {
-  text-align: center;
-  background: var(--violet);
-  color: white;
-}
-
-.final-cta h2 { color: white; }
-
-.final-cta p {
-  max-width: 650px;
-  margin: 0 auto 25px;
-}
-
-.final-cta .btn {
-  background: white;
-  color: var(--violet);
-}
-
-.final-cta .btn:hover { background: var(--cream); }
-
-/* PIED DE PAGE */
-
-footer {
-  background: white;
-  padding: 30px 0;
-  border-top: 1px solid var(--border);
-  text-align: center;
-  font-size: 13px;
-  color: var(--muted);
-}
-
-footer a { color: var(--violet); }
-
-/* VERSION MOBILE */
-
-@media(max-width: 850px) {
-  .hero-grid,
-  .services {
-    grid-template-columns: 1fr;
-  }
-
-  .grid { grid-template-columns: 1fr 1fr; }
-  .steps { grid-template-columns: 1fr 1fr; }
-
-  nav a:not(.btn) { display: none; }
-}
-
-@media(max-width: 600px) {
-  section { padding: 45px 0; }
-  .hero { padding: 50px 0; }
-
-  .grid,
-  .steps {
-    grid-template-columns: 1fr;
-  }
-
-  .hero-actions .btn { width: 100%; }
-
-  .hero-card,
-  .offer,
-  .mission-box { padding: 24px; }
-
-  .logo { font-size: 13px; }
-
-  .logo img {
-    width: 45px;
-    height: 45px;
-  }
-
-  nav .btn {
-    padding: 9px;
-    font-size: 12px;
-  }
-
-  .price { font-size: 43px; }
-}
-</style>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SENE'Care-Diaspora | Garantie d'approvisionnement santé</title>
+    <meta name="description" content="Service de vérification et d'approvisionnement garanti pour les médicaments et analyses de vos proches au Sénégal. Transparence totale, preuve d'achat.">
+    <meta name="theme-color" content="#5B2A58">
+    <style>
+        :root {
+            --violet: #5B2A58;
+            --violet-dark: #421C40;
+            --gold: #D99B3C;
+            --cream: #FFF9F1;
+            --bg: #FAF8FB;
+            --text: #252333;
+            --muted: #636171;
+            --border: #E9E2EB;
+            --white: #FFFFFF;
+        }
+        * { box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            line-height: 1.65;
+        }
+        .container { width: min(1100px, 92%); margin: auto; }
+        h1 { font-size: clamp(32px, 5vw, 54px); line-height: 1.2; color: var(--violet-dark); }
+        h2 { font-size: clamp(25px, 3vw, 36px); color: var(--violet); margin-bottom: 20px; }
+        h3 { font-size: 21px; color: var(--violet); margin-bottom: 10px; }
+        p { margin-top: 0; }
+        section { padding: 65px 0; }
+        .center { text-align: center; }
+        .small { color: var(--muted); font-size: 13px; }
+        .section-intro { max-width: 720px; margin: 0 auto 35px; text-align: center; color: var(--muted); }
+        
+        .tag {
+            display: inline-block;
+            background: var(--cream);
+            color: var(--violet);
+            border: 1px solid #F1D8AE;
+            border-radius: 30px;
+            padding: 7px 15px;
+            font-size: 13px;
+            font-weight: bold;
+        }
+        .btn {
+            display: inline-block;
+            background: var(--violet);
+            color: white;
+            border-radius: 10px;
+            padding: 16px 24px;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            transition: background .2s, transform .2s;
+            border: none;
+            cursor: pointer;
+        }
+        .btn:hover { background: var(--violet-dark); transform: translateY(-2px); }
+        .btn-gold { background: var(--gold); color: var(--violet-dark); }
+        .btn-gold:hover { background: #c48a30; }
+
+        /* Header */
+        header {
+            background: var(--white);
+            border-bottom: 1px solid var(--border);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .header-content { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+        .logo { font-size: 1.4rem; font-weight: bold; color: var(--violet); }
+        .logo span { color: var(--gold); }
+
+        /* Hero */
+        .hero { background: var(--violet); color: var(--white); padding: 80px 0 65px; text-align: center; }
+        .hero h1 { color: var(--white); }
+        .hero .subtitle { font-size: 1.2rem; opacity: 0.95; max-width: 750px; margin: 20px auto 30px; }
+        .hero-highlight {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 12px;
+            padding: 25px;
+            max-width: 700px;
+            margin: 30px auto;
+            text-align: left;
+        }
+        .hero-highlight p { margin: 10px 0; font-size: 1.05rem; }
+
+        /* Cards */
+        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
+        .card {
+            background: var(--white);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+        }
+        .card-icon { font-size: 2.5rem; margin-bottom: 15px; }
+
+        /* Solution Box */
+        .solution-box {
+            background: var(--cream);
+            border-left: 5px solid var(--gold);
+            border-radius: 8px;
+            padding: 30px;
+            margin: 30px 0;
+        }
+        .solution-list { list-style: none; padding: 0; margin: 20px 0; }
+        .solution-list li { padding: 8px 0 8px 30px; position: relative; }
+        .solution-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        /* Pricing */
+        .pricing-box {
+            background: var(--white);
+            border: 2px solid var(--violet);
+            border-radius: 12px;
+            padding: 30px;
+            max-width: 650px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .pricing-price { font-size: 48px; font-weight: bold; color: var(--gold); margin: 10px 0; }
+        .pricing-examples { background: var(--bg); border-radius: 8px; padding: 20px; margin-top: 20px; text-align: left; }
+        .pricing-example { display: flex; justify-content: space-between; padding: 12px 0; border-bottom: 1px solid var(--border); }
+        .pricing-example:last-child { border-bottom: none; }
+        .pricing-example strong { color: var(--violet); }
+
+        /* Steps */
+        .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
+        .step { text-align: center; padding: 20px; background: var(--white); border-radius: 12px; border: 1px solid var(--border); }
+        .step-number {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 45px; height: 45px; background: var(--violet); color: white;
+            border-radius: 50%; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px;
+        }
+
+        /* Notice */
+        .notice {
+            background: var(--cream);
+            border-left: 4px solid var(--gold);
+            padding: 15px 20px;
+            border-radius: 8px;
+            margin: 25px 0;
+            font-size: 14px;
+        }
+
+        @media (max-width: 768px) {
+            .form-row { grid-template-columns: 1fr; }
+            section { padding: 45px 0; }
+        }
+    </style>
 </head>
-
 <body>
 
-<!-- NAVIGATION -->
-
 <header>
-  <div class="container nav">
-
-    <a href="#accueil" class="logo">
-      <img src="senecarediaspora.png"
-           alt="Logo SENE'Care-Diaspora">
-      <span>SENE'Care-Diaspora</span>
-    </a>
-
-    <nav aria-label="Navigation principale">
-      <a href="#fonctionnement">Fonctionnement</a>
-      <a href="#services">Nos services</a>
-      <a href="#faq">FAQ</a>
-      <a class="btn" href="#offre-beta">
-        Devenir bêta-testeur
-      </a>
-    </nav>
-
-  </div>
+    <div class="container header-content">
+        <div class="logo">SENE'<span>Care</span>Diaspora</div>
+        <div class="tag">✓ Service garanti avec preuve d'achat</div>
+    </div>
 </header>
 
-<main>
+<section class="hero">
+    <div class="container">
+        <h1>Vos proches ont besoin de médicaments ou d'analyses au Sénégal.<br>Nous garantissons l'approvisionnement.</h1>
+        <p class="subtitle">Fini les doutes sur l'utilisation de votre argent. Vérification, réservation et preuve d'achat pour chaque commande.</p>
+        
+        <div class="hero-highlight">
+            <p><strong>Notre engagement :</strong></p>
+            <p>✓ Vérification de la disponibilité des médicaments</p>
+            <p>✓ Réservation auprès d'une pharmacie ou laboratoire partenaire</p>
+            <p>✓ Photo du ticket de caisse et du produit livré</p>
+            <p>✓ Frais transparents : 15% du montant (min 5€, max 15€)</p>
+        </div>
 
-<!-- ACCUEIL -->
-
-<section class="hero" id="accueil">
-  <div class="container hero-grid">
-
-    <div>
-      <span class="tag">
-        BÊTA-TESTEURS : INSCRIPTIONS OUVERTES
-      </span>
-
-      <h1>
-        Vos proches ont besoin de soins au Sénégal.
-        Vous êtes en Europe.
-        Nous facilitons les démarches.
-      </h1>
-
-      <p>
-        Médicaments, analyses médicales, devis :
-        SENE'Care-Diaspora vous accompagne
-        dans l'organisation des dépenses
-        de santé de vos proches restés au Sénégal.
-      </p>
-
-      <p>
-        <strong>
-          Notre objectif : vous permettre de savoir
-          ce que vous payez, à qui et pour
-          quelle prestation.
-        </strong>
-      </p>
-
-      <div class="hero-actions">
-
-        <a class="btn" href="#offre-beta">
-          Découvrir l'offre à 9,90 €
-        </a>
-
-        <a class="btn btn-light"
-           href="https://wa.me/33617977787?text=Bonjour%20SENE%27Care-Diaspora%2C%20je%20souhaite%20participer%20au%20beta-test."
-           target="_blank"
-           rel="noopener noreferrer">
-          💬 Participer au bêta-test
-        </a>
-
-      </div>
-
-      <p class="small">
-        Premier échange gratuit et sans engagement.
-        Démarrage du pilote à Dakar,
-        selon la faisabilité de votre demande.
-      </p>
-
+        <a href="#formulaire" class="btn btn-gold">Demander un devis gratuit</a>
     </div>
-
-    <aside class="hero-card">
-      <h3>
-        Un accompagnement pensé
-        pour les familles à distance
-      </h3>
-
-      <div class="check">
-        ✓ Des frais médicaux clarifiés avant validation
-      </div>
-
-      <div class="check">
-        ✓ Un établissement de santé identifié
-      </div>
-
-      <div class="check">
-        ✓ Moins de démarches à gérer depuis l'Europe
-      </div>
-
-      <div class="check">
-        ✓ Des honoraires de coordination transparents
-      </div>
-
-      <div class="check">
-        ✓ Un suivi administratif de la demande
-      </div>
-
-      <p class="small">
-        Prestations proposées dans le cadre du pilote,
-        sous réserve de disponibilité
-        des établissements et de faisabilité.
-      </p>
-    </aside>
-
-  </div>
 </section>
 
-<!-- PROBLÈMES -->
+<section id="probleme">
+    <div class="container">
+        <h2 class="center">Le problème que nous résolvons</h2>
+        <p class="section-intro">Lorsque vos proches ont besoin de soins au Sénégal, vous envoyez de l'argent. Mais comment savoir si cet argent a bien servi à acheter les médicaments prescrits ?</p>
 
-<section id="problemes">
-  <div class="container">
-
-    <div class="center">
-      <span class="tag">LE PROBLÈME</span>
-
-      <h2>
-        Envoyer de l'argent ne suffit pas toujours.
-      </h2>
-
-      <p class="section-intro">
-        Lorsque vos parents ont besoin de soins
-        au Sénégal, vous devez parfois gérer
-        les appels, les devis et les démarches
-        depuis la France ou un autre pays européen.
-      </p>
+        <div class="grid-3">
+            <div class="card">
+                <div class="card-icon">💸</div>
+                <h3>Frais difficiles à vérifier</h3>
+                <p>Vous recevez un montant à régler, mais vous ne savez pas toujours à quoi il correspond précisément ni si les médicaments ont bien été achetés.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">📱</div>
+                <h3>Démarches à distance</h3>
+                <p>Entre votre travail et les appels au Sénégal, organiser les soins peut prendre du temps et générer du stress.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🔍</div>
+                <h3>Besoin de transparence</h3>
+                <p>Vous voulez connaître l'établissement, comprendre le montant demandé et disposer de justificatifs concrets.</p>
+            </div>
+        </div>
     </div>
-
-    <div class="grid">
-
-      <article class="card">
-        <div class="card-icon">🧾</div>
-
-        <h3>Des frais difficiles à vérifier</h3>
-
-        <p>
-          Vous recevez un montant à régler,
-          mais vous ne savez pas toujours
-          à quoi il correspond précisément.
-        </p>
-      </article>
-
-      <article class="card">
-        <div class="card-icon">📱</div>
-
-        <h3>Des démarches à distance</h3>
-
-        <p>
-          Entre votre travail, votre famille
-          et les appels au Sénégal,
-          organiser les soins peut prendre du temps.
-        </p>
-      </article>
-
-      <article class="card">
-        <div class="card-icon">🤝</div>
-
-        <h3>Un besoin de transparence</h3>
-
-        <p>
-          Vous voulez connaître l'établissement,
-          comprendre le montant demandé
-          et disposer de justificatifs.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
 </section>
 
-<!-- SERVICES -->
+<section id="solution" style="background: var(--white);">
+    <div class="container">
+        <h2 class="center">Notre solution : Un service garanti avec preuve d'achat</h2>
+        
+        <div class="solution-box">
+            <h3>SENE'Care-Diaspora : Votre coordinateur de confiance</h3>
+            <p>Nous ne sommes pas une pharmacie ni un laboratoire. Nous sommes votre intermédiaire de confiance qui vérifie, réserve et garantit l'approvisionnement de vos proches.</p>
+            
+            <ul class="solution-list">
+                <li><strong>Vérification de la disponibilité</strong> auprès de pharmacies et laboratoires partenaires à Dakar</li>
+                <li><strong>Confirmation du prix exact</strong> avant tout engagement de votre part</li>
+                <li><strong>Réservation des médicaments ou analyses</strong> auprès d'un établissement vérifié</li>
+                <li><strong>Coordination de la livraison</strong> ou du retrait par votre proche</li>
+                <li><strong>Envoi de la preuve d'achat</strong> (photo du ticket de caisse et du produit)</li>
+            </ul>
+        </div>
 
-<section class="soft" id="services">
-  <div class="container">
-
-    <div class="center">
-      <span class="tag">
-        NOS PREMIÈRES PRESTATIONS
-      </span>
-
-      <h2>
-        Deux besoins, un accompagnement personnalisé
-      </h2>
-
-      <p class="section-intro">
-        Le bêta-test se concentre sur
-        les pharmacies et les laboratoires
-        d'analyses médicales à Dakar.
-      </p>
+        <div class="notice">
+            <strong>⚠️ Important :</strong> SENE'Care-Diaspora assure une coordination administrative et ne fournit aucun conseil médical. La délivrance des médicaments et les conseils pharmaceutiques relèvent exclusivement du pharmacien. En cas d'urgence médicale, contactez directement les services d'urgence locaux.
+        </div>
     </div>
-
-    <div class="services">
-
-      <!-- PHARMACIES -->
-
-      <article class="service-card">
-        <div class="card-icon">💊</div>
-
-        <h3>Pharmacies</h3>
-
-        <p>
-          Une coordination administrative
-          des démarches liées aux médicaments
-          prescrits à vos proches.
-        </p>
-
-        <ul>
-          <li>
-            Identification d'une officine physique.
-          </li>
-          <li>
-            Demande d'informations sur les disponibilités.
-          </li>
-          <li>
-            Vérification administrative du devis.
-          </li>
-          <li>
-            Contrôle des prix à partir de références
-            fiables, lorsqu'elles sont disponibles.
-          </li>
-          <li>
-            Orientation vers le pharmacien
-            pour toute question pharmaceutique.
-          </li>
-        </ul>
-
-        <p class="small">
-          La délivrance des médicaments
-          et les conseils pharmaceutiques
-          relèvent exclusivement du pharmacien.
-          Les modalités opérationnelles du service
-          sont en cours de validation.
-        </p>
-      </article>
-
-      <!-- LABORATOIRES -->
-
-      <article class="service-card">
-        <div class="card-icon">🧪</div>
-
-        <h3>Laboratoires d'analyses</h3>
-
-        <p>
-          Une aide à l'organisation des démarches
-          liées aux analyses médicales
-          de vos proches.
-        </p>
-
-        <ul>
-          <li>Identification d'un laboratoire.</li>
-          <li>Demande de devis et vérification des frais.</li>
-          <li>
-            Organisation administrative du rendez-vous.
-          </li>
-          <li>
-            Coordination des échanges
-            avec l'établissement.
-          </li>
-          <li>
-            Confirmation administrative
-            de la prestation, lorsque disponible.
-          </li>
-        </ul>
-
-        <p class="small">
-          Les prescriptions et les résultats médicaux
-          sont soumis aux règles de confidentialité
-          et aux procédures des professionnels habilités.
-        </p>
-      </article>
-
-    </div>
-
-  </div>
 </section>
 
-<!-- FONCTIONNEMENT -->
+<section id="tarification">
+    <div class="container">
+        <h2 class="center">Tarification transparente et équitable</h2>
+        
+        <div class="pricing-box">
+            <h3>Frais de coordination et de garantie</h3>
+            <div class="pricing-price">15%</div>
+            <p>du montant total de l'ordonnance ou des analyses</p>
+            <p style="margin-top: 10px; font-weight: bold; color: var(--violet);">Minimum : 5 € · Maximum : 15 €</p>
 
-<section id="fonctionnement">
-  <div class="container">
+            <div class="pricing-examples">
+                <h4 style="margin-bottom: 15px; color: var(--violet);">Exemples concrets :</h4>
+                
+                <div class="pricing-example">
+                    <div>
+                        <strong>Ordonnance de 30 €</strong><br>
+                        <span class="small">Médicaments chroniques (1 mois)</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Frais SENE'Care : 5 €</strong><br>
+                        <span class="small">Total : 35 €</span>
+                    </div>
+                </div>
 
-    <div class="center">
-      <span class="tag">
-        COMMENT ÇA MARCHE ?
-      </span>
+                <div class="pricing-example">
+                    <div>
+                        <strong>Ordonnance de 60 €</strong><br>
+                        <span class="small">Traitement diabète + hypertension</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Frais SENE'Care : 9 €</strong><br>
+                        <span class="small">Total : 69 €</span>
+                    </div>
+                </div>
 
-      <h2>
-        Un parcours simple en 4 étapes
-      </h2>
+                <div class="pricing-example">
+                    <div>
+                        <strong>Bilan d'analyses de 120 €</strong><br>
+                        <span class="small">Analyses sanguines complètes</span>
+                    </div>
+                    <div style="text-align: right;">
+                        <strong>Frais SENE'Care : 15 €</strong><br>
+                        <span class="small">Total : 135 €</span>
+                    </div>
+                </div>
+            </div>
 
-      <p class="section-intro">
-        Un processus conçu pour vous permettre
-        de connaître les frais et les conditions
-        avant de vous engager.
-      </p>
+            <p class="small" style="margin-top: 20px;">
+                <strong>Pourquoi ce prix ?</strong> Nos frais couvrent le temps de vérification, la coordination avec les prestataires, et la garantie d'une preuve d'achat. Ils restent toujours inférieurs au coût des soins.
+            </p>
+        </div>
     </div>
-
-    <div class="steps">
-
-      <div class="step">
-        <div class="number">1</div>
-        <h3>Vous nous contactez</h3>
-
-        <p>
-          Vous présentez le besoin de votre proche
-          via WhatsApp, sans transmettre de documents
-          médicaux sensibles lors du premier échange.
-        </p>
-      </div>
-
-      <div class="step">
-        <div class="number">2</div>
-        <h3>Nous vérifions la faisabilité</h3>
-
-        <p>
-          Nous recherchons les informations nécessaires
-          auprès d'un établissement et vérifions
-          les conditions pratiques.
-        </p>
-      </div>
-
-      <div class="step">
-        <div class="number">3</div>
-        <h3>Vous validez les frais</h3>
-
-        <p>
-          Vous recevez un récapitulatif des frais
-          médicaux et de notre accompagnement.
-          Vous connaissez le montant total
-          avant toute validation.
-        </p>
-      </div>
-
-      <div class="step">
-        <div class="number">4</div>
-        <h3>Nous suivons la démarche</h3>
-
-        <p>
-          Selon la prestation validée,
-          nous coordonnons les échanges
-          et transmettons les confirmations
-          administratives disponibles.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
 </section>
 
-<!-- FIN DE LA PARTIE 1 -->
-<!-- COLLER LA PARTIE 2 JUSTE APRÈS -->
+<section id="comment-ca-marche" style="background: var(--white);">
+    <div class="container">
+        <h2 class="center">Comment ça marche ?</h2>
+        <p class="section-intro">Un processus simple en 4 étapes pour vous permettre de connaître les frais et les conditions avant de vous engager.</p>
 
-   
-   
-<!-- OFFRE BÊTA -->
-
-<section class="soft" id="offre-beta">
-  <div class="container">
-
-    <div class="center">
-      <span class="tag">
-        BÊTA-TESTEURS : INSCRIPTIONS OUVERTES
-      </span>
-
-      <h2>Pass Santé Famille</h2>
-
-      <p class="section-intro">
-        Une aide ponctuelle pour organiser
-        les dépenses de santé de vos proches,
-        sans abonnement obligatoire.
-      </p>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <h3>Vous remplissez le formulaire</h3>
+                <p class="small">Vous présentez le besoin de votre proche et joignez l'ordonnance si disponible.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <h3>Nous vérifions la faisabilité</h3>
+                <p class="small">Notre coordinateur à Dakar contacte nos partenaires pour confirmer la disponibilité et le prix exact.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <h3>Vous validez le devis total</h3>
+                <p class="small">Vous recevez un récapitulatif clair : coût des soins + nos frais. Vous payez uniquement si vous acceptez.</p>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <h3>Nous exécutons et prouvons</h3>
+                <p class="small">Le médicament est réservé. Vous recevez la photo du ticket de caisse et du produit livré.</p>
+            </div>
+        </div>
     </div>
+</section>
 
-    <div class="offer">
+<!-- FIN DE LA PARTIE 1. COLLEZ LA PARTIE 2 DIRECTEMENT À LA SUITE DE CETTE LIGNE -->
 
-      <span class="tag">
-        Tarif de lancement proposé
-      </span>
+  <section id="formulaire">
+    <div class="container">
+        <h2 class="center">Demander un devis gratuit</h2>
+        <p class="section-intro">Remplissez ce formulaire pour recevoir un devis précis sous 24h. Aucun engagement.</p>
 
-      <h3>Votre conciergerie santé</h3>
+        <div class="form-container" style="background: var(--white); border: 1px solid var(--border); border-radius: 12px; padding: 30px; max-width: 700px; margin: 0 auto;">
+            <form action="https://formspree.io/f/VOTRE_ID_FORMSPREE" method="POST" enctype="multipart/form-data">
+                
+                <h3 class="form-section-title">📋 Informations sur votre proche</h3>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="nom-proche">Nom complet de votre proche *</label>
+                        <input type="text" id="nom-proche" name="nom-proche" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="age-proche">Âge de votre proche</label>
+                        <input type="number" id="age-proche" name="age-proche" min="0" max="120">
+                    </div>
+                </div>
 
-      <div class="price">
-        9,90 €
-        <span>/ demande</span>
-      </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="ville">Ville au Sénégal *</label>
+                        <select id="ville" name="ville" required>
+                            <option value="">Sélectionnez une ville</option>
+                            <option value="dakar">Dakar</option>
+                            <option value="pikine">Pikine</option>
+                            <option value="guédiawaye">Guédiawaye</option>
+                            <option value="thies">Thiès</option>
+                            <option value="autre">Autre (précisez ci-dessous)</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="quartier">Quartier ou point de retrait *</label>
+                        <input type="text" id="quartier" name="quartier" required placeholder="Ex: Mermoz, Médina...">
+                        <span class="hint">Pour identifier la pharmacie la plus proche</span>
+                    </div>
+                </div>
 
-      <p class="small">
-        Tarif pilote à confirmer avant facturation.
-        Hors frais médicaux et éventuels frais annexes.
-      </p>
+                <div class="form-group">
+                    <label for="telephone-proche">Téléphone du proche au Sénégal *</label>
+                    <input type="tel" id="telephone-proche" name="telephone-proche" required placeholder="+221 77 123 45 67">
+                    <span class="hint">Pour coordonner la livraison ou le retrait</span>
+                </div>
 
-      <h3>Ce qui est prévu dans l'offre</h3>
+                <h3 class="form-section-title">💊 Type de besoin</h3>
 
-      <ul>
-        <li>
-          Un premier échange gratuit
-          pour étudier votre besoin.
-        </li>
+                <div class="form-group">
+                    <label for="type-besoin">Type de besoin *</label>
+                    <select id="type-besoin" name="type-besoin" required>
+                        <option value="">Sélectionnez un type</option>
+                        <option value="medicaments-chroniques">Médicaments pour traitement chronique (renouvellement)</option>
+                        <option value="medicaments-ponctuels">Médicaments ponctuels (ordonnance spécifique)</option>
+                        <option value="analyses">Analyses médicales (bilan prescrit)</option>
+                    </select>
+                </div>
 
-        <li>
-          L'identification d'une pharmacie
-          ou d'un laboratoire approprié.
-        </li>
+                <div class="form-group">
+                    <label for="ordonnance">Photo de l'ordonnance (si disponible)</label>
+                    <input type="file" id="ordonnance" name="ordonnance" accept="image/*,.pdf">
+                    <span class="hint">Formats : JPG, PNG, PDF. Si vous n'avez pas d'ordonnance, remplissez les détails ci-dessous.</span>
+                </div>
 
-        <li>
-          La demande ou la vérification
-          administrative d'un devis.
-        </li>
+                <h3 class="form-section-title">📝 Détails des médicaments (si pas d'ordonnance)</h3>
+                <p class="small" style="margin-bottom: 15px;">Ces informations nous permettent de vérifier la disponibilité et le prix exact. Plus les détails sont précis, plus le devis sera rapide.</p>
 
-        <li>
-          La coordination d'une prestation
-          auprès d'un seul établissement.
-        </li>
+                <div class="form-group">
+                    <label for="medicament-1">Médicament 1 - Nom commercial ou molécule *</label>
+                    <input type="text" id="medicament-1" name="medicament-1" placeholder="Ex: Glucophage 500mg, Amlor 10mg...">
+                    <span class="hint">Indiquez le nom exact tel qu'écrit sur la boîte ou l'ordonnance</span>
+                </div>
 
-        <li>
-          Un récapitulatif clair des frais
-          avant votre validation.
-        </li>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="dosage-1">Dosage / Présentation</label>
+                        <input type="text" id="dosage-1" name="dosage-1" placeholder="Ex: 500mg, 10mg, sirop 200ml...">
+                    </div>
+                    <div class="form-group">
+                        <label for="quantite-1">Quantité souhaitée</label>
+                        <input type="text" id="quantite-1" name="quantite-1" placeholder="Ex: 2 boîtes, 1 flacon...">
+                    </div>
+                </div>
 
-        <li>
-          Le suivi administratif et la transmission
-          des justificatifs disponibles.
-        </li>
-      </ul>
+                <div class="form-group">
+                    <label for="frequence-1">Fréquence de prise (si connue)</label>
+                    <input type="text" id="frequence-1" name="frequence-1" placeholder="Ex: 1 comprimé matin et soir...">
+                </div>
 
-      <a
-        class="btn"
-        href="https://wa.me/33617977787?text=Bonjour%2C%20je%20souhaite%20devenir%20beta-testeur%20du%20Pass%20Sante%20Famille%20a%209%2C90%20euros.%20Pouvez-vous%20etudier%20ma%20demande%20%3F"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        💬 Je veux devenir bêta-testeur
-      </a>
+                <div class="form-group">
+                    <label for="medicament-2">Médicament 2 (optionnel)</label>
+                    <input type="text" id="medicament-2" name="medicament-2" placeholder="Nom, dosage, quantité...">
+                </div>
 
-      <p class="small center" style="margin-top:15px">
-        Inscription et échange initial gratuits.
-        Votre demande sera étudiée individuellement.
-      </p>
+                <div class="form-group">
+                    <label for="pathologie">Pathologie traitée (optionnel)</label>
+                    <input type="text" id="pathologie" name="pathologie" placeholder="Ex: Diabète type 2, Hypertension...">
+                    <span class="hint">Ces informations restent confidentielles et servent uniquement à identifier les bons produits</span>
+                </div>
 
-      <div class="note">
-        <strong>Conditions du bêta-test</strong>
+                <div class="form-group">
+                    <label for="prescripteur">Nom du médecin prescripteur (si connu)</label>
+                    <input type="text" id="prescripteur" name="prescripteur" placeholder="Dr. [Nom]">
+                </div>
 
-        <p style="margin-top:10px">
-          Une demande concerne une prestation
-          administrative auprès d'un seul
-          établissement, hors urgence médicale.
+                <div class="form-group">
+                    <label for="message">Informations complémentaires</label>
+                    <textarea id="message" name="message" rows="3" placeholder="Allergie connue, marque préférée, contrainte particulière..."></textarea>
+                </div>
+
+                <h3 class="form-section-title">👤 Vos coordonnées</h3>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="email">Votre email *</label>
+                        <input type="email" id="email" name="email" required placeholder="votre@email.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="telephone">Votre téléphone (WhatsApp) *</label>
+                        <input type="tel" id="telephone" name="telephone" required placeholder="+33 6 12 34 56 78">
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="acceptation" name="acceptation" required>
+                    <label for="acceptation">
+                        J'accepte les frais de coordination de 15% (minimum 5€, maximum 15€) pour un service garanti avec preuve d'achat. Je comprends que SENE'Care-Diaspora assure une coordination administrative et ne fournit aucun conseil médical.
+                    </label>
+                </div>
+
+                <div class="checkbox-group">
+                    <input type="checkbox" id="urgence" name="urgence" required>
+                    <label for="urgence">
+                        Je comprends que ce service ne concerne PAS les urgences médicales (délai de traitement : 24 à 48h). En cas d'urgence, je contacterai directement les services médicaux locaux.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn btn-gold" style="width: 100%; margin-top: 10px;">Recevoir mon devis gratuit sous 24h</button>
+
+                <p class="small center" style="margin-top: 15px;">
+                    🔒 Vos données sont confidentielles et ne seront jamais partagées.
+                </p>
+            </form>
+        </div>
+    </div>
+</section>
+
+<section id="faq" style="background: var(--white);">
+    <div class="container">
+        <h2 class="center">Questions fréquentes</h2>
+
+        <div style="max-width: 800px; margin: 0 auto;">
+            <div class="card" style="text-align: left; margin-bottom: 15px;">
+                <h3 style="margin-bottom: 5px;">Pourquoi des frais de 15% ?</h3>
+                <p class="small">Nos frais couvrent le temps de vérification auprès des pharmacies/laboratoires, la coordination avec nos partenaires à Dakar, et la garantie d'une preuve d'achat. Ils restent toujours inférieurs au coût des soins et sont plafonnés à 15€ maximum.</p>
+            </div>
+
+            <div class="card" style="text-align: left; margin-bottom: 15px;">
+                <h3 style="margin-bottom: 5px;">Je n'ai pas d'ordonnance, comment faire ?</h3>
+                <p class="small">Vous pouvez remplir le formulaire en détaillant les médicaments souhaités (nom, dosage, quantité). Notre coordinateur vérifiera la disponibilité et vous conseillera si nécessaire. Pour les traitements chroniques, une ordonnance de renouvellement est généralement requise par les pharmacies.</p>
+            </div>
+
+            <div class="card" style="text-align: left; margin-bottom: 15px;">
+                <h3 style="margin-bottom: 5px;">Que se passe-t-il si le médicament n'est pas disponible ?</h3>
+                <p class="small">Si le médicament prescrit n'est pas disponible chez notre partenaire, nous vous informons immédiatement et vous proposons soit une alternative (même molécule, autre pharmacie), soit un remboursement intégral sans aucun frais.</p>
+            </div>
+
+            <div class="card" style="text-align: left; margin-bottom: 15px;">
+                <h3 style="margin-bottom: 5px;">Prenez-vous en charge les urgences médicales ?</h3>
+                <p class="small"><strong>Non.</strong> Notre service concerne les démarches administratives non urgentes avec un délai de traitement de 24 à 48 heures. En cas d'urgence médicale, contactez directement les services médicaux d'urgence locaux.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer style="background: var(--violet-dark); color: #d8c8e8; padding: 40px 0 20px; text-align: center;">
+    <div class="container">
+        <p style="font-size: 1.2rem; font-weight: bold; color: var(--white); margin-bottom: 10px;">SENE'Care-Diaspora</p>
+        <p style="font-size: 0.95rem;">Service de coordination administrative pour l'approvisionnement santé de vos proches au Sénégal</p>
+        
+        <div class="notice" style="background: rgba(255,255,255,0.1); border-left-color: var(--gold); color: #f0e6d2; max-width: 800px; margin: 25px auto; text-align: left;">
+            <strong>⚠️ Avertissement :</strong> SENE'Care-Diaspora n'est pas un professionnel de santé. Nous assurons une coordination administrative entre la diaspora et les prestataires de santé au Sénégal. La délivrance des médicaments et les conseils pharmaceutiques relèvent exclusivement des professionnels habilités.
+        </div>
+        
+        <p class="small" style="margin-top: 30px; opacity: 0.7;">
+            © 2026 SENE'Care-Diaspora. Tous droits réservés.
         </p>
-
-        <p>
-          La prise en charge dépend des établissements
-          disponibles, de la faisabilité de la demande
-          et des modalités applicables.
-        </p>
-
-        <p style="margin-bottom:0">
-          Les conditions et le tarif définitif
-          vous sont communiqués avant tout engagement.
-        </p>
-      </div>
-
     </div>
-  </div>
-</section>
-
-<!-- NOTRE MISSION -->
-
-<section id="apropos">
-  <div class="container">
-
-    <div class="center">
-      <span class="tag">NOTRE MISSION</span>
-
-      <h2>
-        Faciliter les dépenses de santé
-        entre l'Europe et le Sénégal
-      </h2>
-
-      <p class="section-intro">
-        Une ambition simple : rapprocher les familles
-        des solutions de santé disponibles au Sénégal.
-      </p>
-    </div>
-
-    <div class="mission-box">
-
-      <p>
-        <strong>SENE'Care-Diaspora</strong>
-        est un service de conciergerie santé
-        destiné aux Sénégalais vivant
-        en France et en Europe.
-      </p>
-
-      <p>
-        Notre mission est de faciliter
-        l'organisation des frais médicaux
-        de leurs proches restés au Sénégal.
-      </p>
-
-      <p>
-        Nous souhaitons simplifier les démarches
-        auprès des pharmacies et laboratoires
-        d'analyses, tout en favorisant
-        la transparence des tarifs.
-      </p>
-
-      <p>
-        Le projet prépare actuellement
-        son réseau de prestataires de santé
-        à Dakar, avec l'appui
-        d'une coordination locale.
-      </p>
-
-      <p>
-        <strong>Notre ambition :</strong>
-        permettre à chaque famille
-        de savoir ce qu'elle paie,
-        à qui et pour quelle prestation.
-      </p>
-
-      <p class="small">
-        Les partenariats seront annoncés
-        après confirmation.
-        Le service assure une coordination
-        administrative et ne remplace pas
-        une consultation médicale.
-      </p>
-
-    </div>
-  </div>
-</section>
-
-<!-- QUESTIONS FRÉQUENTES -->
-
-<section class="soft" id="faq">
-  <div class="container faq">
-
-    <div class="center">
-      <span class="tag">
-        QUESTIONS FRÉQUENTES
-      </span>
-
-      <h2>Vos questions, nos réponses</h2>
-    </div>
-
-    <details>
-      <summary>
-        À qui s'adresse SENE'Care-Diaspora ?
-      </summary>
-
-      <p>
-        Aux Sénégalais vivant en France
-        ou ailleurs en Europe qui souhaitent
-        faciliter l'organisation des dépenses
-        médicales de leurs proches
-        restés au Sénégal.
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        Le bêta-test est-il ouvert ?
-      </summary>
-
-      <p>
-        Oui, les inscriptions des bêta-testeurs
-        sont ouvertes via WhatsApp.
-
-        La réalisation des prestations est soumise
-        à une étude de faisabilité individuelle.
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        Combien coûte le service ?
-      </summary>
-
-      <p>
-        Le tarif de lancement proposé
-        est de 9,90 € par demande.
-
-        Les médicaments, analyses et éventuels
-        frais annexes ne sont pas inclus.
-
-        Les conditions définitives vous seront
-        communiquées avant tout engagement.
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        Avec quelles pharmacies et laboratoires
-        travaillez-vous ?
-      </summary>
-
-      <p>
-        Notre coordination locale à Dakar
-        prépare l'identification et la prise
-        de contact avec des pharmacies
-        et laboratoires.
-
-        Nous communiquerons les établissements
-        confirmés au fur et à mesure.
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        Les prix des médicaments sont-ils vérifiés ?
-      </summary>
-
-      <p>
-        Nous préparons un dispositif de vérification
-        administrative des tarifs en nous appuyant
-        sur les références réglementaires fiables
-        et disponibles.
-
-        Il ne constitue pas encore une garantie
-        de contrôle systématique.
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        Dois-je envoyer une ordonnance sur WhatsApp ?
-      </summary>
-
-      <p>
-        Non. Lors du premier échange,
-        ne transmettez ni ordonnance,
-        ni résultats médicaux,
-        ni autre information de santé sensible.
-
-        Si ces documents sont nécessaires,
-        les modalités de transmission appropriées
-        devront être définies avec les
-        professionnels habilités.
-      </p>
-    </details>
-
-    <details>
-      <summary>
-        Prenez-vous en charge les urgences médicales ?
-      </summary>
-
-      <p>
-        Non. Notre service concerne
-        les démarches administratives non urgentes.
-
-        En cas d'urgence, contactez directement
-        les services médicaux d'urgence locaux.
-      </p>
-    </details>
-
-  </div>
-</section>
-
-<!-- APPEL À L'ACTION FINAL -->
-
-<section class="final-cta">
-  <div class="container">
-
-    <h2>
-      Vous êtes loin de vos proches.
-      Pas besoin de gérer seul
-      toutes leurs démarches.
-    </h2>
-
-    <p>
-      Rejoignez les bêta-testeurs
-      SENE'Care-Diaspora et découvrez
-      comment notre accompagnement pourrait
-      vous aider à organiser leurs dépenses
-      de santé au Sénégal.
-    </p>
-
-    <a
-      class="btn"
-      href="https://wa.me/33617977787?text=Bonjour%20SENE%27Care-Diaspora%2C%20je%20souhaite%20m%27inscrire%20au%20beta-test%20de%20votre%20nouvelle%20offre."
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      💬 Rejoindre le bêta-test sur WhatsApp
-    </a>
-
-    <p
-      class="small"
-      style="color:#F2EAF2;margin-top:20px"
-    >
-      Inscription gratuite ·
-      Démarrage à Dakar ·
-      Prestations sous réserve de faisabilité
-    </p>
-
-  </div>
-</section>
-
-</main>
-
-<!-- PIED DE PAGE -->
-
-<footer>
-  <div class="container">
-
-    <p>
-      © 2026 SENE'Care-Diaspora.
-      Tous droits réservés.
-    </p>
-
-    <p>
-      <a href="mentions-legales.html">
-        Mentions légales et CGV
-      </a>
-
-      |
-
-      <a
-        href="https://wa.me/33617977787"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        Contact WhatsApp
-      </a>
-    </p>
-
-    <p>
-      SENE'Care-Diaspora est un service
-      de coordination administrative.
-      Il ne remplace pas
-      un professionnel de santé.
-    </p>
-
-  </div>
 </footer>
 
 </body>
