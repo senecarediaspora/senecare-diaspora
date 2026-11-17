@@ -65,7 +65,6 @@
         .btn-gold { background: var(--gold); color: var(--violet-dark); }
         .btn-gold:hover { background: #c48a30; }
 
-        /* Header */
         header {
             background: var(--white);
             border-bottom: 1px solid var(--border);
@@ -78,7 +77,6 @@
         .logo { font-size: 1.4rem; font-weight: bold; color: var(--violet); }
         .logo span { color: var(--gold); }
 
-        /* Hero */
         .hero { background: var(--violet); color: var(--white); padding: 80px 0 65px; text-align: center; }
         .hero h1 { color: var(--white); }
         .hero .subtitle { font-size: 1.2rem; opacity: 0.95; max-width: 750px; margin: 20px auto 30px; }
@@ -93,7 +91,6 @@
         }
         .hero-highlight p { margin: 10px 0; font-size: 1.05rem; }
 
-        /* Cards */
         .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; margin-top: 30px; }
         .card {
             background: var(--white);
@@ -104,7 +101,6 @@
         }
         .card-icon { font-size: 2.5rem; margin-bottom: 15px; }
 
-        /* Solution Box */
         .solution-box {
             background: var(--cream);
             border-left: 5px solid var(--gold);
@@ -123,7 +119,6 @@
             font-size: 1.2rem;
         }
 
-        /* Pricing */
         .pricing-box {
             background: var(--white);
             border: 2px solid var(--violet);
@@ -139,7 +134,6 @@
         .pricing-example:last-child { border-bottom: none; }
         .pricing-example strong { color: var(--violet); }
 
-        /* Steps */
         .steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px; margin-top: 30px; }
         .step { text-align: center; padding: 20px; background: var(--white); border-radius: 12px; border: 1px solid var(--border); }
         .step-number {
@@ -148,7 +142,6 @@
             border-radius: 50%; font-weight: bold; font-size: 1.2rem; margin-bottom: 15px;
         }
 
-        /* Notice */
         .notice {
             background: var(--cream);
             border-left: 4px solid var(--gold);
@@ -356,7 +349,7 @@
         </div>
     </div>
 </section>
-  <section id="formulaire">
+    <section id="formulaire">
     <div class="container">
         <h2 class="center">Demander un devis gratuit</h2>
         <p class="section-intro">
@@ -393,44 +386,38 @@
                     <select name="type_besoin" required>
                         <option value="">Sélectionnez…</option>
                         <option value="chronique">Traitement chronique (renouvellement)</option>
-                        <option value="ponctuel">Médicaments ponctuels (ordonnance)</option>
+                        <option value="ponctuel">Médicaments ponctuels</option>
                         <option value="analyses">Analyses médicales (bilan)</option>
                     </select></div>
 
-                <div class="form-group"><label>Avez-vous une ordonnance ? *</label>
+                <div class="form-group"><label>Avez-vous une ordonnance ou une prescription ? *</label>
                     <div class="radio-row">
-                        <label><input type="radio" name="a_ordonnance" value="oui" required> Oui</label>
-                        <label><input type="radio" name="a_ordonnance" value="non"> Non</label>
+                        <label><input type="radio" name="a_ordonnance" value="oui" required> Oui, j'ai une ordonnance</label>
+                        <label><input type="radio" name="a_ordonnance" value="non"> Non, je n'en ai pas</label>
                     </div></div>
 
+                <!-- Bloc SI ordonnance : juste l'upload -->
                 <div class="form-group" id="blocOrdonnance">
-                    <label>Photo de l'ordonnance</label>
-                    <input type="file" id="fileOrdonnance" accept="image/*,.pdf">
-                    <span class="hint">JPG, PNG ou PDF. Si vous n'en avez pas, détaillez ci-dessous.</span>
+                    <label>Photo de l'ordonnance *</label>
+                    <input type="file" id="fileOrdonnance" accept="image/*,.pdf" required>
+                    <span class="hint">JPG, PNG ou PDF. C'est tout ce dont nous avons besoin.</span>
                 </div>
 
+                <!-- Bloc SI PAS d'ordonnance : description simple en langage courant -->
                 <div id="blocMedicaments">
-                    <p class="hint" style="margin-bottom:12px;">Détaillez les produits : plus c'est précis, plus le devis est rapide.</p>
-                    <div class="form-group"><label>Médicament 1 — nom ou molécule *</label>
-                        <input name="medicament1" placeholder="Ex : Glucophage 500mg, Amlor 10mg…"></div>
-                    <div class="form-row">
-                        <div class="form-group"><label>Dosage / présentation</label>
-                            <input name="dosage1" placeholder="Ex : 500mg, sirop 200ml"></div>
-                        <div class="form-group"><label>Quantité</label>
-                            <input name="quantite1" placeholder="Ex : 2 boîtes, 1 flacon"></div>
+                    <p class="hint" style="margin-bottom:12px; color: var(--violet); font-weight: 600;">Pas de panique, décrivez le besoin avec vos propres mots. Notre coordinateur se chargera d'identifier les produits exacts avec vous si nécessaire.</p>
+                    <div class="form-group">
+                        <label>Décrivez simplement le besoin (médicaments ou type d'analyse) *</label>
+                        <textarea name="besoin_description" rows="4" required placeholder="Ex : Traitement pour le diabète de maman, ou Bilan sanguin complet prescrit la semaine dernière par le Dr X..."></textarea>
                     </div>
-                    <div class="form-group"><label>Fréquence de prise</label>
-                        <input name="frequence1" placeholder="Ex : 1 cp matin et soir"></div>
-                    <div class="form-group"><label>Médicament 2 (optionnel)</label>
-                        <input name="medicament2" placeholder="Nom, dosage, quantité…"></div>
-                    <div class="form-group"><label>Pathologie traitée</label>
-                        <input name="pathologie" placeholder="Ex : diabète type 2, hypertension…"></div>
-                    <div class="form-group"><label>Médecin prescripteur</label>
-                        <input name="prescripteur" placeholder="Dr. [Nom]"></div>
+                    <div class="form-group">
+                        <label>Noms des médicaments (uniquement si vous les connaissez, optionnel)</label>
+                        <input name="noms_medicaments" placeholder="Ex : Metformine, Doliprane 1000...">
+                    </div>
                 </div>
 
-                <div class="form-group"><label>Précisions complémentaires</label>
-                    <textarea name="message" rows="3" placeholder="Allergie, marque préférée, contrainte…"></textarea></div>
+                <div class="form-group"><label>Précisions complémentaires (optionnel)</label>
+                    <textarea name="message" rows="2" placeholder="Allergie connue, marque préférée, contrainte de livraison…"></textarea></div>
 
                 <h3 class="form-section-title">👤 Vos coordonnées</h3>
                 <div class="form-row">
@@ -477,17 +464,17 @@
 
             <div class="card" style="text-align: left; margin-bottom: 15px;">
                 <h3 style="margin-bottom: 5px;">Je n'ai pas d'ordonnance, comment faire ?</h3>
-                <p class="small">Vous pouvez remplir le formulaire en détaillant les médicaments souhaités (nom, dosage, quantité). Notre coordinateur vérifiera la disponibilité et vous conseillera si nécessaire. Pour les traitements chroniques, une ordonnance de renouvellement est généralement requise par les pharmacies.</p>
+                <p class="small">C'est très simple : décrivez le besoin dans le formulaire (ex: "renouvellement traitement tension"). Notre coordinateur identifiera les produits exacts et confirmera la disponibilité avant de vous envoyer un devis.</p>
             </div>
 
             <div class="card" style="text-align: left; margin-bottom: 15px;">
                 <h3 style="margin-bottom: 5px;">Que se passe-t-il si le médicament n'est pas disponible ?</h3>
-                <p class="small">Si le médicament prescrit n'est pas disponible chez notre partenaire, nous vous informons immédiatement et vous proposons soit une alternative (même molécule, autre pharmacie), soit un remboursement intégral sans aucun frais.</p>
+                <p class="small">Si le produit n'est pas disponible, nous vous informons immédiatement et vous proposons soit une alternative validée, soit un remboursement intégral sans aucun frais.</p>
             </div>
 
             <div class="card" style="text-align: left; margin-bottom: 15px;">
                 <h3 style="margin-bottom: 5px;">Prenez-vous en charge les urgences médicales ?</h3>
-                <p class="small"><strong>Non.</strong> Notre service concerne les démarches administratives non urgentes avec un délai de traitement de 24 à 48 heures. En cas d'urgence médicale, contactez directement les services médicaux d'urgence locaux.</p>
+                <p class="small"><strong>Non.</strong> Notre service concerne les démarches administratives non urgentes avec un délai de traitement de 24 à 48 heures. En cas d'urgence, contactez directement les services médicaux locaux.</p>
             </div>
         </div>
     </div>
@@ -504,6 +491,7 @@
         
         <p class="small" style="margin-top: 30px; opacity: 0.7;">
             © 2026 SENE'Care-Diaspora. Tous droits réservés.
+ are reserved.
         </p>
     </div>
 </footer>
@@ -524,13 +512,25 @@
     const blocOrdo = document.getElementById('blocOrdonnance');
     const blocMed  = document.getElementById('blocMedicaments');
 
-    // Logique conditionnelle : afficher/masquer selon "ordonnance oui/non"
+    // Logique conditionnelle simple : ordonnance OUI ou NON
     form.addEventListener('change', (e) => {
         if (e.target.name !== 'a_ordonnance') return;
         const oui = e.target.value === 'oui';
-        blocOrdo.style.display = oui ? 'block' : 'none';
-        blocMed.style.display  = oui ? 'none'  : 'block';
-        blocMed.querySelectorAll('input').forEach(i => i.required = !oui);
+        
+        if (oui) {
+            blocOrdo.style.display = 'block';
+            blocMed.style.display  = 'none';
+            fileIn.required = true;
+            // On retire le required des champs de description
+            blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
+        } else {
+            blocOrdo.style.display = 'none';
+            blocMed.style.display  = 'block';
+            fileIn.required = false;
+            // On rend le champ description obligatoire
+            const desc = blocMed.querySelector('textarea[name="besoin_description"]');
+            if(desc) desc.required = true;
+        }
     });
 
     form.addEventListener('submit', async (e) => {
@@ -546,7 +546,7 @@
             data.accepte_frais   = !!data.accepte_frais;
             data.accepte_urgence = !!data.accepte_urgence;
 
-            // 1) Upload du fichier dans ton bucket existant
+            // 1) Upload du fichier dans ton bucket existant (si présent)
             let path = null;
             const file = fileIn.files[0];
             if (file) {
@@ -565,8 +565,13 @@
             status.className = 'form-status ok';
             status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
             form.reset();
+            
+            // Reset de l'affichage conditionnel après submit
             blocOrdo.style.display = 'block';
             blocMed.style.display  = 'none';
+            fileIn.required = true;
+            blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
+
         } catch (err) {
             status.className = 'form-status err';
             status.textContent = "⚠️ Erreur lors de l'envoi. Réessayez ou écrivez-nous sur WhatsApp.";
@@ -580,3 +585,5 @@
 
 </body>
 </html>
+
+<!-- FIN DE LA PARTIE 1. COLLEZ LA PARTIE 2 DIRECTEMENT À LA SUITE -->
