@@ -499,9 +499,8 @@
 <script>
     // ⬇️⬇️ REMPLACE PAR TES VALEURS EXACTES ⬇️⬇️
     const SUPABASE_URL  = 'https://lofmighhbwhvujwpajie.supabase.co';
-    const SUPABASE_ANON = 'sb_publishable_DeclNPgUMq8A03HEvuNyIQ_6yw-d8Ed';
-    const BUCKET_NAME   = 'ordonnances';
-    const EDGE_FUNCTION_URL = 'https://lofmighhbwhvujwpajie.supabase.co/functions/v1/notify-demande';
+    const SUPABASE_ANON = 'TA_CLE_ANON_PUBLIQUE';
+    const BUCKET_NAME   = 'partenaires-sante';
 
     const db = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
@@ -512,13 +511,13 @@
     const blocOrdo = document.getElementById('blocOrdonnance');
     const blocMed  = document.getElementById('blocMedicaments');
 
-    // Fonction utilitaire pour extraire les valeurs (gère radios, checkboxes, textes)
+    // Fonction utilitaire pour extraire les valeurs
     const getVal = (name) => {
-        const el = form.querySelector(`[name="${name}"]`);
+        const el = form.querySelector('[name="' + name + '"]');
         if (!el) return '';
         if (el.type === 'checkbox') return el.checked;
         if (el.type === 'radio') {
-            const checked = form.querySelector(`[name="${name}"]:checked`);
+            const checked = form.querySelector('[name="' + name + '"]:checked');
             return checked ? checked.value : '';
         }
         return el.value || '';
@@ -555,7 +554,6 @@
         status.className = 'form-status';
 
         try {
-            // Construction manuelle et robuste de l'objet data
             const data = {
                 nom_proche: getVal('nom_proche'),
                 age_proche: getVal('age_proche'),
@@ -575,14 +573,13 @@
                 accepte_urgence: getVal('accepte_urgence')
             };
 
-            console.log('📤 Données extraites du formulaire :', data);
+            console.log('📤 Données extraites :', data);
 
-            // 1) Upload du fichier (si présent)
             let path = null;
             const file = fileIn.files[0];
             if (file) {
                 const ext = (file.name.split('.').pop() || 'bin').toLowerCase();
-                path = `ordonnances/${Date.now()}-${crypto.randomUUID()}.${ext}`;
+                path = 'ordonnances/' + Date.now() + '-' + crypto.randomUUID() + '.' + ext;
                 
                 const { error: uploadError } = await db.storage
                     .from(BUCKET_NAME).upload(path, file, { upsert: false });
@@ -591,18 +588,15 @@
             }
             data.ordonnance_path = path;
 
-            // 2) Insertion dans la table demandes (SANS .select())
             const { error: insertError } = await db
                 .from('demandes')
                 .insert(data);
             
             if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
-            console.log('✅ Insertion réussie dans la table demandes');
+            console.log('✅ Insertion réussie');
 
-                        // 3) Notification Telegram via la méthode officielle Supabase
-            console.log('📡 Envoi de la notification Telegram...');
-            
             try {
+                console.log('📡 Envoi notification Telegram...');
                 const { data: fnData, error: fnError } = await db.functions.invoke('notify-demande', {
                     body: data
                 });
@@ -615,13 +609,28 @@
             } catch (tgErr) {
                 console.error('⚠️ Erreur appel Telegram :', tgErr);
             }
+
+            status.className = 'form-status ok';
+            status.textContent = "✅ Demande bien reçue ! Notre coordinateur vous recontacte sous 24h avec un devis clair.";
+            form.reset();
             
-            finally {
+            blocOrdo.style.display = 'block';
+            blocMed.style.display  = 'none';
+            fileIn.required = true;
+            blocMed.querySelectorAll('input, textarea').forEach(i => i.required = false);
+
+        } catch (err) {
+            console.error('💥 Erreur finale :', err);
+            status.className = 'form-status err';
+            status.textContent = "⚠️ " + err.message;
+        } finally {
             btn.disabled = false;
             btn.textContent = 'Recevoir mon devis gratuit sous 24h';
         }
     });
 </script>
 
+</body>
+</html>
 </body>
 </html>
