@@ -574,10 +574,9 @@
             data.ordonnance_path = path;
 
             // 2) Insertion dans la table demandes
-            const { data: insertData, error: insertError } = await db
+            const { error: insertError } = await db
                 .from('demandes')
-                .insert(data)
-                .select();
+                .insert(data);
             
             if (insertError) throw new Error('Insertion échouée : ' + insertError.message);
 
